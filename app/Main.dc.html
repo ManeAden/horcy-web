@@ -1,0 +1,238 @@
+<!doctype html><html lang="fr"><head><meta charset="utf-8"><title>Accueil</title><script src="./support.js"></script></head><body><x-dc><helmet><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=DM+Sans:wght@400;500;700&display=swap"><style>
+html,body{height:100%}body{margin:0;font-family:"DM Sans",-apple-system,sans-serif;color:#2a2f1f}
+.p{width:100%;height:100vh;height:100dvh;box-sizing:border-box;background:#faf9f4;display:flex;flex-direction:column;overflow:hidden}
+.b>*{flex-shrink:0}.b{flex:1;padding:22px 16px 24px;display:flex;flex-direction:column;gap:18px;overflow-x:hidden;overflow-y:auto;min-height:0;scrollbar-width:thin;touch-action:pan-y;overscroll-behavior:contain}
+.e{font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:#6b6f5c;margin-bottom:2px}
+h1,h2{font-family:"Playfair Display",Georgia,serif;margin:0;color:#2a2f1f}h1{font-size:30px}h2{font-size:20px;margin-bottom:10px}
+.r{display:flex;gap:8px}.hs{overflow-x:auto;overflow-y:hidden;touch-action:pan-x pan-y;overscroll-behavior-x:contain;-webkit-overflow-scrolling:touch;scrollbar-width:none;margin:0 -16px;padding:0 16px}.hs::-webkit-scrollbar{display:none}.hs>.ch,.hs a.ch{flex:none;white-space:nowrap}.ch{border:1px solid #e4dfd6;background:#efeae3;border-radius:99px;min-height:44px;padding:0 18px;font:500 14px "DM Sans",sans-serif;color:#4a4d3c}.ch.a{background:#5c6b35;color:#fff;border-color:#5c6b35}
+.al{background:#a85a14;color:#fff;border-radius:6px;padding:14px 16px;font-weight:500;margin:0 -16px}
+.c{background:#fff;border:1px solid #e4dfd6;border-radius:14px;padding:12px;display:flex;align-items:center;gap:12px;margin-bottom:8px;font-size:15px}
+.i{width:44px;height:44px;border-radius:50%;background:#e4e6d3;color:#4b5a28;display:flex;align-items:center;justify-content:center;flex:none}
+.g{flex:1}.g b{font-weight:700}.s{font-size:13px;color:#6b6f5c;margin-top:2px}
+.t{font-size:12px;font-weight:700;padding:5px 10px;border-radius:99px;background:#a85a14;color:#fff;white-space:nowrap}.t.v{background:#5c6b35}
+.q{flex:1;background:#fff;border:1px solid #e4dfd6;border-radius:14px;padding:14px 4px;display:flex;flex-direction:column;align-items:center;gap:8px;font-size:13px;font-weight:500}
+.n{flex:none;display:flex;border-top:1px solid #e4dfd6;background:#fff;padding:6px 0 20px}
+.n a{flex:1;display:flex;flex-direction:column;align-items:center;gap:2px;font-size:11px;color:#6b6f5c;text-decoration:none;padding:6px 0;min-height:32px}.n a.a{color:#4b5a28;font-weight:700}
+label{display:flex;gap:12px;align-items:center;min-height:44px;font-size:15px}input{accent-color:#5c6b35;width:20px;height:20px}
+.k{background:#5c6b35;color:#fff;border:0;border-radius:99px;min-height:52px;font:700 16px "DM Sans",sans-serif}
+a.ch{display:inline-flex;align-items:center;text-decoration:none}a.k{display:flex;align-items:center;justify-content:center;text-decoration:none;box-sizing:border-box}a.c,a.q{text-decoration:none;color:inherit}a{-webkit-tap-highlight-color:transparent;box-sizing:border-box}sc-if,sc-for{display:contents}</style></helmet>
+<div class="p"><div class="b"><div style="height:44px;flex:none" aria-hidden="true"></div>
+<div><div class="e">{{ todayLabel }}</div><div style="display:flex;align-items:center;gap:14px"><a href="MonEcurie.dc.html" aria-label="Ouvrir Mon écurie" style="text-decoration:none;width:60px;height:60px;border-radius:50%;background:#e4e6d3;display:flex;align-items:center;justify-content:center;flex:none"><svg width="44" height="44" viewBox="0 2.75 48 48" role="img" aria-label="Grange" style="display:block"><path d="M3 28.2L13 24.4L18.2 15.6L24 12L29.8 15.6L35 24.4L45 28.2V30.6L34 26.6L28.9 18L24 15L19.1 18L14 26.6L3 30.6Z" fill="#2a2f1f" stroke="#2a2f1f" stroke-width="0.8" stroke-linejoin="round"/><path d="M6.5 31.4L15.4 28.4L20.2 20.2L24 17.8L27.8 20.2L32.6 28.4L41.5 31.4V41.5H6.5Z" fill="#2a2f1f"/><rect x="15.2" y="29.6" width="17.6" height="11.9" fill="#e4e6d3"/><rect x="16.4" y="30.8" width="7" height="10.7" fill="#2a2f1f"/><rect x="24.6" y="30.8" width="7" height="10.7" fill="#2a2f1f"/><path d="M17.6 32L22.2 40.3M22.2 32L17.6 40.3M25.8 32L30.4 40.3M30.4 32L25.8 40.3" stroke="#e4e6d3" stroke-width="1"/><path d="M17.6 32H22.2V40.3H17.6ZM25.8 32H30.4V40.3H25.8Z" fill="none" stroke="#e4e6d3" stroke-width="0.8"/><rect x="21.9" y="20.6" width="1.7" height="1.7" fill="#e4e6d3"/><rect x="24.4" y="20.6" width="1.7" height="1.7" fill="#e4e6d3"/><rect x="21.9" y="23.1" width="1.7" height="1.7" fill="#e4e6d3"/><rect x="24.4" y="23.1" width="1.7" height="1.7" fill="#e4e6d3"/></svg></a><a href="MonEcurie.dc.html" style="text-decoration:none;color:inherit"><h1 style="font-size:36px">Mon écurie</h1></a></div></div>
+<div class="r hs"><sc-for list="{{ newHorses }}" as="h" hint-placeholder-count="1"><a class="ch" href="Fiche.dc.html" onClick="{{ h.select }}">{{ h.nom }}</a></sc-for></div>
+<div class="al" style="text-align:center;{{ bannerStyle }}">{{ bannerText }}</div>
+<div><h2>Échéances</h2><sc-for list="{{ allEch }}" as="e" hint-placeholder-count="3"><a class="c" href="{{ e.href }}" onClick="{{ e.select }}"><div class="i"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="{{ e.icon }}"/></svg></div><div class="g"><b>{{ e.title }}</b><div class="s">{{ e.label }}</div></div><span class="t" style="{{ e.tagStyle }}">{{ e.tag }}</span></a></sc-for><sc-if value="{{ noEch }}" hint-placeholder-val="{{ false }}"><div class="s">Aucune échéance</div></sc-if></div>
+<div><h2>Rappels du jour</h2><sc-for list="{{ rapRows }}" as="r" hint-placeholder-count="2"><a class="c" href="Rappels.dc.html" onClick="{{ r.open }}"><div class="i"><sc-if value="{{ r.isTr }}" hint-placeholder-val="{{ false }}"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 16l8-8 M5 13a3.5 3.5 0 015-5l6 6a3.5 3.5 0 01-5 5z"/></svg></sc-if><sc-if value="{{ r.notTr }}" hint-placeholder-val="{{ true }}"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 17h12l-1.5-2V11a4.5 4.5 0 00-9 0v4z M10 20h4"/></svg></sc-if></div><div class="g"><b>{{ r.title }}</b><div class="s">{{ r.sub }}</div></div><span class="t" style="{{ r.tagStyle }}">{{ r.tag }}</span></a></sc-for><sc-if value="{{ noRap }}" hint-placeholder-val="{{ false }}"><div class="s">Aucun rappel aujourd’hui</div></sc-if></div>
+<div><h2>Ajouter au suivi</h2><div class="r"><a class="q" href="{{ addEch }}"><div class="i"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 6h16v14H4z M4 10h16 M8 3v4 M16 3v4"/></svg></div>Échéance</a><a class="q" href="{{ addTr }}"><div class="i"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 16l8-8 M5 13a3.5 3.5 0 015-5l6 6a3.5 3.5 0 01-5 5z"/></svg></div>Traitement</a><a class="q" href="{{ addRap }}"><div class="i"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 17h12l-1.5-2V11a4.5 4.5 0 00-9 0v4z M10 20h4"/></svg></div>Rappel</a></div></div>
+</div><nav class="n"><a href="Main.dc.html" class="a"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 11l9-8 9 8v10h-6v-6H9v6H3z"/></svg> Accueil</a><a href="Chevaux.dc.html" class=""><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 20V10a6 6 0 0112 0v10h-4v-9a2 2 0 00-4 0v9z"/></svg> Chevaux</a><a href="Suivi.dc.html" class=""><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 3h6v3H9z M6 5h12v16H6z M9 11h6 M9 15h6"/></svg> Suivi</a><a href="Depenses.dc.html" class=""><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 7h18v13H3z M3 7l2-3h13 M16 13h3"/></svg> Dépenses</a></nav></div>
+</x-dc><script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":412,"height":891}}'>
+(function horcyClock() { try {
+  /* Jour de référence : la date du téléphone dans l'application Android ; le vendredi 9 oct. 2026 dans le prototype (navigateur). localStorage 'horcyN:realDate' = '1' force la vraie date dans le navigateur (tests). */
+  var C = window.Capacitor; var real = !!(C && C.isNativePlatform && C.isNativePlatform()); try { if (window.localStorage.getItem('horcyN:realDate') === '1') real = true; } catch (e) {}
+  var t = real ? new Date() : new Date(2026, 9, 9); var y = t.getFullYear(), m = t.getMonth(), d = t.getDate();
+  var p2 = function (x) { return ('0' + x).slice(-2); }; var iso = function (a) { return a.getFullYear() + '-' + p2(a.getMonth() + 1) + '-' + p2(a.getDate()); }; var fr = function (a) { return p2(a.getDate()) + '/' + p2(a.getMonth() + 1) + '/' + String(a.getFullYear()).slice(2); };
+  var MON = ['janv.', 'févr.', 'mars', 'avr.', 'mai', 'juin', 'juil.', 'août', 'sept.', 'oct.', 'nov.', 'déc.'];
+  window.HZ = { real: real, y: y, m: m, d: d, ys: String(y), utc: Date.UTC(y, m, d), date: function () { return new Date(y, m, d); },
+    iso: iso(t), fr: fr(t), fr2: fr(new Date(y, m, d + 2)), fr1: fr(new Date(y, m, 1)), lab: d + ' ' + MON[m],
+    mA: iso(new Date(y, m, 1)), mB: iso(new Date(y, m + 1, 0)), yA: y + '-01-01', yB: y + '-12-31', nA: iso(new Date(y, m + 1, 1)), nB: iso(new Date(y, m + 2, 0)) };
+} catch (e) {} })();
+(function horcyKb() { try {
+  /* Clavier : garde visible le champ en cours de saisie. Dans l'appli Android, hauteur du clavier donnée par le plugin Keyboard ; dans un navigateur, par visualViewport. L'écran (.p) est raccourci de la partie masquée, la barre du bas est cachée pendant la saisie et le champ est amené au centre. */
+  var W = window; if (W.__horcyKb) return; W.__horcyKb = 1;
+  var H0 = W.innerHeight, kb = 0;
+  var isField = function (a) { return !!a && (/^(TEXTAREA|SELECT)$/.test(a.tagName) || (a.tagName === 'INPUT' && !/^(checkbox|radio|file|button|submit|hidden|range|color)$/i.test(a.type || ''))); };
+  var show = function () { var a = document.activeElement; if (!kb || !isField(a)) return; try { a.scrollIntoView({ block: 'center', behavior: 'smooth' }); } catch (e) { a.scrollIntoView(); } };
+  var apply = function (h) { var ov = Math.max(0, Math.round(h - Math.max(0, H0 - W.innerHeight))); kb = ov > 60 ? ov : 0; var p = document.querySelector('.p'); if (p) p.style.height = kb ? 'calc(100dvh - ' + kb + 'px)' : ''; var n = p && p.querySelector('.n'); if (n) n.style.display = kb ? 'none' : ''; setTimeout(show, 80); setTimeout(show, 350); };
+  var C = W.Capacitor; var K = C && C.isNativePlatform && C.isNativePlatform() && C.Plugins && C.Plugins.Keyboard;
+  if (K && K.addListener) { K.addListener('keyboardDidShow', function (i) { apply((i && i.keyboardHeight) || 0); }); K.addListener('keyboardWillHide', function () { apply(0); }); }
+  else if (W.visualViewport) { var vv = W.visualViewport; vv.addEventListener('resize', function () { apply(Math.max(0, W.innerHeight - vv.height)); }); }
+  document.addEventListener('focusin', function (e) { if (isField(e.target)) { setTimeout(show, 120); setTimeout(show, 400); } });
+  W.addEventListener('orientationchange', function () { setTimeout(function () { if (!kb) H0 = W.innerHeight; }, 500); });
+} catch (e) {} })();
+(function horcyBack() { try {
+  /* Bouton retour du téléphone (appli Android) : ferme d'abord une fenêtre ou une liste ouverte, sinon reproduit la flèche « ‹ » de l'écran, sinon revient à l'Accueil ; sur l'Accueil, met l'appli en arrière-plan. */
+  var W = window; if (W.__horcyBack) return; var C = W.Capacitor; var A = C && C.isNativePlatform && C.isNativePlatform() && C.Plugins && C.Plugins.App; if (!A || !A.addListener) return; W.__horcyBack = 1;
+  var vis = function (el) { if (!el) return false; var s = W.getComputedStyle(el); return s.display !== 'none' && s.visibility !== 'hidden' && el.getClientRects().length > 0; };
+  var page = function () { return decodeURIComponent((W.location.pathname.split('/').pop() || '')); };
+  A.addListener('backButton', function () {
+    var root = document.getElementById('dc-root') || document.body;
+    var dlg = Array.prototype.slice.call(root.querySelectorAll('[role="dialog"]')).filter(vis).pop();
+    if (dlg) { var bs = Array.prototype.slice.call(dlg.querySelectorAll('button,a')); var close = bs.filter(function (b) { return /^(annuler|fermer|ok)$/i.test((b.textContent || '').trim()) || /fermer/i.test(b.getAttribute('aria-label') || ''); })[0]; if (close) { close.click(); return; } }
+    var open = Array.prototype.slice.call(root.querySelectorAll('[aria-expanded="true"]')).filter(vis)[0]; if (open) { open.click(); return; }
+    var back = Array.prototype.slice.call(root.querySelectorAll('path')).filter(function (p) { return p.getAttribute('d') === 'M15 6l-6 6 6 6'; }).map(function (p) { return p.closest('a,button'); }).filter(vis)[0];
+    if (back) { back.click(); return; }
+    if (page() !== 'Main.dc.html') { W.location.href = 'Main.dc.html'; return; }
+    if (A.minimizeApp) A.minimizeApp(); else if (A.exitApp) A.exitApp();
+  });
+} catch (e) {} })();
+(function horcySeed() { try { const LS = window.localStorage; if (LS.getItem('horcy:seed') === 'v1') return;
+  Object.keys(LS).filter((k) => k.indexOf('horcy:') === 0 && ['horcy:wx', 'horcy:fmeta'].indexOf(k) < 0).forEach((k) => LS.removeItem(k));
+  const J = (k, v) => LS.setItem(k, JSON.stringify(v));
+  J('horcy:horses', []);
+  J('horcy:ech', []);
+  J('horcy:db', { rations: {}, treatments: {}, pathologies: {} });
+  J('horcy:histo', []);
+  J('horcy:rappels', { shared: [], trt: [] });
+  J('horcy:conseils', {});
+  J('horcy:pmeta', {});
+  J('horcy:me', { name: '', phone: '', address: '' });
+  J('horcy:pros', { pros: [], defaults: {} });
+  J('horcy:types', []);
+  LS.setItem('horcy:seed', 'v1'); } catch (e) {} })();
+(function horcyNotif() { try {
+  /* Notifications Horcy : actif seulement dans l'application Android (Capacitor). Dans le navigateur, rien n'est programmé ; window.horcyNotif.plan() permet de voir le calendrier calculé. Date et heure : celles du téléphone. */
+  var W = window;
+  if (W.horcyNotif && W.horcyNotif.kick) { W.horcyNotif.kick(); return; }
+  var LS = W.localStorage;
+  var MON = ['janv.', 'févr.', 'mars', 'avr.', 'mai', 'juin', 'juil.', 'août', 'sept.', 'oct.', 'nov.', 'déc.'];
+  var DAYS = 45, MAX = 400, CH = 'horcy-rappels', RUNNER = 'fr.horcy.meteo';
+  var ICON = { 'Maréchal': 'ic_stat_marechal', 'Vermifuge': 'ic_stat_vermifuge', 'Coproscopie': 'ic_stat_coproscopie', 'Dentiste': 'ic_stat_dentiste', 'Ostéopathe': 'ic_stat_osteopathe', 'Vétérinaire': 'ic_stat_veterinaire' };
+  var MEALH = { matin: '07:00', midi: '12:00', soir: '18:00' };
+  var MEALT = { matin: 'ration du matin', midi: 'ration de midi', soir: 'ration du soir' };
+  var J = function (k, d) { try { var v = LS.getItem(k); return v ? JSON.parse(v) : d; } catch (e) { return d; } };
+  var p2 = function (x) { return ('0' + x).slice(-2); };
+  var isoOf = function (t) { return t.getFullYear() + '-' + p2(t.getMonth() + 1) + '-' + p2(t.getDate()); };
+  var fromIso = function (s) { var q = String(s || '').split('-'); return q.length === 3 ? new Date(+q[0], +q[1] - 1, +q[2]) : null; };
+  var fromFr = function (s) { var m = /^(\d{1,2})\/(\d{1,2})\/(\d{2}|\d{4})$/.exec(String(s || '').trim()); if (!m) return null; var y = +m[3]; if (m[3].length === 2) y += 2000; return new Date(y, +m[2] - 1, +m[1]); };
+  var at = function (day, hm) { var m = /^(\d{1,2}):(\d{2})$/.exec(String(hm || '').trim()) || [0, 18, 0]; var t = new Date(day.getTime()); t.setHours(+m[1], +m[2], 0, 0); return t; };
+  var addDays = function (t, n) { var r = new Date(t.getTime()); r.setDate(r.getDate() + n); return r; };
+  var dayDiff = function (a, b) { return Math.round((Date.UTC(b.getFullYear(), b.getMonth(), b.getDate()) - Date.UTC(a.getFullYear(), a.getMonth(), a.getDate())) / 86400000); };
+  var fh = function (s) { return String(s == null ? '' : s).replace(/\b(\d{1,2}):(\d{2})\b/g, function (m, h, mm) { return (+h) + 'h' + (mm === '00' ? '' : mm); }); };
+  var lab = function (t, now) { return t.getDate() + ' ' + MON[t.getMonth()] + (t.getFullYear() !== now.getFullYear() ? ' ' + String(t.getFullYear()).slice(2) : ''); };
+  var dueOn = function (start, d, n, unit) { n = parseInt(n, 10) || 1; var k = dayDiff(start, d); if (k < 0) return false; if (!unit || unit === 'jours') return k % n === 0; if (unit === 'semaines') return k % (7 * n) === 0; if (d.getDate() !== start.getDate()) return false; var mo = (d.getFullYear() - start.getFullYear()) * 12 + (d.getMonth() - start.getMonth()); return unit === 'mois' ? mo % n === 0 : (d.getMonth() === start.getMonth() && (d.getFullYear() - start.getFullYear()) % n === 0); };
+  var hash = function (s) { var h = 5381; for (var i = 0; i < s.length; i++) h = ((h * 33) ^ s.charCodeAt(i)) >>> 0; return (h % 2147483000) + 1; };
+  var spec = function (x) { if (x.spec) return x.spec; var c = String(x.cond || ''), m; if ((m = /moins de (-?\d+)/.exec(c))) return { type: 'Température', seuil: 'Moins de', temp: m[1] }; if ((m = /plus de (-?\d+)/.exec(c))) return { type: 'Température', seuil: 'Plus de', temp: m[1] }; if (/^Si /.test(c)) return { type: 'Météo', meteo: { Pluie: /pluie/i.test(c), Vent: /vent/i.test(c) } }; return { type: 'Date/Heure', legacy: true }; };
+
+  function data() { return { horses: J('horcy:horses', []).map(function (h) { return h.nom; }), ech: J('horcy:ech', []), db: J('horcy:db', {}) || {}, histo: J('horcy:histo', []), rap: J('horcy:rappels', null) || { shared: [], trt: [] }, me: J('horcy:me', {}) || {} }; }
+
+  /* Calendrier des notifications programmables (échéances, traitements, rappels date/heure). */
+  function plan(now, D) {
+    now = now || new Date(); D = D || data(); var out = []; var today = new Date(now.getFullYear(), now.getMonth(), now.getDate()); var last = addDays(today, DAYS);
+    var push = function (key, t, title, body, icon) { if (t.getTime() <= now.getTime() || t > addDays(last, 1)) return; out.push({ key: key, at: t.getTime(), title: title, body: body, icon: icon }); };
+    var hasH = function (h) { return D.horses.indexOf(h) >= 0; };
+    (D.ech || []).forEach(function (e) { var rm = e.rem || {}; if (rm.on === false) return; var nx = fromIso(e.next); if (!nx) return; var hr = rm.h || e.time || '18:00'; var body = 'Échéance le ' + lab(nx, now) + ' à ' + fh(e.time || '18:00');
+      (e.horses || []).forEach(function (h) { if (!hasH(h)) return; var ic = ICON[e.type] || 'ic_stat_autre';
+        if (rm.dOn !== false) { var n = parseInt(rm.dN || 7, 10) || 7; push('e|' + e.id + '|' + h + '|d' + n + '|' + e.next, at(addDays(nx, -n), hr), e.type + ' - ' + h + ' • Dans ' + n + ' jours', body, ic); }
+        if (rm.vOn !== false) push('e|' + e.id + '|' + h + '|v|' + e.next, at(addDays(nx, -1), hr), e.type + ' - ' + h + ' • Demain', body, ic); }); });
+    var T = D.db.treatments || {};
+    ((D.rap && D.rap.trt) || []).forEach(function (x) { if (!x.on || !hasH(x.horse)) return; var tr = (T[x.horse] || []).filter(function (t) { return t.id === x.tid; })[0]; if (!tr) return; var st = (D.histo || []).filter(function (y) { return y.tid === x.tid && y.tag !== 'Fin'; })[0]; if (!st) return; var det = st.det || {}; var s0 = fromIso(st.iso); if (!s0) return; var once = !!det.once; var e0 = once ? s0 : (fromIso(tr.endIso) || s0);
+      var mm = /^Traitement · ((?:matin|midi|soir)(?: et (?:matin|midi|soir))*)$/.exec(String(x.cond || '')); var meals = mm ? mm[1].split(' et ') : null; var alim = !!meals;
+      var hours = alim ? [] : (x.hrs && x.hrs.length ? x.hrs : String(x.cond || '').replace('Traitement · ', '').split(' et ').filter(function (v) { return /\d/.test(v); })); if (!alim && !hours.length) hours = ['18:00'];
+      var title = alim ? String(x.title || '').replace(' - ', ' ') + ' - ' + x.horse : (x.title || tr.title) + ' - ' + x.horse;
+      for (var d = (s0 > today ? s0 : today); d <= e0 && d <= last; d = addDays(d, 1)) { if (once && dayDiff(s0, d) !== 0) continue; if (!once && !alim && !dueOn(s0, d, det.every || 1, det.everyUnit || 'jours')) continue;
+        if (alim) meals.forEach(function (m) { push('t|' + x.id + '|' + isoOf(d) + '|' + m, at(d, (x.rh || {})[m] || MEALH[m]), title, 'Traitement · ' + MEALT[m], 'ic_stat_traitement'); });
+        else hours.forEach(function (hh) { push('t|' + x.id + '|' + isoOf(d) + '|' + hh, at(d, hh), title, 'Traitement · soin de ' + fh(hh), 'ic_stat_traitement'); }); } });
+    ((D.rap && D.rap.shared) || []).forEach(function (x) { var sp = spec(x); if (sp.type !== 'Date/Heure' || sp.legacy) return; var hs = D.horses.filter(function (h) { return x.on && x.on[h]; }); if (!hs.length) return;
+      var slots = []; if (sp.per === 'Une seule fois') { var d1 = fromFr(sp.date); if (d1) slots.push([d1, sp.hour || '18:00']); }
+      else { var a = fromFr(sp.start), b = fromFr(sp.end); if (a) { for (var d = (a > today ? a : today); d <= last && (!b || d <= b); d = addDays(d, 1)) { if (dayDiff(a, d) % (parseInt(sp.every, 10) || 1) !== 0) continue; (sp.hours && sp.hours.length ? sp.hours : ['18:00']).forEach(function (hh) { slots.push([d, hh]); }); } } }
+      slots.forEach(function (s) { hs.forEach(function (h) { push('r|' + x.id + '|' + h + '|' + isoOf(s[0]) + '|' + s[1], at(s[0], s[1]), (x.title || 'Rappel') + ' - ' + h, 'Rappel · ' + fh(s[1]), 'ic_stat_cloche'); }); }); });
+    out.sort(function (p, q) { return p.at - q.at; }); return out.slice(0, MAX); }
+
+  /* Règles météo/température transmises à la tâche de fond. */
+  function wxRules(D) { D = D || data(); var R = []; var geo = (D.me || {}).geo; if (!geo || geo.lat == null || !String((D.me || {}).address || '').trim()) return { geo: null, rules: [] };
+    ((D.rap && D.rap.shared) || []).forEach(function (x) { var sp = spec(x); if (sp.type !== 'Température' && sp.type !== 'Météo') return; D.horses.forEach(function (h) { if (!x.on || !x.on[h]) return; R.push({ id: x.id, title: x.title || 'Rappel', horse: h, type: sp.type, seuil: sp.seuil, temp: +sp.temp, pluie: !!(sp.meteo && sp.meteo.Pluie), vent: !!(sp.meteo && sp.meteo.Vent) }); }); });
+    return { geo: { lat: geo.lat, lon: geo.lon }, rules: R }; }
+  function wxHits(w, cfg) { var out = []; (cfg.rules || []).forEach(function (r) { var body = null;
+      if (r.type === 'Température') { if (r.seuil === 'Plus de') { if (w.max != null && w.max > r.temp) body = 'Température · ' + w.max + ' °C prévus aujourd’hui'; } else if (w.min != null && w.min < r.temp) body = 'Température · ' + w.min + ' °C prévus cette nuit'; }
+      else { var p = []; if (r.pluie && w.rain) p.push('pluie'); if (r.vent && w.wind) p.push('vent fort'); if (p.length) body = 'Météo · ' + p.join(' et ') + (p.length > 1 ? ' prévus' : (p[0] === 'pluie' ? ' prévue' : ' prévu')); }
+      if (body) out.push({ key: 'w|' + r.id + '|' + r.horse + '|' + w.day, night: r.type === 'Température' && r.seuil !== 'Plus de', title: r.title + ' - ' + r.horse, body: body, icon: 'ic_stat_cloche' }); }); return out; }
+  function wxFetch(geo, now) { var day = isoOf(now), day2 = isoOf(addDays(now, 1));
+    return fetch('https://api.open-meteo.com/v1/forecast?latitude=' + geo.lat + '&longitude=' + geo.lon + '&hourly=temperature_2m,precipitation,precipitation_probability,wind_gusts_10m&timezone=Europe%2FParis&forecast_days=2').then(function (r) { return r.json(); }).then(function (j) { var H = j.hourly || {}, T = H.time || [];
+      var pick = function (k, f) { return T.map(function (t, i) { return [t, (H[k] || [])[i]]; }).filter(function (p) { return p[1] != null && f(p[0]); }).map(function (p) { return p[1]; }); };
+      var mn = pick('temperature_2m', function (t) { return t >= day + 'T20:00' && t <= day2 + 'T08:00'; }), mx = pick('temperature_2m', function (t) { return t >= day + 'T08:00' && t <= day + 'T20:00'; });
+      var n24 = function (t) { return t >= day + 'T08:00' && t <= day2 + 'T08:00'; }; var pr = pick('precipitation', n24), pp = pick('precipitation_probability', n24), gu = pick('wind_gusts_10m', n24);
+      return { day: day, min: mn.length ? Math.round(Math.min.apply(null, mn)) : null, max: mx.length ? Math.round(Math.max.apply(null, mx)) : null, rain: pr.reduce(function (a, b) { return a + b; }, 0) >= 1 || (pp.length > 0 && Math.max.apply(null, pp) >= 50), wind: gu.length ? Math.max.apply(null, gu) >= 50 : false }; }); }
+
+  var C = function () { var c = W.Capacitor; return c && c.isNativePlatform && c.isNativePlatform() ? c : null; };
+  var LN = function () { var c = C(); return c && c.Plugins && c.Plugins.LocalNotifications; };
+  var BR = function () { var c = C(); return c && c.Plugins && c.Plugins.BackgroundRunner; };
+  var S = function (k, v) { try { if (v === undefined) return LS.getItem('horcyN:' + k); LS.setItem('horcyN:' + k, v); } catch (e) { return null; } };
+  var toLN = function (p, when) { return { id: hash(p.key), title: p.title, body: p.body, largeBody: p.body, smallIcon: p.icon, iconColor: '#5c6b35', channelId: CH, schedule: { at: new Date(when), allowWhileIdle: true }, extra: { horcy: p.key } }; };
+
+  function ready(ln) { if (S('ready') === '1') return Promise.resolve(true);
+    return Promise.resolve(ln.checkPermissions ? ln.checkPermissions() : { display: 'granted' }).then(function (p) { return p && p.display === 'granted' ? p : (S('askedN') ? p : (S('askedN', '1'), ln.requestPermissions())); }).then(function (p) { if (!p || p.display !== 'granted') return false;
+      return Promise.resolve(ln.createChannel ? ln.createChannel({ id: CH, name: 'Rappels Horcy', description: 'Échéances, traitements et rappels personnalisés', importance: 4, visibility: 1, vibration: true }) : null).catch(function () {}).then(function () {
+        if (!ln.checkExactNotificationSetting || S('askedX')) return null; return ln.checkExactNotificationSetting().then(function (x) { if (x && x.exact_notification !== 'granted' && ln.changeExactNotificationSetting) { S('askedX', '1'); return ln.changeExactNotificationSetting(); } }).catch(function () {}); }).then(function () { S('ready', '1'); return true; }); }).catch(function () { return false; }); }
+
+  var busy = false, again = false;
+  function sync() { var ln = LN(); if (!ln) return Promise.resolve(null); if (busy) { again = true; return Promise.resolve(null); } busy = true; var now = new Date();
+    return ready(ln).then(function (ok) { if (!ok) return null; var P = plan(now); var sig = String(hash(JSON.stringify(P.map(function (p) { return [p.key, p.at, p.title, p.body]; })))) + ':' + P.length;
+      return Promise.resolve(sig === S('sig') ? null : ln.getPending().then(function (r) { var old = ((r && r.notifications) || []).filter(function (n) { return !n.extra || n.extra.horcy == null || String(n.extra.horcy).charAt(0) !== 'w'; }).map(function (n) { return { id: n.id }; }); return old.length ? ln.cancel({ notifications: old }) : null; }).then(function () { return P.length ? ln.schedule({ notifications: P.map(function (p) { return toLN(p, p.at); }) }) : null; }).then(function () { S('sig', sig); }))
+        .then(function () { return weather(ln, now); }); }).catch(function () {}).then(function () { busy = false; if (again) { again = false; sync(); } }); }
+
+  function weather(ln, now) { var cfg = wxRules(); var br = BR();
+    var push = br && br.dispatchEvent ? br.dispatchEvent({ label: RUNNER, event: 'config', details: cfg }).catch(function () {}) : Promise.resolve();
+    return push.then(function () { if (now.getHours() < 8 || !cfg.geo || !cfg.rules.length) return null; var day = isoOf(now);
+      if (br && br.dispatchEvent) return br.dispatchEvent({ label: RUNNER, event: 'check', details: {} }).then(function (r) { if (r && r.wx) try { LS.setItem('horcy:wx', JSON.stringify(r.wx)); } catch (e) {} }).catch(function () {});
+      var hr = now.getHours(), morn = S('wxDay') === day, eve = S('wxEve') === day; if (morn && (hr < 18 || eve)) return null; var c0 = J('horcy:wx', null);
+      return Promise.resolve(!morn && c0 && c0.day === day ? c0 : wxFetch(cfg.geo, now)).then(function (w) { try { LS.setItem('horcy:wx', JSON.stringify(w)); } catch (e) {} var sent = []; try { var q = JSON.parse(S('wxSent') || 'null'); if (q && q.day === day) sent = q.keys || []; } catch (e) {}
+        var H = wxHits(w, cfg).filter(function (p) { return sent.indexOf(p.key) < 0 && (!morn || p.night); }); S('wxDay', day); if (morn || hr >= 18) S('wxEve', day); S('wxSent', JSON.stringify({ day: day, keys: sent.concat(H.map(function (p) { return p.key; })) }));
+        return H.length ? ln.schedule({ notifications: H.map(function (p) { return toLN(p, Date.now() + 3000); }) }) : null; }).catch(function () {}); }); }
+
+  var tmr = null; function kick() { if (!LN()) return; clearTimeout(tmr); tmr = setTimeout(sync, 400); }
+  var WATCH = /^horcy:(horses|ech|db|histo|rappels|me)$/;
+  try { var sp0 = Storage.prototype, si = sp0.setItem, ri = sp0.removeItem; sp0.setItem = function (k, v) { var r = si.apply(this, arguments); if (this === LS && WATCH.test(k)) kick(); return r; }; sp0.removeItem = function (k) { var r = ri.apply(this, arguments); if (this === LS && WATCH.test(k)) kick(); return r; }; } catch (e) {}
+  try { document.addEventListener('visibilitychange', function () { if (document.visibilityState === 'visible') kick(); }); } catch (e) {}
+  W.horcyNotif = { plan: plan, wxRules: wxRules, wxHits: wxHits, kick: kick, sync: sync };
+  kick();
+} catch (e) {} })();
+class Component extends DCLogic {
+  fh(s) { return String(s == null ? '' : s).replace(/\b(\d{1,2}):(\d{2})\b/g, (m, h, mm) => (+h) + 'h' + (mm === '00' ? '' : mm)); }
+  dueOn(iso, n, unit) { n = parseInt(n, 10) || 1; const k = -this.isoDiff(iso); if (k < 0) return false; if (!unit || unit === 'jours') return k % n === 0; if (unit === 'semaines') return k % (7 * n) === 0; const q = String(iso).split('-').map(Number); if (q[2] !== HZ.d) return false; const months = (HZ.y - q[0]) * 12 + (HZ.m + 1 - q[1]); return unit === 'mois' ? months % n === 0 : (q[1] === HZ.m + 1 && (HZ.y - q[0]) % n === 0); }
+  icFor(t) { const I = {"Maréchal": "M6 20V10a6 6 0 0112 0v10h-4v-9a2 2 0 00-4 0v9z", "Vermifuge": "M15 3l6 6 M18 6l-9.5 9.5-3.5 1 1-3.5L15.5 3.5 M11 8l5 5 M8.5 15.5L3 21", "Coproscopie": "M10 3h4 M12 3v4 M9 7h6l-1 7h-4z M12 14v3 M7 21h10 M16 21a4 4 0 00-2-7", "Dentiste": "M8 4c-2.2 0-3.5 1.8-3.5 4.2 0 2.6 1 4.6 1.8 7.5.5 2 1 4.3 2 4.3 1.1 0 1.4-3 1.9-4.8.3-1 .9-1.2 1.8-1.2s1.5.2 1.8 1.2c.5 1.8.8 4.8 1.9 4.8 1 0 1.5-2.3 2-4.3.8-2.9 1.8-4.9 1.8-7.5C19.5 5.8 18.2 4 16 4c-1.6 0-2.4.9-4 .9S9.6 4 8 4z", "Ostéopathe": "M12 3v18 M9 5.5h6 M8.5 9.5h7 M8.5 13.5h7 M9 17.5h6", "Vétérinaire": "M6 3v5a4 4 0 008 0V3 M10 12v2.5a4.5 4.5 0 009 0V12 M19 12a2 2 0 100-4 2 2 0 000 4z M4.5 3H7 M13 3h2.5"}; return I[t] || 'M4 6h16v14H4z M4 10h16 M8 3v4 M16 3v4'; }
+
+  constructor(...args) { super(...args); try { window.localStorage.setItem('horcy:from', 'Accueil'); } catch (e) {} }
+  isoDiff(iso) { const p = String(iso).split('-'); return Math.round((Date.UTC(+p[0], +p[1] - 1, +p[2]) - HZ.utc) / 86400000); }
+  dbT() { let d = null; try { const q = window.localStorage.getItem('horcy:db'); if (q) d = JSON.parse(q); } catch (e) {} return (d && d.treatments) || {}; }
+  endRows() { const MON = ['janv.', 'févr.', 'mars', 'avr.', 'mai', 'juin', 'juil.', 'août', 'sept.', 'oct.', 'nov.', 'déc.']; const T = this.dbT(); const out = []; let H = []; try { H = JSON.parse(window.localStorage.getItem('horcy:histo') || '[]'); } catch (e) {}
+    Object.keys(T).forEach((h) => { (T[h] || []).forEach((t) => { const e = t.endIso; if (!e) return; const n = this.isoDiff(e); if (n < 0 || n > 7) return; const q = e.split('-');
+      const st = H.find((x) => x.tid === t.id && x.tag !== 'Fin'); const once = !!(st && st.det && st.det.once); out.push({ horse: h, n: n, head: (once ? 'Traitement — ' : 'Fin de traitement — ') + h, href: 'VueTraitementCree.dc.html', label: t.title + ' · ' + (+q[2]) + ' ' + MON[+q[1] - 1], tag: n === 0 ? 'Aujourd’hui' : 'Dans ' + n + ' j', select: () => { try { window.localStorage.setItem('horcy:from', 'Accueil'); window.localStorage.setItem('horcy:case', t.id); } catch (er) {} } }); }); });
+    return out.sort((a, b) => a.n - b.n); }
+  wxGet(geo) { const now = new Date(); const p2 = (x) => ('0' + x).slice(-2); const day = now.getFullYear() + '-' + p2(now.getMonth() + 1) + '-' + p2(now.getDate()); let c = null; try { c = JSON.parse(window.localStorage.getItem('horcy:wx') || 'null'); } catch (e) {}
+    if ((!c || c.day !== day) && now.getHours() >= 8 && geo && geo.lat != null && !this._wxReq) { this._wxReq = true;
+      try { fetch('https://api.open-meteo.com/v1/forecast?latitude=' + geo.lat + '&longitude=' + geo.lon + '&hourly=temperature_2m,precipitation,precipitation_probability,wind_gusts_10m&timezone=Europe%2FParis&forecast_days=2').then((r) => r.json()).then((j) => { const H = j.hourly || {}; const T = H.time || []; const tm = new Date(now.getTime() + 86400000); const day2 = tm.getFullYear() + '-' + p2(tm.getMonth() + 1) + '-' + p2(tm.getDate());
+        const at = (k, f) => T.map((t, i) => [t, (H[k] || [])[i]]).filter(([t, v]) => v != null && f(t)).map(([t, v]) => v);
+        const night = (t) => (t >= day + 'T20:00' && t <= day2 + 'T08:00'); const dayT = (t) => (t >= day + 'T08:00' && t <= day + 'T20:00'); const next24 = (t) => (t >= day + 'T08:00' && t <= day2 + 'T08:00');
+        const mn = at('temperature_2m', night), mx = at('temperature_2m', dayT), pr = at('precipitation', next24), pp = at('precipitation_probability', next24), gu = at('wind_gusts_10m', next24);
+        const w = { day: day, min: mn.length ? Math.round(Math.min(...mn)) : null, max: mx.length ? Math.round(Math.max(...mx)) : null, rain: pr.reduce((a, b) => a + b, 0) >= 1 || (pp.length && Math.max(...pp) >= 50), wind: gu.length ? Math.max(...gu) >= 50 : false };
+        try { window.localStorage.setItem('horcy:wx', JSON.stringify(w)); } catch (e) {} this.setState({ wxTick: Date.now() }); }).catch(() => {}); } catch (e) {} }
+    return c && c.day === day ? c : null; }
+  dayRaps() { let geo = null; try { geo = (JSON.parse(window.localStorage.getItem('horcy:me') || '{}') || {}).geo; } catch (e) {} const wx0 = this.wxGet(geo); const noWx = !wx0 && !!(window.HZ && HZ.real); const wxr = wx0 || { min: 3, max: 16, rain: false, wind: false }; const MIN = wxr.min != null ? wxr.min : 3, MAX = wxr.max != null ? wxr.max : 16; let addr = ''; try { addr = (JSON.parse(window.localStorage.getItem('horcy:me') || '{"name":"","phone":"","address":""}') || {}).address || ''; } catch (e) {} const wx = !!String(addr).trim(); let r = null; try { r = JSON.parse(window.localStorage.getItem('horcy:rappels') || 'null'); } catch (e) {}
+    r = r || { shared: [], trt: [] };
+    const horses = this.newNames(); const out = []; const T = this.dbT(); let hist = []; try { hist = JSON.parse(window.localStorage.getItem('horcy:histo') || '[]'); } catch (e) {}
+    const green = 'background:#e4e6d3;color:#4b5a28';
+    (r.shared || []).forEach((x) => { horses.forEach((h) => { if (!x.on || !x.on[h]) return; const c = String(x.cond || ''); let sub = null, kind = 'meteo', tag = /^Si (moins|plus) de/.test(c) ? 'Température' : 'Météo';
+      let m = /moins de (-?\d+)/.exec(c); if (m) { if (MIN < +m[1]) sub = h + ' · ' + MIN + ' °C prévus cette nuit'; }
+      else if ((m = /plus de (-?\d+)/.exec(c))) { if (MAX > +m[1]) sub = h + ' · ' + MAX + ' °C prévus aujourd’hui'; }
+      else if (/^Si /.test(c)) { const w = []; if (/pluie/i.test(c) && wxr.rain) w.push('pluie'); if (/vent/i.test(c) && wxr.wind) w.push('vent fort'); sub = w.length ? h + ' · ' + w.join(' et ') + (w.length > 1 ? ' prévus' : (w[0] === 'pluie' ? ' prévue' : ' prévu')) : null; }
+      else { kind = 'date'; tag = 'Date/Heure'; const sp = x.spec || null; const iso = (t) => { const m = /(\d{1,2})\/(\d{1,2})\/(\d{2})/.exec(t || ''); return m ? '20' + m[3] + '-' + ('0' + m[2]).slice(-2) + '-' + ('0' + m[1]).slice(-2) : ''; }; let due = true; if (sp && sp.per === 'Une seule fois') due = iso(sp.date) === HZ.iso; else if (sp) { const a0 = iso(sp.start), a1 = iso(sp.end); due = (!a0 || a0 <= HZ.iso) && (!a1 || a1 >= HZ.iso) && (!a0 || this.dueOn(a0, sp.every || 1, 'jours')); } sub = due ? h + ' · ' + c.replace(/^(Une seule fois|Tous les jours) · /, 'à ') : null; }
+      if (kind === 'meteo' && (!wx || noWx)) sub = null;
+      if (sub) out.push({ horse: h, title: x.title, sub: this.fh(sub), tag: tag, tagStyle: 'background:#5c6b35', isTr: false }); }); });
+    (r.trt || []).forEach((x) => { if (!x.on || !(T[x.horse] || []).some((t) => t.id === x.tid)) return; const st = hist.find((y) => y.tid === x.tid && y.tag !== 'Fin'); if (!st) return; const k = -this.isoDiff(st.iso); if (k < 0) return; const det = st.det || {}; if (det.once && k !== 0) return; if (!det.once && !det.alim && det.every && !this.dueOn(st.iso, det.every, det.everyUnit || 'jours')) return;
+      out.push({ horse: x.horse, title: x.title, sub: this.fh(x.horse + ' · ' + String(x.cond).replace('Traitement · ', '')), tag: 'Traitement', tagStyle: green, isTr: true }); });
+    let ea = []; try { ea = JSON.parse(window.localStorage.getItem('horcy:ech') || '[]'); } catch (e) {} ea.forEach((e) => { const rm = e.rem || {}; if (rm.on === false) return; const n = this.isoDiff(e.next); const dN = +(rm.dN || 7); let w = ''; const hh = this.fh(rm.h || e.time || '18:00'); if (rm.vOn !== false && n === 1) w = 'demain à ' + hh; else if (rm.dOn !== false && n === dN && n > 0) w = 'dans ' + n + ' jours à ' + hh; if (!w) return; (e.horses || []).forEach((h) => { if (horses.indexOf(h) < 0) return; out.push({ horse: h, title: e.type, sub: h + ' · ' + w, tag: 'Échéance', tagStyle: green, isTr: false }); }); });
+    return out; }
+
+  echRows(h) { let a = []; try { a = JSON.parse(window.localStorage.getItem('horcy:ech') || '[]'); } catch (e) {} const T = HZ.utc; const out = [];
+    a.forEach((e) => { (e.horses || []).forEach((hn) => { if (h && hn !== h) return; const p = e.next.split('-'); const n = Math.round((Date.UTC(+p[0], +p[1] - 1, +p[2]) - T) / 86400000);
+      const tag = n < 0 ? 'En retard' : (n === 0 ? 'Aujourd’hui' : (n <= 14 ? 'Dans ' + n + ' j' : e.label)); const tagStyle = n < 0 ? 'background:#9b2c2c' : (n > 14 ? 'background:#e4e6d3;color:#4b5a28' : '');
+      out.push({ id: e.id, select: () => { try { window.localStorage.setItem('horcy:echId', e.id); } catch (er) {} }, type: e.type, horse: hn, n: n, tag: tag, tagStyle: tagStyle, label: e.label, title: e.type + ' — ' + hn }); }); });
+    out.sort((x, y) => x.n - y.n); return out; }
+  readHorses() { try { const v = window.localStorage.getItem('horcy:horses'); const a = v ? JSON.parse(v) : []; return Array.isArray(a) ? a : []; } catch (e) { return []; } }
+  newNames() { try { return JSON.parse(window.localStorage.getItem('horcy:horses') || '[]').map((x) => x.nom); } catch (e) { return []; } }
+  sweepEnded() { try { const raw = window.localStorage.getItem('horcy:db'); if (!raw) return; const d = JSON.parse(raw); const TODAY = HZ.iso; const MON = ['janv.', 'févr.', 'mars', 'avr.', 'mai', 'juin', 'juil.', 'août', 'sept.', 'oct.', 'nov.', 'déc.']; let ch = false; const hist = JSON.parse(window.localStorage.getItem('horcy:histo') || '[]'); let rap = null;
+    Object.keys(d.treatments || {}).forEach((h) => { d.treatments[h] = d.treatments[h].filter((t) => { const e = t.endIso; if (!e || e >= TODAY) return true; ch = true; d.rations = d.rations || {};
+      d.rations[h] = (d.rations[h] || []).filter((r) => !(r.id && String(r.id).indexOf(t.id) === 0));
+      const q = e.split('-'); const dl = +q[2] + ' ' + MON[+q[1] - 1] + (q[0] !== HZ.ys ? ' ' + String(q[0]).slice(2) : ''); const fid = 'fin' + t.id;
+      const st0 = hist.find((x) => x.tid === t.id && x.tag !== 'Fin'); if (!hist.some((x) => x.id === fid) && !(st0 && st0.det && st0.det.once)) { const st = st0; hist.push(Object.assign({ id: fid, kind: 'Traitement', type: 'Traitement', cheval: h, title: t.title, sub: h, clips: false, note: '', price: '', href: 'VueTraitementCree.dc.html' }, st ? { tid: t.id, det: st.det, note: st.note || '' } : {}, { date: dl, iso: e, tag: 'Fin', tagStyle: 'background:#efeae3;color:#4a4d3c' })); }
+      try { rap = rap || JSON.parse(window.localStorage.getItem('horcy:rappels') || 'null'); if (rap && rap.trt) rap.trt = rap.trt.filter((x) => x.tid !== t.id); } catch (x) {}
+      return false; }); });
+    if (ch) { window.localStorage.setItem('horcy:db', JSON.stringify(d)); window.localStorage.setItem('horcy:histo', JSON.stringify(hist)); if (rap) window.localStorage.setItem('horcy:rappels', JSON.stringify(rap)); } } catch (e) {} }
+  renderVals() { try { window.localStorage.setItem('horcy:from', 'Accueil'); } catch (eF) {} const v = this.renderValsIc(); let EL = []; try { EL = JSON.parse(window.localStorage.getItem('horcy:ech') || '[]'); } catch (x) {} const ec = (v.newEch || []).map((e) => { const r = EL.find((x) => x.id === e.id) || {}; return Object.assign({}, e, { icon: this.icFor(e.type), href: 'VueEcheanceCree.dc.html', label: e.n >= 0 ? e.label + ' à ' + this.fh(r.time || '18:00') : e.label }); }); const en = (v.endRows || []).map((t) => Object.assign({}, t, { title: t.head, icon: 'M8 16l8-8 M5 13a3.5 3.5 0 015-5l6 6a3.5 3.5 0 01-5 5z', tagStyle: 'background:#e4e6d3;color:#4b5a28' })); v.allEch = ec.concat(en).sort((x, y) => x.n - y.n); delete v.newEch; delete v.endRows; return v; }
+  renderValsIc() { this.sweepEnded(); const rows = this.echRows(null); const rowsW = rows.filter((r) => r.n <= 7); const ends = this.endRows(); const raps = this.dayRaps();
+    const bn = ends.length + rows.filter((r) => r.n >= 0 && r.n <= 7).length; const late = rows.filter((r) => r.n < 0).length;
+    return { todayLabel: (() => { const d = HZ.date(); const J = ['Dimanche', 'Lundi', 'Mardi', 'Mercredi', 'Jeudi', 'Vendredi', 'Samedi']; const M = ['janv.', 'févr.', 'mars', 'avr.', 'mai', 'juin', 'juil.', 'août', 'sept.', 'oct.', 'nov.', 'déc.']; return J[d.getDay()] + ' ' + d.getDate() + ' ' + M[d.getMonth()]; })(),
+      bannerStyle: late > 0 ? 'background:#9b2c2c' : (bn > 0 ? '' : 'background:#5c6b35'), bannerText: (() => { const up = bn > 0 ? bn + (bn > 1 ? ' échéances à venir cette semaine' : ' échéance à venir cette semaine') : ''; const lt = late > 0 ? late + ' en retard' : ''; if (up && lt) return up + ' · ' + lt; if (lt) return late + (late > 1 ? ' échéances en retard' : ' échéance en retard'); return up || 'Aucune échéance à venir cette semaine'; })(),
+      newEch: rowsW.map((r) => Object.assign({}, r, { select: () => { r.select(); try { window.localStorage.setItem('horcy:from', 'Accueil'); } catch (e) {} } })), endRows: ends, rapRows: raps.map((r) => Object.assign({}, r, { notTr: !r.isTr, open: () => { try { window.localStorage.setItem('horcy:ctx', r.horse); window.localStorage.setItem('horcy:from', 'Accueil'); } catch (e) {} } })), noRap: raps.length === 0,
+      newHorses: this.readHorses().map((h) => ({ nom: h.nom, select: () => { try { window.localStorage.setItem('horcy:ctx', h.nom); window.localStorage.setItem('horcy:ficheBack', 'Main.dc.html'); } catch (e) {} } })), noEch: !(rowsW.length || ends.length), ...(() => { const none = !this.readHorses().length; return { addEch: none ? 'NouveauProfil.dc.html' : 'CycleAccueil.dc.html', addTr: none ? 'NouveauProfil.dc.html' : 'NouveauTraitementAccueil.dc.html', addRap: none ? 'NouveauProfil.dc.html' : 'NouveauRappelAccueil.dc.html' }; })() }; }
+}
+</script></body></html>

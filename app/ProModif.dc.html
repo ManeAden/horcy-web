@@ -1,0 +1,228 @@
+<!doctype html><html lang="fr"><head><meta charset="utf-8"><title>Modification – professionnel</title><script src="./support.js"></script></head><body><x-dc><helmet><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=DM+Sans:wght@400;500;700&display=swap"><style>
+html,body{height:100%}body{margin:0;font-family:"DM Sans",-apple-system,sans-serif;color:#2a2f1f}
+.p{width:100%;height:100vh;height:100dvh;box-sizing:border-box;background:#faf9f4;display:flex;flex-direction:column;overflow:hidden}
+.b>*{flex-shrink:0}.b{flex:1;padding:22px 16px 24px;display:flex;flex-direction:column;gap:18px;overflow-x:hidden;overflow-y:auto;min-height:0;scrollbar-width:thin;touch-action:pan-y;overscroll-behavior:contain}
+.e{font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:#6b6f5c;margin-bottom:2px}
+h1,h2{font-family:"Playfair Display",Georgia,serif;margin:0;color:#2a2f1f}h1{font-size:30px}h2{font-size:20px;margin-bottom:10px}
+.c{background:#fff;border:1px solid #e4dfd6;border-radius:14px;padding:12px;display:flex;align-items:center;gap:12px;margin-bottom:8px;font-size:15px}
+.g{flex:1}.g b{font-weight:700}.s{font-size:13px;color:#6b6f5c;margin-top:2px}
+.t{font-size:12px;font-weight:700;padding:5px 10px;border-radius:99px;background:#a85a14;color:#fff;white-space:nowrap}.t.v{background:#5c6b35}
+.n{flex:none;display:flex;border-top:1px solid #e4dfd6;background:#fff;padding:6px 0 20px}
+.n a{flex:1;display:flex;flex-direction:column;align-items:center;gap:2px;font-size:11px;color:#6b6f5c;text-decoration:none;padding:6px 0;min-height:32px}.n a.a{color:#4b5a28;font-weight:700}
+label{display:flex;gap:12px;align-items:center;min-height:44px;font-size:15px}input{accent-color:#5c6b35;width:20px;height:20px}
+.k{background:#5c6b35;color:#fff;border:0;border-radius:99px;min-height:52px;font:700 16px "DM Sans",sans-serif}
+.o{border:1px solid #cfcab9;background:#fff;color:#4b5a28;border-radius:99px;min-height:44px;padding:0 16px;font:700 13px "DM Sans",sans-serif}
+.f{width:100%;box-sizing:border-box;min-height:48px;border:1px solid #cfcab9;border-radius:12px;background:#fff;padding:0 14px;font:15px "DM Sans",sans-serif;color:#2a2f1f}a.o,a.k{display:flex;align-items:center;justify-content:center;text-decoration:none;box-sizing:border-box}a.c{text-decoration:none;color:inherit}a{-webkit-tap-highlight-color:transparent;box-sizing:border-box}sc-if,sc-for{display:contents}</style></helmet>
+<div class="p" style="position:relative"><div class="b"><a href="ProVue.dc.html" aria-label="Retour" style="text-decoration:none;width:44px;height:44px;border-radius:50%;display:flex;align-items:center;justify-content:center;flex:none;border:1px solid #cfcab9;background:#fff;color:#4b5a28"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 6l-6 6 6 6"/></svg></a><div style="display:flex;justify-content:space-between;align-items:flex-start;gap:12px"><div style="min-width:0"><div class="e">Mon écurie</div><h1>Modifier le professionnel</h1></div></div><label style="display:block;font-size:13px;color:#6b6f5c">Nom<input class="f" data-uniq="1" type="text" value="{{ name }}" placeholder="Ex. : M. Dupont" onChange="{{ setName }}" style="margin-top:4px"></label><div><div style="font-size:13px;color:#6b6f5c;margin-bottom:4px">Type</div><div style="position:relative"><button type="button" aria-haspopup="listbox" aria-expanded="{{ ptypeOpen }}" aria-label="Type : {{ ptypeValue }}" onClick="{{ ptypeToggle }}" style="width:100%;min-height:48px;border:1px solid #cfcab9;border-radius:{{ ptypeRadius }};background:#fff;color:#2a2f1f;display:flex;align-items:center;justify-content:space-between;padding:0 14px;font:15px 'DM Sans',sans-serif"><span>{{ ptypeValue }}</span><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="transform:{{ ptypeRot }};transition:transform .15s"><path d="M6 9l6 6 6-6"/></svg></button><div role="listbox" style="display:{{ ptypeDisp }};position:absolute;top:100%;left:0;width:100%;z-index:10;background:#fff;border:1px solid #cfcab9;border-top:0;border-radius:0 0 12px 12px;box-shadow:0 8px 24px rgba(42,47,31,.18);overflow:hidden"><sc-for list="{{ ptypeOptions }}" as="o" hint-placeholder-count="3"><button type="button" role="option" onClick="{{ o.pick }}" style="width:100%;box-sizing:border-box;text-align:left;border:0;border-top:1px solid #efeae3;background:#fff;color:#2a2f1f;min-height:48px;padding:0 16px;font:400 15px 'DM Sans',sans-serif">{{ o.label }}</button></sc-for><a href="NouveauType.dc.html" onClick="{{ typeAdd }}" style="width:100%%;box-sizing:border-box;text-align:left;border:0;border-top:1px solid #efeae3;background:#fff;color:#4b5a28;min-height:48px;padding:0 16px;display:flex;align-items:center;text-decoration:none;font:700 15px 'DM Sans',sans-serif">+ Ajouter un type</a></div></div></div><div style="position:relative"><label style="display:block;font-size:13px;color:#6b6f5c">Adresse (facultatif)<input class="f" type="text" autocomplete="off" value="{{ address }}" placeholder="Ex. : rechercher une adresse ou une commune" onChange="{{ setAddress }}" style="margin-top:4px;border-color:{{ addrBorder }}"></label><sc-if value="{{ addrHasSugg }}" hint-placeholder-val="{{ false }}"><div role="listbox" aria-label="Adresses suggérées" style="position:absolute;top:100%;left:0;right:0;margin-top:-1px;z-index:10;background:#fff;border:1px solid #cfcab9;border-radius:0 0 12px 12px;box-shadow:0 8px 24px rgba(42,47,31,.18);max-height:264px;overflow-y:auto"><sc-for list="{{ addrSugg }}" as="a" hint-placeholder-count="3"><button type="button" role="option" onClick="{{ a.pick }}" style="width:100%;box-sizing:border-box;display:flex;align-items:center;gap:10px;text-align:left;border:0;border-top:1px solid #efeae3;background:#fff;color:#2a2f1f;min-height:52px;padding:6px 14px;font:400 15px 'DM Sans',sans-serif"><span style="color:#4b5a28;display:flex"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 21s-7-6.2-7-11a7 7 0 0114 0c0 4.8-7 11-7 11z M12 12.5a2.5 2.5 0 100-5 2.5 2.5 0 000 5z"/></svg></span><span style="flex:1;min-width:0"><b style="font-weight:500">{{ a.name }}</b><span style="display:block;font-size:13px;color:#6b6f5c">{{ a.ctx }}</span></span></button></sc-for></div></sc-if><sc-if value="{{ addrErr }}" hint-placeholder-val="{{ false }}"><div role="alert" style="font-size:13px;color:#a85a14;margin-top:6px">Choisissez une adresse dans la liste.</div></sc-if></div><label style="display:block;font-size:13px;color:#6b6f5c">Numéro de téléphone (facultatif)<input class="f" type="text" value="{{ phone }}" placeholder="Ex. : 06 12 34 56 78" onChange="{{ setPhone }}" style="margin-top:4px"></label><label style="display:block;font-size:13px;color:#6b6f5c">Notes (facultatif)<textarea class="f" onChange="{{ setNotes }}" placeholder="Ex. : passe toutes les 5 semaines" style="margin-top:4px;min-height:72px;padding:12px 14px;resize:none" value="{{ noteTxt }}"></textarea></label><div style="flex:1"></div><a class="k" href="ProVue.dc.html" onClick="{{ save }}" style="margin-bottom:14px">Enregistrer</a></div><nav class="n"><a href="Main.dc.html" class="a"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 11l9-8 9 8v10h-6v-6H9v6H3z"/></svg> Accueil</a><a href="Chevaux.dc.html" class=""><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 20V10a6 6 0 0112 0v10h-4v-9a2 2 0 00-4 0v9z"/></svg> Chevaux</a><a href="Suivi.dc.html" class=""><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 3h6v3H9z M6 5h12v16H6z M9 11h6 M9 15h6"/></svg> Suivi</a><a href="Depenses.dc.html" class=""><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 7h18v13H3z M3 7l2-3h13 M16 13h3"/></svg> Dépenses</a></nav></div></x-dc><script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":412,"height":891}}'>
+(function horcyClock() { try {
+  /* Jour de référence : la date du téléphone dans l'application Android ; le vendredi 9 oct. 2026 dans le prototype (navigateur). localStorage 'horcyN:realDate' = '1' force la vraie date dans le navigateur (tests). */
+  var C = window.Capacitor; var real = !!(C && C.isNativePlatform && C.isNativePlatform()); try { if (window.localStorage.getItem('horcyN:realDate') === '1') real = true; } catch (e) {}
+  var t = real ? new Date() : new Date(2026, 9, 9); var y = t.getFullYear(), m = t.getMonth(), d = t.getDate();
+  var p2 = function (x) { return ('0' + x).slice(-2); }; var iso = function (a) { return a.getFullYear() + '-' + p2(a.getMonth() + 1) + '-' + p2(a.getDate()); }; var fr = function (a) { return p2(a.getDate()) + '/' + p2(a.getMonth() + 1) + '/' + String(a.getFullYear()).slice(2); };
+  var MON = ['janv.', 'févr.', 'mars', 'avr.', 'mai', 'juin', 'juil.', 'août', 'sept.', 'oct.', 'nov.', 'déc.'];
+  window.HZ = { real: real, y: y, m: m, d: d, ys: String(y), utc: Date.UTC(y, m, d), date: function () { return new Date(y, m, d); },
+    iso: iso(t), fr: fr(t), fr2: fr(new Date(y, m, d + 2)), fr1: fr(new Date(y, m, 1)), lab: d + ' ' + MON[m],
+    mA: iso(new Date(y, m, 1)), mB: iso(new Date(y, m + 1, 0)), yA: y + '-01-01', yB: y + '-12-31', nA: iso(new Date(y, m + 1, 1)), nB: iso(new Date(y, m + 2, 0)) };
+} catch (e) {} })();
+(function horcyKb() { try {
+  /* Clavier : garde visible le champ en cours de saisie. Dans l'appli Android, hauteur du clavier donnée par le plugin Keyboard ; dans un navigateur, par visualViewport. L'écran (.p) est raccourci de la partie masquée, la barre du bas est cachée pendant la saisie et le champ est amené au centre. */
+  var W = window; if (W.__horcyKb) return; W.__horcyKb = 1;
+  var H0 = W.innerHeight, kb = 0;
+  var isField = function (a) { return !!a && (/^(TEXTAREA|SELECT)$/.test(a.tagName) || (a.tagName === 'INPUT' && !/^(checkbox|radio|file|button|submit|hidden|range|color)$/i.test(a.type || ''))); };
+  var show = function () { var a = document.activeElement; if (!kb || !isField(a)) return; try { a.scrollIntoView({ block: 'center', behavior: 'smooth' }); } catch (e) { a.scrollIntoView(); } };
+  var apply = function (h) { var ov = Math.max(0, Math.round(h - Math.max(0, H0 - W.innerHeight))); kb = ov > 60 ? ov : 0; var p = document.querySelector('.p'); if (p) p.style.height = kb ? 'calc(100dvh - ' + kb + 'px)' : ''; var n = p && p.querySelector('.n'); if (n) n.style.display = kb ? 'none' : ''; setTimeout(show, 80); setTimeout(show, 350); };
+  var C = W.Capacitor; var K = C && C.isNativePlatform && C.isNativePlatform() && C.Plugins && C.Plugins.Keyboard;
+  if (K && K.addListener) { K.addListener('keyboardDidShow', function (i) { apply((i && i.keyboardHeight) || 0); }); K.addListener('keyboardWillHide', function () { apply(0); }); }
+  else if (W.visualViewport) { var vv = W.visualViewport; vv.addEventListener('resize', function () { apply(Math.max(0, W.innerHeight - vv.height)); }); }
+  document.addEventListener('focusin', function (e) { if (isField(e.target)) { setTimeout(show, 120); setTimeout(show, 400); } });
+  W.addEventListener('orientationchange', function () { setTimeout(function () { if (!kb) H0 = W.innerHeight; }, 500); });
+} catch (e) {} })();
+(function horcyBack() { try {
+  /* Bouton retour du téléphone (appli Android) : ferme d'abord une fenêtre ou une liste ouverte, sinon reproduit la flèche « ‹ » de l'écran, sinon revient à l'Accueil ; sur l'Accueil, met l'appli en arrière-plan. */
+  var W = window; if (W.__horcyBack) return; var C = W.Capacitor; var A = C && C.isNativePlatform && C.isNativePlatform() && C.Plugins && C.Plugins.App; if (!A || !A.addListener) return; W.__horcyBack = 1;
+  var vis = function (el) { if (!el) return false; var s = W.getComputedStyle(el); return s.display !== 'none' && s.visibility !== 'hidden' && el.getClientRects().length > 0; };
+  var page = function () { return decodeURIComponent((W.location.pathname.split('/').pop() || '')); };
+  A.addListener('backButton', function () {
+    var root = document.getElementById('dc-root') || document.body;
+    var dlg = Array.prototype.slice.call(root.querySelectorAll('[role="dialog"]')).filter(vis).pop();
+    if (dlg) { var bs = Array.prototype.slice.call(dlg.querySelectorAll('button,a')); var close = bs.filter(function (b) { return /^(annuler|fermer|ok)$/i.test((b.textContent || '').trim()) || /fermer/i.test(b.getAttribute('aria-label') || ''); })[0]; if (close) { close.click(); return; } }
+    var open = Array.prototype.slice.call(root.querySelectorAll('[aria-expanded="true"]')).filter(vis)[0]; if (open) { open.click(); return; }
+    var back = Array.prototype.slice.call(root.querySelectorAll('path')).filter(function (p) { return p.getAttribute('d') === 'M15 6l-6 6 6 6'; }).map(function (p) { return p.closest('a,button'); }).filter(vis)[0];
+    if (back) { back.click(); return; }
+    if (page() !== 'Main.dc.html') { W.location.href = 'Main.dc.html'; return; }
+    if (A.minimizeApp) A.minimizeApp(); else if (A.exitApp) A.exitApp();
+  });
+} catch (e) {} })();
+(function horcySeed() { try { const LS = window.localStorage; if (LS.getItem('horcy:seed') === 'v1') return;
+  Object.keys(LS).filter((k) => k.indexOf('horcy:') === 0 && ['horcy:wx', 'horcy:fmeta'].indexOf(k) < 0).forEach((k) => LS.removeItem(k));
+  const J = (k, v) => LS.setItem(k, JSON.stringify(v));
+  J('horcy:horses', []);
+  J('horcy:ech', []);
+  J('horcy:db', { rations: {}, treatments: {}, pathologies: {} });
+  J('horcy:histo', []);
+  J('horcy:rappels', { shared: [], trt: [] });
+  J('horcy:conseils', {});
+  J('horcy:pmeta', {});
+  J('horcy:me', { name: '', phone: '', address: '' });
+  J('horcy:pros', { pros: [], defaults: {} });
+  J('horcy:types', []);
+  LS.setItem('horcy:seed', 'v1'); } catch (e) {} })();
+(function horcyNotif() { try {
+  /* Notifications Horcy : actif seulement dans l'application Android (Capacitor). Dans le navigateur, rien n'est programmé ; window.horcyNotif.plan() permet de voir le calendrier calculé. Date et heure : celles du téléphone. */
+  var W = window;
+  if (W.horcyNotif && W.horcyNotif.kick) { W.horcyNotif.kick(); return; }
+  var LS = W.localStorage;
+  var MON = ['janv.', 'févr.', 'mars', 'avr.', 'mai', 'juin', 'juil.', 'août', 'sept.', 'oct.', 'nov.', 'déc.'];
+  var DAYS = 45, MAX = 400, CH = 'horcy-rappels', RUNNER = 'fr.horcy.meteo';
+  var ICON = { 'Maréchal': 'ic_stat_marechal', 'Vermifuge': 'ic_stat_vermifuge', 'Coproscopie': 'ic_stat_coproscopie', 'Dentiste': 'ic_stat_dentiste', 'Ostéopathe': 'ic_stat_osteopathe', 'Vétérinaire': 'ic_stat_veterinaire' };
+  var MEALH = { matin: '07:00', midi: '12:00', soir: '18:00' };
+  var MEALT = { matin: 'ration du matin', midi: 'ration de midi', soir: 'ration du soir' };
+  var J = function (k, d) { try { var v = LS.getItem(k); return v ? JSON.parse(v) : d; } catch (e) { return d; } };
+  var p2 = function (x) { return ('0' + x).slice(-2); };
+  var isoOf = function (t) { return t.getFullYear() + '-' + p2(t.getMonth() + 1) + '-' + p2(t.getDate()); };
+  var fromIso = function (s) { var q = String(s || '').split('-'); return q.length === 3 ? new Date(+q[0], +q[1] - 1, +q[2]) : null; };
+  var fromFr = function (s) { var m = /^(\d{1,2})\/(\d{1,2})\/(\d{2}|\d{4})$/.exec(String(s || '').trim()); if (!m) return null; var y = +m[3]; if (m[3].length === 2) y += 2000; return new Date(y, +m[2] - 1, +m[1]); };
+  var at = function (day, hm) { var m = /^(\d{1,2}):(\d{2})$/.exec(String(hm || '').trim()) || [0, 18, 0]; var t = new Date(day.getTime()); t.setHours(+m[1], +m[2], 0, 0); return t; };
+  var addDays = function (t, n) { var r = new Date(t.getTime()); r.setDate(r.getDate() + n); return r; };
+  var dayDiff = function (a, b) { return Math.round((Date.UTC(b.getFullYear(), b.getMonth(), b.getDate()) - Date.UTC(a.getFullYear(), a.getMonth(), a.getDate())) / 86400000); };
+  var fh = function (s) { return String(s == null ? '' : s).replace(/\b(\d{1,2}):(\d{2})\b/g, function (m, h, mm) { return (+h) + 'h' + (mm === '00' ? '' : mm); }); };
+  var lab = function (t, now) { return t.getDate() + ' ' + MON[t.getMonth()] + (t.getFullYear() !== now.getFullYear() ? ' ' + String(t.getFullYear()).slice(2) : ''); };
+  var dueOn = function (start, d, n, unit) { n = parseInt(n, 10) || 1; var k = dayDiff(start, d); if (k < 0) return false; if (!unit || unit === 'jours') return k % n === 0; if (unit === 'semaines') return k % (7 * n) === 0; if (d.getDate() !== start.getDate()) return false; var mo = (d.getFullYear() - start.getFullYear()) * 12 + (d.getMonth() - start.getMonth()); return unit === 'mois' ? mo % n === 0 : (d.getMonth() === start.getMonth() && (d.getFullYear() - start.getFullYear()) % n === 0); };
+  var hash = function (s) { var h = 5381; for (var i = 0; i < s.length; i++) h = ((h * 33) ^ s.charCodeAt(i)) >>> 0; return (h % 2147483000) + 1; };
+  var spec = function (x) { if (x.spec) return x.spec; var c = String(x.cond || ''), m; if ((m = /moins de (-?\d+)/.exec(c))) return { type: 'Température', seuil: 'Moins de', temp: m[1] }; if ((m = /plus de (-?\d+)/.exec(c))) return { type: 'Température', seuil: 'Plus de', temp: m[1] }; if (/^Si /.test(c)) return { type: 'Météo', meteo: { Pluie: /pluie/i.test(c), Vent: /vent/i.test(c) } }; return { type: 'Date/Heure', legacy: true }; };
+
+  function data() { return { horses: J('horcy:horses', []).map(function (h) { return h.nom; }), ech: J('horcy:ech', []), db: J('horcy:db', {}) || {}, histo: J('horcy:histo', []), rap: J('horcy:rappels', null) || { shared: [], trt: [] }, me: J('horcy:me', {}) || {} }; }
+
+  /* Calendrier des notifications programmables (échéances, traitements, rappels date/heure). */
+  function plan(now, D) {
+    now = now || new Date(); D = D || data(); var out = []; var today = new Date(now.getFullYear(), now.getMonth(), now.getDate()); var last = addDays(today, DAYS);
+    var push = function (key, t, title, body, icon) { if (t.getTime() <= now.getTime() || t > addDays(last, 1)) return; out.push({ key: key, at: t.getTime(), title: title, body: body, icon: icon }); };
+    var hasH = function (h) { return D.horses.indexOf(h) >= 0; };
+    (D.ech || []).forEach(function (e) { var rm = e.rem || {}; if (rm.on === false) return; var nx = fromIso(e.next); if (!nx) return; var hr = rm.h || e.time || '18:00'; var body = 'Échéance le ' + lab(nx, now) + ' à ' + fh(e.time || '18:00');
+      (e.horses || []).forEach(function (h) { if (!hasH(h)) return; var ic = ICON[e.type] || 'ic_stat_autre';
+        if (rm.dOn !== false) { var n = parseInt(rm.dN || 7, 10) || 7; push('e|' + e.id + '|' + h + '|d' + n + '|' + e.next, at(addDays(nx, -n), hr), e.type + ' - ' + h + ' • Dans ' + n + ' jours', body, ic); }
+        if (rm.vOn !== false) push('e|' + e.id + '|' + h + '|v|' + e.next, at(addDays(nx, -1), hr), e.type + ' - ' + h + ' • Demain', body, ic); }); });
+    var T = D.db.treatments || {};
+    ((D.rap && D.rap.trt) || []).forEach(function (x) { if (!x.on || !hasH(x.horse)) return; var tr = (T[x.horse] || []).filter(function (t) { return t.id === x.tid; })[0]; if (!tr) return; var st = (D.histo || []).filter(function (y) { return y.tid === x.tid && y.tag !== 'Fin'; })[0]; if (!st) return; var det = st.det || {}; var s0 = fromIso(st.iso); if (!s0) return; var once = !!det.once; var e0 = once ? s0 : (fromIso(tr.endIso) || s0);
+      var mm = /^Traitement · ((?:matin|midi|soir)(?: et (?:matin|midi|soir))*)$/.exec(String(x.cond || '')); var meals = mm ? mm[1].split(' et ') : null; var alim = !!meals;
+      var hours = alim ? [] : (x.hrs && x.hrs.length ? x.hrs : String(x.cond || '').replace('Traitement · ', '').split(' et ').filter(function (v) { return /\d/.test(v); })); if (!alim && !hours.length) hours = ['18:00'];
+      var title = alim ? String(x.title || '').replace(' - ', ' ') + ' - ' + x.horse : (x.title || tr.title) + ' - ' + x.horse;
+      for (var d = (s0 > today ? s0 : today); d <= e0 && d <= last; d = addDays(d, 1)) { if (once && dayDiff(s0, d) !== 0) continue; if (!once && !alim && !dueOn(s0, d, det.every || 1, det.everyUnit || 'jours')) continue;
+        if (alim) meals.forEach(function (m) { push('t|' + x.id + '|' + isoOf(d) + '|' + m, at(d, (x.rh || {})[m] || MEALH[m]), title, 'Traitement · ' + MEALT[m], 'ic_stat_traitement'); });
+        else hours.forEach(function (hh) { push('t|' + x.id + '|' + isoOf(d) + '|' + hh, at(d, hh), title, 'Traitement · soin de ' + fh(hh), 'ic_stat_traitement'); }); } });
+    ((D.rap && D.rap.shared) || []).forEach(function (x) { var sp = spec(x); if (sp.type !== 'Date/Heure' || sp.legacy) return; var hs = D.horses.filter(function (h) { return x.on && x.on[h]; }); if (!hs.length) return;
+      var slots = []; if (sp.per === 'Une seule fois') { var d1 = fromFr(sp.date); if (d1) slots.push([d1, sp.hour || '18:00']); }
+      else { var a = fromFr(sp.start), b = fromFr(sp.end); if (a) { for (var d = (a > today ? a : today); d <= last && (!b || d <= b); d = addDays(d, 1)) { if (dayDiff(a, d) % (parseInt(sp.every, 10) || 1) !== 0) continue; (sp.hours && sp.hours.length ? sp.hours : ['18:00']).forEach(function (hh) { slots.push([d, hh]); }); } } }
+      slots.forEach(function (s) { hs.forEach(function (h) { push('r|' + x.id + '|' + h + '|' + isoOf(s[0]) + '|' + s[1], at(s[0], s[1]), (x.title || 'Rappel') + ' - ' + h, 'Rappel · ' + fh(s[1]), 'ic_stat_cloche'); }); }); });
+    out.sort(function (p, q) { return p.at - q.at; }); return out.slice(0, MAX); }
+
+  /* Règles météo/température transmises à la tâche de fond. */
+  function wxRules(D) { D = D || data(); var R = []; var geo = (D.me || {}).geo; if (!geo || geo.lat == null || !String((D.me || {}).address || '').trim()) return { geo: null, rules: [] };
+    ((D.rap && D.rap.shared) || []).forEach(function (x) { var sp = spec(x); if (sp.type !== 'Température' && sp.type !== 'Météo') return; D.horses.forEach(function (h) { if (!x.on || !x.on[h]) return; R.push({ id: x.id, title: x.title || 'Rappel', horse: h, type: sp.type, seuil: sp.seuil, temp: +sp.temp, pluie: !!(sp.meteo && sp.meteo.Pluie), vent: !!(sp.meteo && sp.meteo.Vent) }); }); });
+    return { geo: { lat: geo.lat, lon: geo.lon }, rules: R }; }
+  function wxHits(w, cfg) { var out = []; (cfg.rules || []).forEach(function (r) { var body = null;
+      if (r.type === 'Température') { if (r.seuil === 'Plus de') { if (w.max != null && w.max > r.temp) body = 'Température · ' + w.max + ' °C prévus aujourd’hui'; } else if (w.min != null && w.min < r.temp) body = 'Température · ' + w.min + ' °C prévus cette nuit'; }
+      else { var p = []; if (r.pluie && w.rain) p.push('pluie'); if (r.vent && w.wind) p.push('vent fort'); if (p.length) body = 'Météo · ' + p.join(' et ') + (p.length > 1 ? ' prévus' : (p[0] === 'pluie' ? ' prévue' : ' prévu')); }
+      if (body) out.push({ key: 'w|' + r.id + '|' + r.horse + '|' + w.day, night: r.type === 'Température' && r.seuil !== 'Plus de', title: r.title + ' - ' + r.horse, body: body, icon: 'ic_stat_cloche' }); }); return out; }
+  function wxFetch(geo, now) { var day = isoOf(now), day2 = isoOf(addDays(now, 1));
+    return fetch('https://api.open-meteo.com/v1/forecast?latitude=' + geo.lat + '&longitude=' + geo.lon + '&hourly=temperature_2m,precipitation,precipitation_probability,wind_gusts_10m&timezone=Europe%2FParis&forecast_days=2').then(function (r) { return r.json(); }).then(function (j) { var H = j.hourly || {}, T = H.time || [];
+      var pick = function (k, f) { return T.map(function (t, i) { return [t, (H[k] || [])[i]]; }).filter(function (p) { return p[1] != null && f(p[0]); }).map(function (p) { return p[1]; }); };
+      var mn = pick('temperature_2m', function (t) { return t >= day + 'T20:00' && t <= day2 + 'T08:00'; }), mx = pick('temperature_2m', function (t) { return t >= day + 'T08:00' && t <= day + 'T20:00'; });
+      var n24 = function (t) { return t >= day + 'T08:00' && t <= day2 + 'T08:00'; }; var pr = pick('precipitation', n24), pp = pick('precipitation_probability', n24), gu = pick('wind_gusts_10m', n24);
+      return { day: day, min: mn.length ? Math.round(Math.min.apply(null, mn)) : null, max: mx.length ? Math.round(Math.max.apply(null, mx)) : null, rain: pr.reduce(function (a, b) { return a + b; }, 0) >= 1 || (pp.length > 0 && Math.max.apply(null, pp) >= 50), wind: gu.length ? Math.max.apply(null, gu) >= 50 : false }; }); }
+
+  var C = function () { var c = W.Capacitor; return c && c.isNativePlatform && c.isNativePlatform() ? c : null; };
+  var LN = function () { var c = C(); return c && c.Plugins && c.Plugins.LocalNotifications; };
+  var BR = function () { var c = C(); return c && c.Plugins && c.Plugins.BackgroundRunner; };
+  var S = function (k, v) { try { if (v === undefined) return LS.getItem('horcyN:' + k); LS.setItem('horcyN:' + k, v); } catch (e) { return null; } };
+  var toLN = function (p, when) { return { id: hash(p.key), title: p.title, body: p.body, largeBody: p.body, smallIcon: p.icon, iconColor: '#5c6b35', channelId: CH, schedule: { at: new Date(when), allowWhileIdle: true }, extra: { horcy: p.key } }; };
+
+  function ready(ln) { if (S('ready') === '1') return Promise.resolve(true);
+    return Promise.resolve(ln.checkPermissions ? ln.checkPermissions() : { display: 'granted' }).then(function (p) { return p && p.display === 'granted' ? p : (S('askedN') ? p : (S('askedN', '1'), ln.requestPermissions())); }).then(function (p) { if (!p || p.display !== 'granted') return false;
+      return Promise.resolve(ln.createChannel ? ln.createChannel({ id: CH, name: 'Rappels Horcy', description: 'Échéances, traitements et rappels personnalisés', importance: 4, visibility: 1, vibration: true }) : null).catch(function () {}).then(function () {
+        if (!ln.checkExactNotificationSetting || S('askedX')) return null; return ln.checkExactNotificationSetting().then(function (x) { if (x && x.exact_notification !== 'granted' && ln.changeExactNotificationSetting) { S('askedX', '1'); return ln.changeExactNotificationSetting(); } }).catch(function () {}); }).then(function () { S('ready', '1'); return true; }); }).catch(function () { return false; }); }
+
+  var busy = false, again = false;
+  function sync() { var ln = LN(); if (!ln) return Promise.resolve(null); if (busy) { again = true; return Promise.resolve(null); } busy = true; var now = new Date();
+    return ready(ln).then(function (ok) { if (!ok) return null; var P = plan(now); var sig = String(hash(JSON.stringify(P.map(function (p) { return [p.key, p.at, p.title, p.body]; })))) + ':' + P.length;
+      return Promise.resolve(sig === S('sig') ? null : ln.getPending().then(function (r) { var old = ((r && r.notifications) || []).filter(function (n) { return !n.extra || n.extra.horcy == null || String(n.extra.horcy).charAt(0) !== 'w'; }).map(function (n) { return { id: n.id }; }); return old.length ? ln.cancel({ notifications: old }) : null; }).then(function () { return P.length ? ln.schedule({ notifications: P.map(function (p) { return toLN(p, p.at); }) }) : null; }).then(function () { S('sig', sig); }))
+        .then(function () { return weather(ln, now); }); }).catch(function () {}).then(function () { busy = false; if (again) { again = false; sync(); } }); }
+
+  function weather(ln, now) { var cfg = wxRules(); var br = BR();
+    var push = br && br.dispatchEvent ? br.dispatchEvent({ label: RUNNER, event: 'config', details: cfg }).catch(function () {}) : Promise.resolve();
+    return push.then(function () { if (now.getHours() < 8 || !cfg.geo || !cfg.rules.length) return null; var day = isoOf(now);
+      if (br && br.dispatchEvent) return br.dispatchEvent({ label: RUNNER, event: 'check', details: {} }).then(function (r) { if (r && r.wx) try { LS.setItem('horcy:wx', JSON.stringify(r.wx)); } catch (e) {} }).catch(function () {});
+      var hr = now.getHours(), morn = S('wxDay') === day, eve = S('wxEve') === day; if (morn && (hr < 18 || eve)) return null; var c0 = J('horcy:wx', null);
+      return Promise.resolve(!morn && c0 && c0.day === day ? c0 : wxFetch(cfg.geo, now)).then(function (w) { try { LS.setItem('horcy:wx', JSON.stringify(w)); } catch (e) {} var sent = []; try { var q = JSON.parse(S('wxSent') || 'null'); if (q && q.day === day) sent = q.keys || []; } catch (e) {}
+        var H = wxHits(w, cfg).filter(function (p) { return sent.indexOf(p.key) < 0 && (!morn || p.night); }); S('wxDay', day); if (morn || hr >= 18) S('wxEve', day); S('wxSent', JSON.stringify({ day: day, keys: sent.concat(H.map(function (p) { return p.key; })) }));
+        return H.length ? ln.schedule({ notifications: H.map(function (p) { return toLN(p, Date.now() + 3000); }) }) : null; }).catch(function () {}); }); }
+
+  var tmr = null; function kick() { if (!LN()) return; clearTimeout(tmr); tmr = setTimeout(sync, 400); }
+  var WATCH = /^horcy:(horses|ech|db|histo|rappels|me)$/;
+  try { var sp0 = Storage.prototype, si = sp0.setItem, ri = sp0.removeItem; sp0.setItem = function (k, v) { var r = si.apply(this, arguments); if (this === LS && WATCH.test(k)) kick(); return r; }; sp0.removeItem = function (k) { var r = ri.apply(this, arguments); if (this === LS && WATCH.test(k)) kick(); return r; }; } catch (e) {}
+  try { document.addEventListener('visibilitychange', function () { if (document.visibilityState === 'visible') kick(); }); } catch (e) {}
+  W.horcyNotif = { plan: plan, wxRules: wxRules, wxHits: wxHits, kick: kick, sync: sync };
+  kick();
+} catch (e) {} })();
+class Component extends DCLogic {
+  uniqNames() { const d = this.prosDb(); const id = this.proSel(); return ((d && d.pros) || (Array.isArray(d) ? d : [])).filter((p) => p.id !== id).map((p) => p.name); }
+  addrPick(f) { this.setState({ address: f.label, addrGeo: { lat: f.lat, lon: f.lon, citycode: f.citycode, label: f.label }, addrSugg: [], addrErr: false }); }
+  addrSearch(q) { try { clearTimeout(this._addrT); } catch (e) {} const t = String(q || '').trim(); if (t.length < 3) { this.setState({ addrSugg: [] }); return; }
+    this._addrT = setTimeout(() => { try { fetch('https://data.geopf.fr/geocodage/search/?q=' + encodeURIComponent(t) + '&limit=5&autocomplete=1').then((r) => r.json()).then((j) => { if (String(this.state.address || '').trim() !== t) return;
+      this.setState({ addrSugg: (j.features || []).map((f) => { const p = f.properties || {}; const c = (f.geometry && f.geometry.coordinates) || []; return { label: p.label, name: p.type === 'municipality' ? p.city : p.name, ctx: [p.postcode, p.city].filter(Boolean).join(' '), lat: c[1], lon: c[0], citycode: p.citycode }; }) }); }).catch(() => {}); } catch (e) {} }, 250); }
+  addrVals() { const s = this.state; const L = s.addrSugg || []; return { addrHasSugg: L.length > 0, addrSugg: L.map((f) => ({ name: f.name, ctx: f.ctx, pick: () => this.addrPick(f) })), addrErr: !!s.addrErr, addrBorder: s.addrErr ? '#a85a14' : '#cfcab9',
+    setAddress: (e) => { const val = e.target.value; this.setState({ address: val, addrGeo: null, addrErr: false }); this.addrSearch(val); } }; }
+  addrValid() { const a = String(this.state.address || '').trim(); return !a || !!(this.state.addrGeo && this.state.addrGeo.label === this.state.address); }
+
+  constructor(...args) { super(...args); this.state = {"groups": {}, "single": {}, "typeName": "", "dd": {"ptype": {"open": false, "val": "Maréchal"}}}; this.initPro();  this.draftInit(); }
+  dd(id, opts) { const dd = this.state.dd; const d = dd[id]; const closed = Object.fromEntries(Object.keys(dd).map((k) => [k, { ...dd[k], open: false }]));
+    const o = { [id + 'Open']: d.open, [id + 'Value']: d.val, [id + 'Disp']: d.open ? 'block' : 'none', [id + 'Radius']: d.open ? '12px 12px 0 0' : '12px', [id + 'Rot']: d.open ? 'rotate(180deg)' : 'none',
+      [id + 'Toggle']: () => this.setState({ dd: { ...closed, [id]: { ...d, open: !d.open } } }) };
+    o[id + 'Options'] = (opts || []).filter((x) => x !== d.val).map((x) => ({ label: x, pick: () => this.setState({ dd: { ...closed, [id]: { open: false, val: x } } }) }));
+    return o; }
+  customTypes() { try { return JSON.parse(window.localStorage.getItem('horcy:types') || '[]').map((t) => t.name); } catch (e) { return []; } }
+  renderVals0() {
+    const v = {  };
+    Object.assign(v, this.dd("ptype", ["Maréchal", "Vétérinaire", "Dentiste", "Ostéopathe", "Transporteur", "Formateur"].concat(this.customTypes()), {}));
+    const p = this.state.pro; v.name = this.state.name; v.address = this.state.address; v.phone = this.state.phone; v.noteTxt = this.state.notes;
+    v.setName = (e) => this.setState({ name: e.target.value }); Object.assign(v, this.addrVals()); v.setPhone = (e) => this.setState({ phone: e.target.value }); v.setNotes = (e) => this.setState({ notes: e.target.value });
+    v.save = () => { const d = this.prosDb(); const t = d.pros.find((x) => x.id === this.state.pro); if (!t) return; const nt = this.state.dd.ptype.val; if (t.type !== nt && d.defaults[t.type] === t.id) delete d.defaults[t.type]; t.name = this.state.name || t.name; t.type = nt; t.typeName = ''; t.address = this.state.address; t.geo = String(this.state.address || '').trim() ? this.state.addrGeo : null; t.phone = this.state.phone; t.notes = this.state.notes; this.prosSet(d); };
+    v.typeAdd = () => { try { window.localStorage.setItem('horcy:typeBack', 'ProModif.dc.html'); } catch (e) {} }; 
+    return v;
+  }  prosDefault() { return {"pros": [], "defaults": {}}; }
+  prosDb() { try { const v = window.localStorage.getItem('horcy:pros'); if (v) return JSON.parse(v); } catch (e) {} return this.prosDefault(); }
+  prosSet(d) { try { window.localStorage.setItem('horcy:pros', JSON.stringify(d)); } catch (e) {} }
+  proSel() { try { return window.localStorage.getItem('horcy:proSel') || ''; } catch (e) { return ''; } }
+  initPro() { const d = this.prosDb(); const p = d.pros.find((x) => x.id === this.proSel()) || d.pros[0] || { id: '', name: '', type: 'Maréchal', address: '', phone: '', notes: '' }; this.state.pro = p.id; this.state.name = p.name; this.state.address = p.address || ''; this.state.addrGeo = p.geo || null; this.state.phone = p.phone || ''; this.state.notes = p.notes || ''; this.state.confirm = false; this.state.dd.ptype.val = p.type; }
+
+  draftInit() { try { const P = 'ProModif.dc.html'; const k = 'horcy:draft:' + P; const rs = window.localStorage.getItem('horcy:resume'); const raw = window.localStorage.getItem(k); if (rs === P && raw) { const sn = JSON.parse(raw); Object.assign(this.state, sn.state || {}); if (sn.f) this.f = sn.f; if (sn.dateOnce !== undefined) this.dateOnce = sn.dateOnce; window.localStorage.removeItem('horcy:resume'); } else if (rs !== P) { window.localStorage.removeItem(k); } } catch (e) {} }
+  draftSave() { try { window.localStorage.setItem('horcy:draft:' + 'ProModif.dc.html', JSON.stringify({ state: this.state, f: this.f, dateOnce: this.dateOnce })); } catch (e) {} }
+  renderVals() { this.draftSave(); const v = this.renderVals0(); const o = Object.assign({}, v); const gf = this.state.gf || {};  v.save = (e) => { if (!this.addrValid()) { if (e && e.preventDefault) e.preventDefault(); this.setState({ addrErr: true }); return; } if (!this.vcheck(e)) return; return o.save ? o.save(e) : undefined; }; return v; }
+  vcheck(e) { try { const t = (e && (e.currentTarget || e.target)) || null; const root = (t && t.closest && t.closest('.p')) || document; const R = '#a85a14'; let first = null;
+      Array.from(root.querySelectorAll('.vErr')).forEach((m) => m.remove());
+      const flag = (x, msg) => { x.style.borderColor = R; const m = document.createElement('div'); m.className = 'vErr'; m.setAttribute('role', 'alert'); m.style.cssText = 'color:' + R + ';font-size:12px;margin-top:4px;font-weight:400;text-transform:none;letter-spacing:0'; m.textContent = msg; const lb = x.closest('label'); const pa = x.parentElement; const host = lb ? (getComputedStyle(lb).display === 'flex' ? lb : x) : ((pa && getComputedStyle(pa).display === 'flex') ? pa : x); host.insertAdjacentElement('afterend', m); x._vErr = m; x.addEventListener('input', () => { x.style.borderColor = ''; if (x._vErr) { x._vErr.remove(); x._vErr = null; } }, { once: true }); if (!first) first = x; };
+      let changed = false; const setVal = (x, v) => { if (x.value === v) return; changed = true; try { const ds = Object.getOwnPropertyDescriptor(Object.getPrototypeOf(x), 'value'); if (ds && ds.set) ds.set.call(x, v); else x.value = v; x.dispatchEvent(new Event('input', { bubbles: true })); } catch (er) { x.value = v; } };
+      const ins = Array.from(root.querySelectorAll('input, textarea')).filter((x) => { const ty = (x.getAttribute('type') || 'text').toLowerCase(); return ['checkbox', 'radio', 'file', 'hidden', 'button'].indexOf(ty) < 0 && !x.readOnly && !x.disabled && !!x.offsetParent; });
+      const lbl = (x) => { const lb = x.closest('label'); return (lb && lb.textContent) || ''; };
+      const pn = (v, bth) => { const s = String(v || '').trim().replace(/[\s\/:.\-_]+/g, '/'); let d, mo, y, m; if ((m = /^(\d{1,2})\/(\d{1,2})\/(\d{2}|\d{4})$/.exec(s))) { d = +m[1]; mo = +m[2]; y = m[3]; } else if ((m = /^(\d{1,2})\/(\d{2}|\d{4})$/.exec(s))) { d = 1; mo = +m[1]; y = m[2]; } else if ((m = /^(\d{2})(\d{2})(\d{2}|\d{4})$/.exec(s))) { d = +m[1]; mo = +m[2]; y = m[3]; } else return null; let yy = +y; if (y.length === 2) { yy = 2000 + yy; if (bth && yy > HZ.y) yy -= 100; } const dt = new Date(yy, mo - 1, d); if (dt.getFullYear() !== yy || dt.getMonth() !== mo - 1 || dt.getDate() !== d) return null; return { t: dt.getTime(), s: ('0' + d).slice(-2) + '/' + ('0' + mo).slice(-2) + '/' + String(yy).slice(-2) }; };
+      const pd = (v) => { const r = pn(v); return r ? r.t : null; };
+      ins.forEach((x) => { x.style.borderColor = ''; const L = lbl(x); const opt = /facultatif/i.test(L); const val = String(x.value || '').trim();
+        if (!val) { if (!opt) flag(x, 'Champ obligatoire'); return; }
+        const isT = /^\s*Heure/i.test(L) || /^Heure/i.test(x.getAttribute('aria-label') || '') || (x.getAttribute('placeholder') || '') === 'hh:mm';
+        const isD = /^\s*(Date|Début|Fin)\b/.test(L);
+        if (isT) { const m = /^(\d{1,2}):(\d{2})$/.exec(val); if (!m || +m[1] > 23 || +m[2] > 59) { flag(x, 'Heure invalide : format HH:MM, de 00:00 à 23:59'); return; } setVal(x, ('0' + (+m[1])).slice(-2) + ':' + m[2]); }
+        const AR = x.getAttribute('aria-label') || ''; const num = (s) => +String(s).replace(',', '.');
+        if (/^Nombre/.test(AR)) { const mn = /avant/.test(AR) ? 2 : 1; if (!/^\d+$/.test(val) || +val < mn) { flag(x, mn === 2 ? 'Nombre entier, 2 minimum (la veille est déjà proposée)' : 'Nombre entier supérieur ou égal à 1'); return; } setVal(x, String(+val)); }
+        if (/^\s*Quantité/.test(L)) { if (!/^\d+([.,]\d+)?$/.test(val) || num(val) <= 0) { flag(x, 'Quantité : nombre supérieur à 0 (ex. 2,5)'); return; } setVal(x, val.replace('.', ',')); }
+        if (/^Température/.test(AR)) { if (!/^-?\d+$/.test(val) || +val < -30 || +val > 50) { flag(x, 'Température : nombre entier entre -30 et 50'); return; } setVal(x, String(+val)); }
+        if (/^\s*Coût/.test(L)) { const c = val.replace(/€/g, '').replace(/\s+/g, ''); if (!/^\d+([.,]\d{1,2})?$/.test(c)) { flag(x, 'Coût : montant positif (ex. 60 ou 45,50)'); return; } setVal(x, c.replace('.', ',')); }
+        if (/^\s*Âge/.test(L)) { const m = /^(\d{1,2})\s*(ans?)?$/i.exec(val); if (!m || +m[1] > 50) { flag(x, 'Âge : nombre entier entre 0 et 50'); return; } setVal(x, (+m[1]) + (+m[1] > 1 ? ' ans' : ' an')); }
+        if (/^\s*Numéro de téléphone/.test(L)) { const ph = val.replace(/[\s.\-]/g, ''); if (/^0\d{9}$/.test(ph)) setVal(x, ph.replace(/(\d{2})(?=\d)/g, '$1 ')); else if (/^\+33\d{9}$/.test(ph)) setVal(x, '+33 ' + ph.slice(3, 4) + ' ' + ph.slice(4).replace(/(\d{2})(?=\d)/g, '$1 ')); else { flag(x, 'Téléphone : 10 chiffres commençant par 0, ou +33'); return; } }
+        if (x.getAttribute('data-uniq') && typeof this.uniqNames === 'function') { const nz = (s) => String(s || '').normalize('NFD').replace(/[\u0300-\u036f]/g, '').trim().toLowerCase(); if ((this.uniqNames() || []).map(nz).indexOf(nz(val)) >= 0) { flag(x, 'Ce nom existe déjà'); return; } }
+        if (isD) { const nv = pn(val, /Date de naissance/.test(L)); if (!nv) { flag(x, 'Date invalide : format JJ/MM/AA, date existante'); return; } setVal(x, nv.s); if ((/Date du diagnostic|Date de naissance/.test(L) || x.getAttribute('data-past')) && nv.t > HZ.date().getTime()) { flag(x, 'La date ne peut pas être dans le futur'); return; } } });
+      Array.from(root.querySelectorAll('label')).forEach((lb) => { if (!/^\s*Fin/.test(lb.textContent || '')) return; const f = lb.querySelector('input'); let p = lb.previousElementSibling; while (p && !/^\s*Début/.test(p.textContent || '')) p = p.previousElementSibling; const d = p && p.querySelector && p.querySelector('input'); if (!f || !d || !f.offsetParent || f._vErr || d._vErr) return;
+        const a = pd(d.value); const b = pd(f.value); if (a !== null && b !== null && b < a) flag(f, 'La date de fin doit suivre la date de début'); });
+      if (!first && changed && t && t.click) { if (e && e.preventDefault) e.preventDefault(); setTimeout(() => t.click(), 60); return false; }
+      if (first) { if (e && e.preventDefault) e.preventDefault(); first.focus(); if (first.scrollIntoView) first.scrollIntoView({ block: 'center' }); return false; } } catch (x) {} return true; }
+}
+</script></body></html>

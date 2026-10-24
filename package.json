@@ -1,0 +1,15 @@
+{
+  "name": "horcy-web",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Horcy – version web installable (test iPhone et autres appareils)",
+  "scripts": {
+    "build": "node scripts/build-web.mjs"
+  },
+  "dependencies": {
+    "@fontsource/dm-sans": "^5.0.0",
+    "@fontsource/playfair-display": "^5.0.0",
+    "react": "18.3.1",
+    "react-dom": "18.3.1"
+  }
+}
