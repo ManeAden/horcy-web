@@ -1,0 +1,17 @@
+{
+  "name": "Horcy animaux",
+  "short_name": "Horcy animaux",
+  "description": "Suivi des soins, rations, rappels, poids et dépenses de vos animaux (chevaux, chats, chiens, moutons, tortues)",
+  "lang": "fr",
+  "start_url": "./Main.dc.html",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#faf9f4",
+  "theme_color": "#faf9f4",
+  "icons": [
+    { "src": "assets/icon-192.png", "sizes": "192x192", "type": "image/png" },
+    { "src": "assets/icon-512.png", "sizes": "512x512", "type": "image/png" },
+    { "src": "assets/icon-maskable-512.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable" }
+  ]
+}

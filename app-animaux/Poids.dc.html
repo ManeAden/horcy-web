@@ -1,0 +1,376 @@
+<!doctype html><html lang="fr"><head><meta charset="utf-8"><title>Suivi du poids</title><script src="./support.js"></script></head><body><x-dc><helmet><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=DM+Sans:wght@400;500;700&display=swap"><style>
+html,body{height:100%}body{margin:0;font-family:"DM Sans",-apple-system,sans-serif;color:#2a2f1f}
+.p{width:100%;height:100vh;height:100dvh;box-sizing:border-box;background:#faf9f4;display:flex;flex-direction:column;overflow:hidden}
+.b>*{flex-shrink:0}.b{flex:1;padding:22px 16px 24px;display:flex;flex-direction:column;gap:18px;overflow-x:hidden;overflow-y:auto;min-height:0;scrollbar-width:thin;touch-action:pan-y;overscroll-behavior:contain}
+.e{font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:#6b6f5c;margin-bottom:2px}
+h1,h2{font-family:"Playfair Display",Georgia,serif;margin:0;color:#2a2f1f}h1{font-size:30px}h2{font-size:20px;margin-bottom:10px}
+.r{display:flex;gap:8px}.ch{border:1px solid #e4dfd6;background:#efeae3;border-radius:99px;min-height:44px;padding:0 18px;font:500 14px "DM Sans",sans-serif;color:#4a4d3c}.ch.a{background:#5c6b35;color:#fff;border-color:#5c6b35}
+.c{background:#fff;border:1px solid #e4dfd6;border-radius:14px;padding:12px;display:flex;align-items:center;gap:12px;margin-bottom:8px;font-size:15px}
+.g{flex:1}.g b{font-weight:700}.s{font-size:13px;color:#6b6f5c;margin-top:2px}
+.q{flex:1;background:#fff;border:1px solid #e4dfd6;border-radius:14px;padding:14px 4px;display:flex;flex-direction:column;align-items:center;gap:8px;font-size:13px;font-weight:500}
+.n{flex:none;display:flex;border-top:1px solid #e4dfd6;background:#fff;padding:6px 0 20px}
+.n a{flex:1;display:flex;flex-direction:column;align-items:center;gap:2px;font-size:11px;color:#6b6f5c;text-decoration:none;padding:6px 0;min-height:32px}.n a.a{color:#4b5a28;font-weight:700}
+label{display:flex;gap:12px;align-items:center;min-height:44px;font-size:15px}input{accent-color:#5c6b35;width:20px;height:20px}
+.k{background:#5c6b35;color:#fff;border:0;border-radius:99px;min-height:52px;font:700 16px "DM Sans",sans-serif}
+.o{border:1px solid #cfcab9;background:#fff;color:#4b5a28;border-radius:99px;min-height:44px;padding:0 16px;font:700 13px "DM Sans",sans-serif}.m{font-size:12px;font-weight:700;color:#4b5a28;background:#e4e6d3;border-radius:99px;padding:3px 10px;display:inline-block;margin-bottom:4px}.ln{display:flex;justify-content:space-between;padding:8px 0;border-bottom:1px solid #efeae3;font-size:15px}.ln:last-child{border:0}a.ch{display:inline-flex;align-items:center;text-decoration:none}a.o,a.k{display:flex;align-items:center;justify-content:center;text-decoration:none;box-sizing:border-box}a.c,a.q{text-decoration:none;color:inherit}a{-webkit-tap-highlight-color:transparent;box-sizing:border-box}sc-if,sc-for{display:contents}.f{width:100%;box-sizing:border-box;min-height:48px;border:1px solid #cfcab9;border-radius:12px;background:#fff;padding:0 14px;font:15px "DM Sans",sans-serif;color:#2a2f1f}.frm{display:flex;flex-direction:column;gap:14px}.ml{display:flex;align-items:center;gap:10px;min-height:56px;border-top:1px solid #efeae3;font-size:15px}.ml:first-child{border-top:0}.dd{width:100%;min-height:48px;border:1px solid #cfcab9;background:#fff;color:#2a2f1f;display:flex;align-items:center;justify-content:space-between;padding:0 14px;font:15px "DM Sans",sans-serif;box-sizing:border-box}.op{width:100%;box-sizing:border-box;text-align:left;border:0;border-top:1px solid #efeae3;background:#fff;color:#2a2f1f;min-height:48px;padding:0 16px;font:400 15px "DM Sans",sans-serif}.tb{width:44px;height:44px;border-radius:50%;border:1px solid #cfcab9;background:#fff;color:#a85a14;display:flex;align-items:center;justify-content:center;flex:none}</style></helmet>
+<div class="p" style="position:relative"><div class="b"><a href="Fiche.dc.html" aria-label="Retour à la fiche de l’animal" style="text-decoration:none;width:44px;height:44px;border-radius:50%;display:flex;align-items:center;justify-content:center;flex:none;border:1px solid #cfcab9;background:#fff;color:#4b5a28"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 6l-6 6 6 6"/></svg></a><div><div class="e">Mes animaux · {{ horse }}</div><h1>Suivi du poids</h1></div><sc-if value="{{ hasAny }}" hint-placeholder-val="{{ true }}"><div style="background:#5c6b35;color:#fff;border-radius:14px;padding:14px 18px;display:flex;align-items:center;justify-content:space-between;gap:12px"><div style="min-width:0"><div style="font-size:18px;font-weight:500">Dernière mesure</div><div style="font-size:13px;opacity:.88;margin-top:2px">{{ sumSub }}</div></div><div style="font:700 32px 'Playfair Display',Georgia,serif;white-space:nowrap">{{ sumVal }}</div></div></sc-if><div><sc-if value="{{ noData }}" hint-placeholder-val="{{ false }}"><div class="s" style="padding:18px 0;text-align:center;font-size:14px">{{ noDataTxt }}</div></sc-if><sc-if value="{{ hasData }}" hint-placeholder-val="{{ true }}"><div style="position:relative;height:210px" onClick="{{ clearPt }}"><svg width="100%" height="210" viewBox="0 0 360 210" preserveAspectRatio="none" aria-hidden="true" style="display:block;position:absolute;left:0;top:0"><path d="{{ gridD }}" fill="none" stroke="#e4dfd6" stroke-width="1" stroke-dasharray="2 4" vector-effect="non-scaling-stroke"/><path d="{{ areaD }}" fill="#5c6b35" fill-opacity="0.10"/><path d="{{ lineD }}" fill="none" stroke="#5c6b35" stroke-width="3" stroke-linejoin="round" stroke-linecap="round" vector-effect="non-scaling-stroke"/><path d="{{ baseD }}" fill="none" stroke="#d9d4c7" stroke-width="1" vector-effect="non-scaling-stroke"/></svg><sc-for list="{{ yl }}" as="l" hint-placeholder-count="4"><span style="position:absolute;left:0;width:34px;text-align:right;top:{{ l.top }}px;font-size:11px;color:#6b6f5c;line-height:1">{{ l.t }}</span></sc-for><sc-for list="{{ xl }}" as="l" hint-placeholder-count="3"><span style="position:absolute;bottom:0;left:{{ l.left }}%;transform:translateX({{ l.tx }});font-size:12.5px;color:#2a2f1f;white-space:nowrap;line-height:1">{{ l.t }}</span></sc-for><sc-for list="{{ dots }}" as="d" hint-placeholder-count="5"><button type="button" aria-label="{{ d.tip }}" aria-pressed="{{ d.sel }}" onClick="{{ d.pick }}" style="position:absolute;left:{{ d.left }}%;top:{{ d.top }}px;width:36px;height:36px;margin:-18px 0 0 -18px;border:0;padding:0;background:transparent;display:flex;align-items:center;justify-content:center;cursor:pointer"><span style="width:{{ d.sz }}px;height:{{ d.sz }}px;border-radius:50%;box-sizing:border-box;border:2px solid #faf9f4;background:#5c6b35;display:block"></span></button></sc-for><sc-if value="{{ hasPt }}" hint-placeholder-val="{{ false }}"><span role="status" style="position:absolute;left:{{ ptLeft }}%;top:{{ ptTop }}px;transform:translate({{ ptTx }},-38px);background:#5c6b35;color:#fff;border-radius:12px;padding:4px 10px;font-size:12.5px;font-weight:700;white-space:nowrap;pointer-events:none">{{ ptTxt }}</span></sc-if></div></sc-if></div><div><div style="font-size:13px;color:#6b6f5c;margin-bottom:4px">Période</div><div style="position:relative"><button type="button" class="dd" aria-haspopup="listbox" aria-expanded="{{ pOpen }}" aria-label="{{ pAria }}" onClick="{{ pToggle }}" style="border-radius:{{ pRadius }}"><span>{{ pValue }}</span><svg style="transform:{{ pRot }};transition:transform .15s" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg></button><div role="listbox" style="display:{{ pDisp }};position:absolute;top:100%;left:0;width:100%;z-index:10;background:#fff;border:1px solid #cfcab9;border-top:0;border-radius:0 0 12px 12px;box-shadow:0 8px 24px rgba(42,47,31,.18);overflow:hidden"><sc-for list="{{ pOptions }}" as="o" hint-placeholder-count="3"><button type="button" role="option" class="op" onClick="{{ o.pick }}">{{ o.label }}</button></sc-for></div></div><sc-if value="{{ pCust }}" hint-placeholder-val="{{ false }}"><div style="display:flex;gap:10px;align-items:flex-end;margin-top:10px"><label style="display:block;flex:1;min-width:0;font-size:13px;color:#6b6f5c">Du<input class="f" type="text" inputmode="numeric" value="{{ du }}" onChange="{{ setDu }}" style="margin-top:4px;border-color:{{ duBd }}"></label><label style="display:block;flex:1;min-width:0;font-size:13px;color:#6b6f5c">Au<input class="f" type="text" inputmode="numeric" value="{{ au }}" onChange="{{ setAu }}" style="margin-top:4px;border-color:{{ auBd }}"></label><button type="button" class="o" onClick="{{ apply }}" style="min-height:48px">Appliquer</button></div><sc-if value="{{ pMsgShow }}" hint-placeholder-val="{{ false }}"><div role="alert" style="font-size:12px;color:#a85a14;margin-top:6px">{{ pMsg }}</div></sc-if></sc-if></div><div class="frm"><h2 style="margin:4px 0 0">Nouvelle mesure</h2><div style="display:flex;gap:10px;align-items:flex-start"><label style="display:block;flex:1.15;min-width:0;font-size:13px;color:#6b6f5c">Date<input class="f" type="text" inputmode="numeric" data-past="1" value="{{ dateV }}" onChange="{{ setDate }}" style="margin-top:4px"></label><label style="display:block;flex:1;min-width:0;font-size:13px;color:#6b6f5c">Poids<input class="f" type="text" inputmode="decimal" value="{{ valV }}" placeholder="{{ valPh }}" onChange="{{ setVal }}" style="margin-top:4px"></label><div style="flex:.75;min-width:0"><div style="font-size:13px;color:#6b6f5c;margin-bottom:4px">Unité</div><div style="position:relative"><button type="button" class="dd" aria-haspopup="listbox" aria-expanded="{{ uOpen }}" aria-label="{{ uAria }}" onClick="{{ uToggle }}" style="border-radius:{{ uRadius }}"><span>{{ unit }}</span><svg style="transform:{{ uRot }};transition:transform .15s" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg></button><div role="listbox" style="display:{{ uDisp }};position:absolute;top:100%;left:0;width:100%;z-index:10;background:#fff;border:1px solid #cfcab9;border-top:0;border-radius:0 0 12px 12px;box-shadow:0 8px 24px rgba(42,47,31,.18);overflow:hidden"><sc-for list="{{ uOptions }}" as="o" hint-placeholder-count="1"><button type="button" role="option" class="op" onClick="{{ o.pick }}">{{ o.label }}</button></sc-for></div></div></div></div><button type="button" class="k" onClick="{{ add }}" style="width:100%">Ajouter</button></div><div><h2>Mesures</h2><sc-if value="{{ noList }}" hint-placeholder-val="{{ false }}"><div class="s" style="font-size:15px">{{ noListTxt }}</div></sc-if><sc-if value="{{ hasList }}" hint-placeholder-val="{{ true }}"><div class="c" style="display:block;padding:2px 12px;margin-bottom:0"><sc-for list="{{ rows }}" as="m" hint-placeholder-count="3"><div class="ml"><span style="width:76px;flex:none;color:#6b6f5c">{{ m.date }}</span><b style="flex:1;min-width:0">{{ m.val }}</b><span style="font-size:13px;color:#4b5a28;white-space:nowrap">{{ m.dv }}</span><button type="button" class="tb" aria-label="{{ m.aria }}" onClick="{{ m.ask }}"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 7h16 M9 7V4h6v3 M6 7l1 13h10l1-13 M10 11v6 M14 11v6"/></svg></button></div></sc-for></div></sc-if></div></div><nav class="n"><a href="Main.dc.html" class=""><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 11l9-8 9 8v10h-6v-6H9v6H3z"/></svg> Accueil</a><a href="Chevaux.dc.html" class="a"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 20V10a6 6 0 0112 0v10h-4v-9a2 2 0 00-4 0v9z"/></svg> Animaux</a><a href="Suivi.dc.html" class=""><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 3h6v3H9z M6 5h12v16H6z M9 11h6 M9 15h6"/></svg> Suivi</a><a href="Depenses.dc.html" class=""><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 7h18v13H3z M3 7l2-3h13 M16 13h3"/></svg> Dépenses</a></nav><div role="dialog" aria-modal="true" aria-label="Supprimer la mesure" style="display:{{ delDisp }};position:absolute;inset:0;background:rgba(42,47,31,.5);align-items:center;justify-content:center;padding:24px;z-index:20"><div style="background:#faf9f4;border-radius:20px;padding:20px;width:100%;box-sizing:border-box"><h2 style="margin-bottom:10px">Supprimer cette mesure ?</h2><div class="s" style="font-size:14px;line-height:1.45">{{ delTxt }}</div><div style="display:flex;gap:10px;margin-top:18px"><button type="button" class="o" onClick="{{ delCancel }}" style="flex:1">Annuler</button><button type="button" onClick="{{ delConfirm }}" style="flex:1;min-height:44px;border:0;border-radius:99px;background:#9b2c2c;color:#fff;font:700 14px 'DM Sans',sans-serif">Supprimer</button></div></div></div></div></x-dc><script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":412,"height":891}}'>
+(function horcyClock() { try {
+  /* Jour de référence : la date du téléphone dans l'application Android ; le vendredi 9 oct. 2026 dans le prototype (navigateur). localStorage 'horcyN:realDate' = '1' force la vraie date dans le navigateur (tests). */
+  var C = window.Capacitor; var real = !!(C && C.isNativePlatform && C.isNativePlatform()); try { if (window.localStorage.getItem('horcyN:realDate') === '1') real = true; } catch (e) {}
+  var t = real ? new Date() : new Date(2026, 9, 9); var y = t.getFullYear(), m = t.getMonth(), d = t.getDate();
+  var p2 = function (x) { return ('0' + x).slice(-2); }; var iso = function (a) { return a.getFullYear() + '-' + p2(a.getMonth() + 1) + '-' + p2(a.getDate()); }; var fr = function (a) { return p2(a.getDate()) + '/' + p2(a.getMonth() + 1) + '/' + String(a.getFullYear()).slice(2); };
+  var MON = ['janv.', 'févr.', 'mars', 'avr.', 'mai', 'juin', 'juil.', 'août', 'sept.', 'oct.', 'nov.', 'déc.'];
+  window.HZ = { real: real, y: y, m: m, d: d, ys: String(y), utc: Date.UTC(y, m, d), date: function () { return new Date(y, m, d); },
+    iso: iso(t), fr: fr(t), fr2: fr(new Date(y, m, d + 2)), fr1: fr(new Date(y, m, 1)), lab: d + ' ' + MON[m],
+    mA: iso(new Date(y, m, 1)), mB: iso(new Date(y, m + 1, 0)), yA: y + '-01-01', yB: y + '-12-31', nA: iso(new Date(y, m + 1, 1)), nB: iso(new Date(y, m + 2, 0)) };
+} catch (e) {} })();
+(function horcyKb() { try {
+  /* Clavier : garde visible le champ en cours de saisie. Dans l'appli Android, hauteur du clavier donnée par le plugin Keyboard ; dans un navigateur, par visualViewport. L'écran (.p) est raccourci de la partie masquée, la barre du bas est cachée pendant la saisie et le champ est amené au centre. */
+  var W = window; if (W.__horcyKb) return; W.__horcyKb = 1;
+  var H0 = W.innerHeight, kb = 0;
+  var isField = function (a) { return !!a && (/^(TEXTAREA|SELECT)$/.test(a.tagName) || (a.tagName === 'INPUT' && !/^(checkbox|radio|file|button|submit|hidden|range|color)$/i.test(a.type || ''))); };
+  var show = function () { var a = document.activeElement; if (!kb || !isField(a)) return; try { a.scrollIntoView({ block: 'center', behavior: 'smooth' }); } catch (e) { a.scrollIntoView(); } };
+  var apply = function (h) { var ov = Math.max(0, Math.round(h - Math.max(0, H0 - W.innerHeight))); kb = ov > 60 ? ov : 0; var p = document.querySelector('.p'); if (p) p.style.height = kb ? 'calc(100dvh - ' + kb + 'px)' : ''; var n = p && p.querySelector('.n'); if (n) n.style.display = kb ? 'none' : ''; setTimeout(show, 80); setTimeout(show, 350); };
+  var C = W.Capacitor; var K = C && C.isNativePlatform && C.isNativePlatform() && C.Plugins && C.Plugins.Keyboard;
+  if (K && K.addListener) { K.addListener('keyboardDidShow', function (i) { apply((i && i.keyboardHeight) || 0); }); K.addListener('keyboardWillHide', function () { apply(0); }); }
+  else if (W.visualViewport) { var vv = W.visualViewport; vv.addEventListener('resize', function () { apply(Math.max(0, W.innerHeight - vv.height)); }); }
+  document.addEventListener('focusin', function (e) { if (isField(e.target)) { setTimeout(show, 120); setTimeout(show, 400); } });
+  W.addEventListener('orientationchange', function () { setTimeout(function () { if (!kb) H0 = W.innerHeight; }, 500); });
+} catch (e) {} })();
+(function horcyBack() { try {
+  /* Bouton retour du téléphone (appli Android) : ferme d'abord une fenêtre ou une liste ouverte, sinon reproduit la flèche « ‹ » de l'écran, sinon revient à l'Accueil ; sur l'Accueil, met l'appli en arrière-plan. */
+  var W = window; if (W.__horcyBack) return; var C = W.Capacitor; var A = C && C.isNativePlatform && C.isNativePlatform() && C.Plugins && C.Plugins.App; if (!A || !A.addListener) return; W.__horcyBack = 1;
+  var vis = function (el) { if (!el) return false; var s = W.getComputedStyle(el); return s.display !== 'none' && s.visibility !== 'hidden' && el.getClientRects().length > 0; };
+  var page = function () { return decodeURIComponent((W.location.pathname.split('/').pop() || '')); };
+  A.addListener('backButton', function () {
+    var root = document.getElementById('dc-root') || document.body;
+    var dlg = Array.prototype.slice.call(root.querySelectorAll('[role="dialog"]')).filter(vis).pop();
+    if (dlg) { var bs = Array.prototype.slice.call(dlg.querySelectorAll('button,a')); var close = bs.filter(function (b) { return /^(annuler|fermer|ok)$/i.test((b.textContent || '').trim()) || /fermer/i.test(b.getAttribute('aria-label') || ''); })[0]; if (close) { close.click(); return; } }
+    var open = Array.prototype.slice.call(root.querySelectorAll('[aria-expanded="true"]')).filter(vis)[0]; if (open) { open.click(); return; }
+    var back = Array.prototype.slice.call(root.querySelectorAll('path')).filter(function (p) { return p.getAttribute('d') === 'M15 6l-6 6 6 6'; }).map(function (p) { return p.closest('a,button'); }).filter(vis)[0];
+    if (back) { back.click(); return; }
+    if (page() !== 'Main.dc.html') { W.location.href = 'Main.dc.html'; return; }
+    if (A.minimizeApp) A.minimizeApp(); else if (A.exitApp) A.exitApp();
+  });
+} catch (e) {} })();
+(function horcySeed() { try { const LS = window.localStorage; if (LS.getItem('horcy:seed') === 'v1') return;
+  Object.keys(LS).filter((k) => k.indexOf('horcy:') === 0 && ['horcy:wx', 'horcy:fmeta'].indexOf(k) < 0).forEach((k) => LS.removeItem(k));
+  const J = (k, v) => LS.setItem(k, JSON.stringify(v));
+  J('horcy:horses', []);
+  J('horcy:ech', []);
+  J('horcy:db', { rations: {}, treatments: {}, pathologies: {} });
+  J('horcy:histo', []);
+  J('horcy:rappels', { shared: [], trt: [] });
+  J('horcy:conseils', {});
+  J('horcy:pmeta', {});
+  J('horcy:me', { name: '', phone: '', address: '' });
+  J('horcy:pros', { pros: [], defaults: {} });
+  J('horcy:types', []);
+  LS.setItem('horcy:seed', 'v1'); } catch (e) {} })();
+(function horcyCal() { try {
+  /* Calendrier sous les champs de date (Date, Début, Fin, Du, Au, Date de naissance, Date du diagnostic) : s'ouvre quand on touche le champ ; il montre le mois de la date saisie, sinon le mois en cours avec aujourd'hui sélectionné. Flèches ‹ › : mois précédent / suivant. Toucher un jour l'écrit dans le champ (JJ/MM/AA). Le champ reste modifiable au clavier. Pas de date future pour les champs qui l'interdisent. */
+  var W = window, Dc = document; if (W.__horcyCal) return; W.__horcyCal = 1;
+  var MON = ['janvier', 'février', 'mars', 'avril', 'mai', 'juin', 'juillet', 'août', 'septembre', 'octobre', 'novembre', 'décembre'];
+  var WD = ['L', 'M', 'M', 'J', 'V', 'S', 'D'], WDL = ['lundi', 'mardi', 'mercredi', 'jeudi', 'vendredi', 'samedi', 'dimanche'];
+  var p2 = function (x) { return ('0' + x).slice(-2); };
+  var today = function () { return (W.HZ && W.HZ.date) ? W.HZ.date() : new Date(); };
+  var lbl = function (x) { var l = x.closest && x.closest('label'); return l ? String(l.textContent || '').trim() : ''; };
+  var isDate = function (x) { if (!x || x.tagName !== 'INPUT' || /^(checkbox|radio|file|hidden|button)$/i.test(x.type || '') || x.readOnly || x.disabled) return false; return /^(Date|Début|Fin|Du|Au)\b/.test(lbl(x)) || x.getAttribute('placeholder') === 'JJ/MM/AA'; };
+  var past = function (x) { return !!x.getAttribute('data-past') || /Date du diagnostic|Date de naissance/.test(lbl(x)); };
+  var bth = function (x) { return /Date de naissance/.test(lbl(x)); };
+  var parse = function (v, b) { var m = /^(\d{1,2})[\/.\-](\d{1,2})[\/.\-](\d{2}|\d{4})$/.exec(String(v || '').trim()); if (!m) return null; var y = +m[3]; if (m[3].length === 2) { y += 2000; if (b && y > today().getFullYear()) y -= 100; } var d = new Date(y, +m[2] - 1, +m[1]); return (d.getMonth() === +m[2] - 1 && d.getDate() === +m[1]) ? d : null; };
+  var same = function (a, b) { return !!a && !!b && a.getFullYear() === b.getFullYear() && a.getMonth() === b.getMonth() && a.getDate() === b.getDate(); };
+  var setVal = function (x, v) { try { var ds = Object.getOwnPropertyDescriptor(Object.getPrototypeOf(x), 'value'); if (ds && ds.set) ds.set.call(x, v); else x.value = v; } catch (e) { x.value = v; } x.dispatchEvent(new Event('input', { bubbles: true })); };
+  var cur = null;
+  function close() { if (cur && cur.box && cur.box.parentNode) cur.box.parentNode.removeChild(cur.box); cur = null; }
+  function host(x) { var lb = x.closest('label') || x; var pa = lb.parentElement; if (pa) { var cs = W.getComputedStyle(pa); if (cs.display === 'flex' && cs.flexDirection.indexOf('column') < 0) return pa; } return lb; }
+  function btn(txt, aria, css, fn) { var b = Dc.createElement('button'); b.type = 'button'; b.textContent = txt; if (aria) b.setAttribute('aria-label', aria); b.style.cssText = css; b.addEventListener('click', function (e) { e.preventDefault(); e.stopPropagation(); fn(); }); return b; }
+  var ARW = 'width:44px;height:44px;border-radius:50%;border:1px solid #cfcab9;background:#fff;color:#4b5a28;font:700 20px "DM Sans",sans-serif;display:flex;align-items:center;justify-content:center;padding:0;flex:none';
+  function render() { if (!cur) return; var x = cur.x, bx = cur.box, v = cur.view, t = today(); var sel = parse(x.value, bth(x)) || (String(x.value || '').trim() ? null : t); var lim = past(x) ? t : null;
+    while (bx.firstChild) bx.removeChild(bx.firstChild);
+    var hd = Dc.createElement('div'); hd.style.cssText = 'display:flex;align-items:center;gap:8px;margin-bottom:6px';
+    var pv = btn('‹', 'Mois précédent', ARW, function () { cur.view = new Date(v.getFullYear(), v.getMonth() - 1, 1); render(); });
+    var ti = Dc.createElement('div'); ti.textContent = MON[v.getMonth()] + ' ' + v.getFullYear(); ti.setAttribute('aria-live', 'polite'); ti.style.cssText = 'flex:1;text-align:center;font:700 17px "Playfair Display",Georgia,serif;color:#2a2f1f;text-transform:none';
+    var nxOff = !!lim && (v.getFullYear() > lim.getFullYear() || (v.getFullYear() === lim.getFullYear() && v.getMonth() >= lim.getMonth()));
+    var nx = btn('›', 'Mois suivant', ARW + (nxOff ? ';opacity:.35' : ''), function () { if (nxOff) return; cur.view = new Date(v.getFullYear(), v.getMonth() + 1, 1); render(); }); if (nxOff) nx.disabled = true;
+    var cl = btn('×', 'Fermer le calendrier', ARW + ';border-color:transparent;color:#6b6f5c;font-size:22px', function () { close(); });
+    hd.appendChild(pv); hd.appendChild(ti); hd.appendChild(nx); hd.appendChild(cl); bx.appendChild(hd);
+    var g = Dc.createElement('div'); g.style.cssText = 'display:grid;grid-template-columns:repeat(7,minmax(0,1fr));gap:2px;text-align:center';
+    WD.forEach(function (w, i) { var c = Dc.createElement('div'); c.textContent = w; c.setAttribute('title', WDL[i]); c.style.cssText = 'font:500 12px "DM Sans",sans-serif;color:#6b6f5c;padding:4px 0;text-transform:none;letter-spacing:0'; g.appendChild(c); });
+    var lead = (new Date(v.getFullYear(), v.getMonth(), 1).getDay() + 6) % 7; for (var i = 0; i < lead; i++) g.appendChild(Dc.createElement('div'));
+    var nd = new Date(v.getFullYear(), v.getMonth() + 1, 0).getDate();
+    for (var dn = 1; dn <= nd; dn++) { (function (dn) { var d = new Date(v.getFullYear(), v.getMonth(), dn); var off = !!lim && d > lim; var on = same(d, sel); var tod = same(d, t);
+      var css = 'width:100%;height:44px;border:0;border-radius:99px;padding:0;font:' + (on || tod ? '700' : '400') + ' 15px "DM Sans",sans-serif;' + (on ? 'background:#5c6b35;color:#fff' : (off ? 'background:transparent;color:#c8c2b0' : 'background:transparent;color:#2a2f1f' + (tod ? ';box-shadow:inset 0 0 0 1.5px #5c6b35' : '')));
+      var b = btn(String(dn), dn + ' ' + MON[v.getMonth()] + ' ' + v.getFullYear(), css, function () { if (off) return; setVal(x, p2(dn) + '/' + p2(v.getMonth() + 1) + '/' + String(v.getFullYear()).slice(2)); close(); try { x.blur(); } catch (e) {} });
+      if (off) b.disabled = true; if (on) b.setAttribute('aria-pressed', 'true'); g.appendChild(b); })(dn); }
+    bx.appendChild(g); if (cur.pop) place(); }
+  function open(x) { close(); var bx = Dc.createElement('div'); bx.setAttribute('role', 'dialog'); bx.setAttribute('aria-label', 'Calendrier'); bx.className = 'hCal';
+    bx.style.cssText = 'background:#fff;border:1px solid #cfcab9;border-radius:14px;padding:10px 10px 8px;box-shadow:0 8px 24px rgba(42,47,31,.12);box-sizing:border-box;width:100%;flex-shrink:0';
+    bx.addEventListener('mousedown', function (e) { e.preventDefault(); }); bx.addEventListener('touchstart', function (e) { e.stopPropagation(); }, { passive: true });
+    var s = parse(x.value, bth(x)) || today(); cur = { x: x, box: bx, view: new Date(s.getFullYear(), s.getMonth(), 1) };
+    var h = host(x); if (h.getBoundingClientRect().width >= 300) { h.insertAdjacentElement('afterend', bx); render(); setTimeout(function () { try { bx.scrollIntoView({ block: 'nearest', behavior: 'smooth' }); } catch (e) {} }, 60); return; }
+    /* champ étroit (ex. Du / Au des filtres) : calendrier flottant sous le champ, à la largeur de l'écran */
+    cur.pop = true; bx.style.position = 'fixed'; bx.style.zIndex = '60'; Dc.body.appendChild(bx); render(); place(); }
+  function place() { if (!cur || !cur.pop) return; var r = cur.x.getBoundingClientRect(), vw = W.innerWidth, vh = W.innerHeight, bx = cur.box; var w = Math.min(380, vw - 32); bx.style.width = w + 'px';
+    bx.style.left = Math.max(16, Math.min(r.right - w, vw - w - 16)) + 'px'; var hgt = bx.offsetHeight || 340; var top = r.bottom + 6; if (top + hgt > vh - 8 && r.top - hgt - 6 > 8) top = r.top - hgt - 6; bx.style.top = Math.max(8, top) + 'px'; }
+  W.addEventListener('scroll', function () { place(); }, true); W.addEventListener('resize', function () { place(); });
+  /* Fermeture après le toucher (et non à l'appui) : la mise en page ne bouge pas sous le doigt avant que le bouton touché ait réagi. */
+  var down = false; Dc.addEventListener('pointerdown', function () { down = true; }, true); Dc.addEventListener('pointerup', function () { setTimeout(function () { down = false; }, 0); }, true); Dc.addEventListener('pointercancel', function () { down = false; }, true);
+  Dc.addEventListener('focusin', function (e) { var x = e.target; if (isDate(x)) { if (!cur || cur.x !== x) { if (down && cur) { setTimeout(function () { if (Dc.activeElement === x && (!cur || cur.x !== x)) open(x); }, 0); } else open(x); } } else if (cur && !cur.box.contains(x) && !down) close(); });
+  Dc.addEventListener('click', function (e) { var x = e.target; if (isDate(x)) { if (!cur || cur.x !== x) setTimeout(function () { if (!cur || cur.x !== x) open(x); }, 0); return; } if (cur && !cur.box.contains(x) && x !== cur.x) { var c0 = cur; setTimeout(function () { if (cur === c0) close(); }, 0); } }, true);
+  Dc.addEventListener('input', function (e) { if (!cur || e.target !== cur.x) return; var d = parse(cur.x.value, bth(cur.x)); if (d) cur.view = new Date(d.getFullYear(), d.getMonth(), 1); render(); });
+  Dc.addEventListener('keydown', function (e) { if (cur && e.key === 'Escape') close(); });
+  setInterval(function () { if (cur && (!cur.x.isConnected || !cur.box.isConnected || !cur.x.offsetParent)) close(); }, 400);
+} catch (e) {} })();
+(function horcySpecies() { try {
+  /* Variante multi-animaux : listes propres à chaque espèce. Un animal sans espèce (sauvegarde Horcy chevaux) est un cheval. */
+  var W = window; if (W.HSP) return; var LS = W.localStorage;
+  var L = ['Cheval', 'Chat', 'Chien', 'Mouton', 'Tortue'];
+  var SX = { Cheval: ['Jument', 'Hongre', 'Étalon'], Chat: ['Mâle', 'Femelle'], Chien: ['Mâle', 'Femelle'], Mouton: ['Brebis', 'Bélier', 'Agneau'], Tortue: ['Mâle', 'Femelle'] };
+  var STER = { Chat: 1, Chien: 1 };
+  var RACE = { Cheval: 'Ex. : Connemara, OC, Selle français', Chat: 'Ex. : Européen, Maine coon, Siamois', Chien: 'Ex. : Berger australien, Labrador', Mouton: 'Ex. : Ouessant, Mérinos, Suffolk', Tortue: 'Ex. : Hermann, Grecque' };
+  var SOINS = { Cheval: ['Maréchal', 'Vermifuge', 'Vaccin', 'Coproscopie', 'Vétérinaire', 'Dentiste', 'Ostéopathe'], Chat: ['Vaccin', 'Vermifuge', 'Antiparasitaire', 'Vétérinaire', 'Toilettage', 'Ostéopathe'], Chien: ['Vaccin', 'Vermifuge', 'Antiparasitaire', 'Vétérinaire', 'Toilettage', 'Ostéopathe'], Mouton: ['Vaccin', 'Vermifuge', 'Coproscopie', 'Vétérinaire', 'Parage', 'Tonte'], Tortue: ['Bain', 'Hibernation', 'Vétérinaire', 'Vaccin'] };
+  var ALL = ['Maréchal', 'Vermifuge', 'Vaccin', 'Coproscopie', 'Vétérinaire', 'Dentiste', 'Ostéopathe', 'Antiparasitaire', 'Toilettage', 'Parage', 'Tonte', 'Bain', 'Hibernation'];
+  var PMAP = { 'Maréchal': 'Maréchal', 'Vermifuge': 'Vétérinaire', 'Coproscopie': 'Vétérinaire', 'Vétérinaire': 'Vétérinaire', 'Dentiste': 'Dentiste', 'Ostéopathe': 'Ostéopathe', 'Vaccin': 'Vétérinaire', 'Antiparasitaire': 'Vétérinaire', 'Toilettage': 'Toiletteur', 'Parage': 'Pareur', 'Tonte': 'Tondeur', 'Bain': 'Vétérinaire', 'Hibernation': 'Vétérinaire' };
+  var PRO = ['Maréchal', 'Vétérinaire', 'Dentiste', 'Ostéopathe', 'Toiletteur', 'Pareur', 'Tondeur', 'Transporteur', 'Formateur'];
+  var ALI = { Cheval: ['Fourrage', 'Granulés', 'Complément', 'Autre'], Mouton: ['Fourrage', 'Concentré', 'Complément', 'Autre'], Chat: ['Croquettes', 'Pâtée', 'Complément', 'Autre'], Chien: ['Croquettes', 'Pâtée', 'Complément', 'Autre'], Tortue: ['Végétaux', 'Friandises', 'Complément', 'Autre'] };
+  var PREP = { Cheval: 1, Mouton: 1 };
+
+  /* Pelages du chat : [nom, fond, rayures, écaille, tricolore, liste et museau blancs, tache, colourpoint, toasted, tabby colourpoint] */
+  var CATP = [['Noir', '#1a1a1a'], ['Blanc', '#ffffff'], ['Gris', '#8b8f97'], ['Roux', '#c8732e'], ['Crème', '#f0dcb4'], ['Chocolat', '#5a3a26'], ['Cannelle', '#ab6a47'],
+    ['Tabby marron', '#9a7b5a', '#3a2a20'], ['Tabby roux', '#d38a45', '#8f4512'], ['Tabby gris', '#a3a6aa', '#45484d'],
+    ['Écaille de tortue', '#1a1a1a', '', '#c8732e'], ['Tricolore', '#ffffff', '', '', 1],
+    ['Tuxedo', '#1a1a1a', '', '', 0, 1], ['Tabby marron et blanc', '#9a7b5a', '#3a2a20', '', 0, 1], ['Tabby roux et blanc', '#d38a45', '#8f4512', '', 0, 1], ['Tuxedo gris', '#8b8f97', '', '', 0, 1], ['Tabby gris et blanc', '#a3a6aa', '#45484d', '', 0, 1],
+    ['Blanc et noir', '#ffffff', '', '', 0, 0, '#1a1a1a'], ['Blanc et roux', '#ffffff', '', '', 0, 0, '#c8732e'], ['Blanc et marron', '#ffffff', '', '', 0, 0, '#7a5236'], ['Gris et blanc', '#ffffff', '', '', 0, 0, '#8b8f97'],
+    ['Colourpoint', '#f3e6cf', '', '', 0, 0, '', '#5a3a26'], ['Tabby colourpoint', '#f5eee3', '', '', 0, 0, '', '', 0, 1], ['Toasted', '#fbf3e6', '', '', 0, 0, '', '', 1]];
+  var CATM = {}; CATP.forEach(function (c) { CATM[c[0]] = c; });
+
+  /* Tortues : [race, groupe, carapace, lignes, épaisseur, centres d'écailles, mouchetures, bord, peau, rayures de peau, tempe] */
+  var TORTP = [['Hermann', 'T', '#d9b54a', '#2f2618', 2.6, '', '', '#c9a640', '#b9a676', '', ''], ['Grecque', 'T', '#c9a85a', '#5a4528', 1.2, '#3a2e1e', '', '#b89a50', '#b3a37a', '', ''],
+    ['Horsfield (des steppes)', 'T', '#8f8a4a', '#5a4425', 1.6, '#b0a865', '', '#7d7840', '#a99e72', '', ''], ['Marginée', 'T', '#2a241c', '#141210', 1.2, '#d8b85a', '', '#3a3226', '#a3966c', '', ''],
+    ['Sillonnée', 'T', '#cfb487', '#8a6d45', 1.1, '', '', '#bfa275', '#c2ad86', '', ''], ['Léopard', 'T', '#e8dcc0', '#9c8c6a', 1, '', '#2a241c', '#d8caa8', '#c9b98e', '', ''],
+    ['Charbonnière', 'T', '#1f1c18', '#141210', 1.2, '#e0a23a', '', '#2a2620', '#3a3530', '', '#d8632e'],
+    ['Tempes rouges', 'A', '#5f6b2f', '#d6c24a', 1, '', '', '#c9b545', '#6f7d3c', '#d6c24a', '#c0392b'], ['Tempes jaunes', 'A', '#6a6430', '#d9c44e', 1, '', '', '#d0b845', '#6f7a3a', '#d9c44e', '#e3c33a'],
+    ['Peinte', 'A', '#3d4a2a', '#9aa36a', 1.2, '', '', '#b8432f', '#3f4a2c', '#e0c24a', ''], ['Musquée', 'A', '#3b3026', '#2a221a', 1, '', '', '#352b22', '#4a4030', '#8a8060', ''],
+    ['Cistude d’Europe', 'A', '#1e211c', '#141610', 1, '', '#e0c240', '#262a22', '#2e322a', '', ''], ['Autre', 'T', '#8a7a45', '#5e5230', 1.2, '', '', '#7a6c3c', '#b5a77a', '', '']];
+  var TORTM = {}; TORTP.forEach(function (c) { TORTM[c[0]] = c; });
+  var COAT = { Chat: { lbl: 'Pelage', list: CATP.map(function (c) { return c[0]; }), def: 'Tabby marron' } };
+  var DOT = 'width:24px;height:24px;border-radius:50%;flex:none;box-shadow:0 0 0 1px #cfcab9;background:';
+  var catDot = function (n) { var c = CATM[n]; if (!c) return 'display:none'; var b = c[1], bg = b;
+    if (c[9]) bg = 'radial-gradient(circle at 50% 78%,#f8f5ef 0 22%,transparent 25%),repeating-linear-gradient(90deg,#5e4535 0 2px,#b59a84 2px 5px)';
+    else if (c[8]) bg = 'radial-gradient(circle at 50% 55%,#e0a564 0 28%,transparent 31%),' + b;
+    else if (c[7]) bg = 'radial-gradient(circle at 50% 58%,' + c[7] + ' 0 34%,transparent 37%),' + (c[2] ? 'repeating-linear-gradient(90deg,' + c[2] + ' 0 2px,' + b + ' 2px 5px)' : b);
+    else if (c[6]) bg = 'radial-gradient(circle at 68% 30%,' + c[6] + ' 0 30%,transparent 33%),' + b;
+    else if (c[5]) bg = 'radial-gradient(circle at 50% 85%,#fff 0 40%,transparent 43%),' + (c[2] ? 'repeating-linear-gradient(90deg,' + c[2] + ' 0 2px,' + b + ' 2px 5px)' : b);
+    else if (c[4]) bg = 'conic-gradient(#1a1a1a 0 30%,#c8732e 0 52%,#fff 0 100%)';
+    else if (c[3]) bg = 'conic-gradient(' + c[3] + ' 0 40%,' + b + ' 0 100%)';
+    else if (c[2]) bg = 'repeating-linear-gradient(90deg,' + c[2] + ' 0 2px,' + b + ' 2px 5px)';
+    return DOT + bg; };
+  var J = function (k, d) { try { var v = LS.getItem(k); return v ? JSON.parse(v) : d; } catch (e) { return d; } };
+  var horses = function () { var a = J('horcy:horses', []); return Array.isArray(a) ? a : []; };
+  var sp = function (x) { if (x && typeof x === 'object') return x.espece || 'Cheval'; var h = horses().filter(function (y) { return y.nom === x; })[0]; return (h && h.espece) || 'Cheval'; };
+  var soins = function (s) { return (SOINS[s] || SOINS.Cheval).slice(); };
+  W.HSP = { list: L.slice(), all: ALL.slice(), pro: PRO.slice(), pmap: PMAP, of: sp, soins: soins,
+    sexes: function (s) { return (SX[s] || SX.Cheval).slice(); }, ster: function (s) { return !!STER[s]; }, race: function (s) { return RACE[s] || RACE.Cheval; },
+    soinsFor: function (names) { var ss = (names || []).map(sp); if (!ss.length) return soins('Cheval'); var r = soins(ss[0]); ss.slice(1).forEach(function (s) { var o = soins(s); r = r.filter(function (t) { return o.indexOf(t) >= 0; }); }); return r; },
+    present: function () { var ss = horses().map(sp); return ALL.filter(function (t) { return ss.some(function (s) { return soins(s).indexOf(t) >= 0; }); }); },
+    ali: function (s) { return (ALI[s] || ALI.Cheval).slice(); }, prep: function (s) { return !!PREP[s]; },
+    ctx: function () { var n = ''; try { n = LS.getItem('horcy:ctx') || ''; } catch (e) {} var a = horses(); var h = a.filter(function (y) { return y.nom === n; })[0] || a[0]; return h ? h.nom : ''; },
+    sexTxt: function (h) { h = h || {}; var s = h.sexe || ''; if (s && STER[sp(h)] && h.ster === 'Oui') s += (s === 'Femelle' ? ' stérilisée' : ' stérilisé'); return s; },
+    sub: function (h, age) { h = h || {}; if (!h.nom) return ''; return [sp(h), W.HSP.sexTxt(h), h.race, age].filter(Boolean).join(' · '); } };
+  W.HSP.coatLbl = function (s) { return s === 'Cheval' ? 'Robe' : ((COAT[s] || {}).lbl || 'Robe'); };
+  W.HSP.hasCoat = function (s) { return s === 'Cheval' || !!COAT[s]; };
+  W.HSP.coats = function (s) { return COAT[s] ? COAT[s].list.slice() : null; };
+  W.HSP.coatDef = function (s) { return s === 'Cheval' ? 'Alezan' : ((COAT[s] || {}).def || ''); };
+  W.HSP.coatDots = function (s) { var o = {}; if (COAT[s]) COAT[s].list.forEach(function (n) { o[n] = s === 'Chat' ? catDot(n) : 'display:none'; }); return o; };
+  W.HSP.fillOf = function (s, robe, horseFill) { if (s === 'Cheval') return horseFill; if (s === 'Chat') return (CATM[robe] || CATM['Tabby marron'])[1]; if (s === 'Tortue') return '#8a7a45'; return '#c8b89a'; };
+  /* Valeurs de l'icône d'un animal (h = fiche { nom, espece, robe } ou { name }) : chat → tête de chat avec ses motifs ; sinon tête de cheval. */
+  W.HSP.ico = function (h) { h = h || {}; var r = h; if (!h.espece && (h.nom || h.name)) { var n = h.nom || h.name; r = horses().filter(function (y) { return y.nom === n; })[0] || h; }
+    if (sp(r) === 'Tortue') return W.HSP.tortIco(r); if (sp(r) !== 'Chat') return { isCat: false, notCat: true, isHorse: true, isTort: false };
+    var c = CATM[r.robe] || CATM['Tabby marron']; var D = function (x) { return x ? 'inline' : 'none'; };
+    return { isCat: true, notCat: false, isHorse: false, isTort: false, cb: c[1], cst: D(c[2]), cs: c[2] || '#000', cpad: D(c[3]), cpa: c[3] || '#000', ctr: D(c[4]), cbi: D(c[5]), cspd: D(c[6]), csp: c[6] || '#000', ccpd: D(c[7]), ccp: c[7] || '#000', cto: D(c[8]), cly: D(c[9]) }; };
+  W.HSP.tortList = TORTP.map(function (c) { return c[0]; });
+  W.HSP.tortDots = (function () { var o = {}; TORTP.forEach(function (c) { o[c[0]] = DOT + (c[5] ? 'radial-gradient(circle at 50% 50%,' + c[5] + ' 0 26%,transparent 29%),' : '') + (c[6] ? 'radial-gradient(circle at 30% 35%,' + c[6] + ' 0 9%,transparent 11%),radial-gradient(circle at 65% 60%,' + c[6] + ' 0 9%,transparent 11%),' : '') + c[2]; }); return o; })();
+  W.HSP.tortIco = function (r) { var c = TORTM[r.race] || TORTM.Hermann; var D = function (x) { return x ? 'inline' : 'none'; };
+    return { isCat: false, notCat: true, isHorse: false, isTort: true, tsh: c[2], tln: c[3], tlw: c[4], tced: D(c[5]), tce: c[5] || '#000', tspd: D(c[6]), tsp: c[6] || '#000', trim: c[7], tsk: c[8], tssd: D(c[9]), tss: c[9] || '#000', ttpd: D(c[10]), ttp: c[10] || '#000', tsil: D(c[0] === 'Sillonnée') }; };
+  /* Suivi du poids : horcy:poids = { animal: [{ id, iso, v ('4,4'), u ('kg' | 'g'), t }] } */
+  W.HSP.poids = function (h) { var m = J('horcy:poids', {}) || {}; var L = (m[h] || []).slice(); L.sort(function (a, b) { return a.iso < b.iso ? -1 : (a.iso > b.iso ? 1 : (a.t || 0) - (b.t || 0)); }); return L; };
+  W.HSP.pConv = function (v, from, to) { return from === to ? v : (from === 'g' ? v / 1000 : v * 1000); };
+  W.HSP.pFmt = function (v, u) { var d = u === 'g' ? (Math.abs(v) >= 100 ? 0 : 1) : (Math.abs(v) >= 100 ? 0 : 2); var s = (Math.round(v * Math.pow(10, d)) / Math.pow(10, d)).toFixed(d); if (s.indexOf('.') >= 0) s = s.replace(/0+$/, '').replace(/\.$/, ''); return s.replace('.', ','); };
+  W.HSP.pNum = function (s) { return +String(s || '').replace(',', '.'); };
+  W.HSP.dLab = function (iso) { var M = ['janv.', 'févr.', 'mars', 'avr.', 'mai', 'juin', 'juil.', 'août', 'sept.', 'oct.', 'nov.', 'déc.']; var q = String(iso || '').split('-'); if (q.length < 3) return ''; return (+q[2]) + ' ' + M[+q[1] - 1] + (W.HZ && q[0] !== W.HZ.ys ? ' ' + q[0].slice(2) : ''); };
+  W.HSP.poidsTxt = function (h) { var L = W.HSP.poids(h); if (!L.length) return 'Aucune mesure'; var a = L[L.length - 1], v = W.HSP.pNum(a.v), t = W.HSP.pFmt(v, a.u) + ' ' + a.u + ' le ' + W.HSP.dLab(a.iso);
+    if (L.length > 1) { var b = L[L.length - 2], dv = v - W.HSP.pConv(W.HSP.pNum(b.v), b.u, a.u); t += ' · ' + (dv >= 0 ? '+' : '−') + W.HSP.pFmt(Math.abs(dv), a.u) + ' ' + a.u; } return t; };
+} catch (e) {} })();
+(function horcyNotif() { try {
+  /* Notifications Horcy : actif seulement dans l'application Android (Capacitor). Dans le navigateur, rien n'est programmé ; window.horcyNotif.plan() permet de voir le calendrier calculé. Date et heure : celles du téléphone. */
+  var W = window;
+  if (W.horcyNotif && W.horcyNotif.kick) { W.horcyNotif.kick(); return; }
+  var LS = W.localStorage;
+  var MON = ['janv.', 'févr.', 'mars', 'avr.', 'mai', 'juin', 'juil.', 'août', 'sept.', 'oct.', 'nov.', 'déc.'];
+  var DAYS = 45, MAX = 400, CH = 'horcy-rappels', RUNNER = 'fr.horcy.meteo';
+  var ICON = { 'Maréchal': 'ic_stat_marechal', 'Vermifuge': 'ic_stat_vermifuge', 'Vaccin': 'ic_stat_vermifuge', 'Coproscopie': 'ic_stat_coproscopie', 'Dentiste': 'ic_stat_dentiste', 'Ostéopathe': 'ic_stat_osteopathe', 'Vétérinaire': 'ic_stat_veterinaire' };
+  var MEALH = { matin: '07:00', midi: '12:00', soir: '18:00' };
+  var MEALT = { matin: 'ration du matin', midi: 'ration de midi', soir: 'ration du soir' };
+  var J = function (k, d) { try { var v = LS.getItem(k); return v ? JSON.parse(v) : d; } catch (e) { return d; } };
+  var p2 = function (x) { return ('0' + x).slice(-2); };
+  var isoOf = function (t) { return t.getFullYear() + '-' + p2(t.getMonth() + 1) + '-' + p2(t.getDate()); };
+  var fromIso = function (s) { var q = String(s || '').split('-'); return q.length === 3 ? new Date(+q[0], +q[1] - 1, +q[2]) : null; };
+  var fromFr = function (s) { var m = /^(\d{1,2})\/(\d{1,2})\/(\d{2}|\d{4})$/.exec(String(s || '').trim()); if (!m) return null; var y = +m[3]; if (m[3].length === 2) y += 2000; return new Date(y, +m[2] - 1, +m[1]); };
+  var at = function (day, hm) { var m = /^(\d{1,2}):(\d{2})$/.exec(String(hm || '').trim()) || [0, 18, 0]; var t = new Date(day.getTime()); t.setHours(+m[1], +m[2], 0, 0); return t; };
+  var addDays = function (t, n) { var r = new Date(t.getTime()); r.setDate(r.getDate() + n); return r; };
+  var dayDiff = function (a, b) { return Math.round((Date.UTC(b.getFullYear(), b.getMonth(), b.getDate()) - Date.UTC(a.getFullYear(), a.getMonth(), a.getDate())) / 86400000); };
+  var fh = function (s) { return String(s == null ? '' : s).replace(/\b(\d{1,2}):(\d{2})\b/g, function (m, h, mm) { return (+h) + 'h' + (mm === '00' ? '' : mm); }); };
+  var lab = function (t, now) { return t.getDate() + ' ' + MON[t.getMonth()] + (t.getFullYear() !== now.getFullYear() ? ' ' + String(t.getFullYear()).slice(2) : ''); };
+  var dueOn = function (start, d, n, unit) { n = parseInt(n, 10) || 1; var k = dayDiff(start, d); if (k < 0) return false; if (!unit || unit === 'jours') return k % n === 0; if (unit === 'semaines') return k % (7 * n) === 0; if (d.getDate() !== start.getDate()) return false; var mo = (d.getFullYear() - start.getFullYear()) * 12 + (d.getMonth() - start.getMonth()); return unit === 'mois' ? mo % n === 0 : (d.getMonth() === start.getMonth() && (d.getFullYear() - start.getFullYear()) % n === 0); };
+  var hash = function (s) { var h = 5381; for (var i = 0; i < s.length; i++) h = ((h * 33) ^ s.charCodeAt(i)) >>> 0; return (h % 2147483000) + 1; };
+  var spec = function (x) { if (x.spec) return x.spec; var c = String(x.cond || ''), m; if ((m = /moins de (-?\d+)/.exec(c))) return { type: 'Température', seuil: 'Moins de', temp: m[1] }; if ((m = /plus de (-?\d+)/.exec(c))) return { type: 'Température', seuil: 'Plus de', temp: m[1] }; if (/^Si /.test(c)) return { type: 'Météo', meteo: { Pluie: /pluie/i.test(c), Vent: /vent/i.test(c) } }; return { type: 'Date/Heure', legacy: true }; };
+
+  function data() { return { horses: J('horcy:horses', []).map(function (h) { return h.nom; }), ech: J('horcy:ech', []), db: J('horcy:db', {}) || {}, histo: J('horcy:histo', []), rap: J('horcy:rappels', null) || { shared: [], trt: [] }, me: J('horcy:me', {}) || {} }; }
+
+  /* Calendrier des notifications programmables (échéances, traitements, rappels date/heure). */
+  function plan(now, D) {
+    now = now || new Date(); D = D || data(); var out = []; var today = new Date(now.getFullYear(), now.getMonth(), now.getDate()); var last = addDays(today, DAYS);
+    var push = function (key, t, title, body, icon) { if (t.getTime() <= now.getTime() || t > addDays(last, 1)) return; out.push({ key: key, at: t.getTime(), title: title, body: body, icon: icon }); };
+    var hasH = function (h) { return D.horses.indexOf(h) >= 0; };
+    (D.ech || []).forEach(function (e) { var rm = e.rem || {}; if (rm.on === false) return; var nx = fromIso(e.next); if (!nx) return; var hr = rm.h || e.time || '18:00'; var body = 'Échéance le ' + lab(nx, now) + ' à ' + fh(e.time || '18:00');
+      (e.horses || []).forEach(function (h) { if (!hasH(h)) return; var ic = ICON[e.type] || 'ic_stat_autre';
+        if (rm.dOn !== false) { var n = parseInt(rm.dN || 7, 10) || 7; push('e|' + e.id + '|' + h + '|d' + n + '|' + e.next, at(addDays(nx, -n), hr), e.type + ' - ' + h + ' • Dans ' + n + ' jours', body, ic); }
+        if (rm.vOn !== false) push('e|' + e.id + '|' + h + '|v|' + e.next, at(addDays(nx, -1), hr), e.type + ' - ' + h + ' • Demain', body, ic);
+        if (rm.hOn !== false) { var hn = parseInt(rm.hN || 1, 10) || 1; push('e|' + e.id + '|' + h + '|h' + hn + '|' + e.next, new Date(at(nx, e.time || '18:00').getTime() - hn * 3600000), e.type + ' - ' + h + ' • Dans ' + hn + (hn > 1 ? ' heures' : ' heure'), body, ic); } }); });
+    var T = D.db.treatments || {};
+    ((D.rap && D.rap.trt) || []).forEach(function (x) { if (!x.on || !hasH(x.horse)) return; var tr = (T[x.horse] || []).filter(function (t) { return t.id === x.tid; })[0]; if (!tr) return; var st = (D.histo || []).filter(function (y) { return y.tid === x.tid && y.tag !== 'Fin'; })[0]; if (!st) return; var det = st.det || {}; var s0 = fromIso(st.iso); if (!s0) return; var once = !!det.once; var e0 = once ? s0 : (fromIso(tr.endIso) || s0);
+      var mm = /^Traitement · ((?:matin|midi|soir)(?: et (?:matin|midi|soir))*)$/.exec(String(x.cond || '')); var meals = mm ? mm[1].split(' et ') : null; var alim = !!meals;
+      var hours = alim ? [] : (x.hrs && x.hrs.length ? x.hrs : String(x.cond || '').replace('Traitement · ', '').split(' et ').filter(function (v) { return /\d/.test(v); })); if (!alim && !hours.length) hours = ['18:00'];
+      var title = alim ? String(x.title || '').replace(' - ', ' ') + ' - ' + x.horse : (x.title || tr.title) + ' - ' + x.horse;
+      for (var d = (s0 > today ? s0 : today); d <= e0 && d <= last; d = addDays(d, 1)) { if (once && dayDiff(s0, d) !== 0) continue; if (!once && !alim && !dueOn(s0, d, det.every || 1, det.everyUnit || 'jours')) continue;
+        if (alim) meals.forEach(function (m) { push('t|' + x.id + '|' + isoOf(d) + '|' + m, at(d, (x.rh || {})[m] || MEALH[m]), title, 'Traitement · ' + MEALT[m], 'ic_stat_traitement'); });
+        else hours.forEach(function (hh) { push('t|' + x.id + '|' + isoOf(d) + '|' + hh, at(d, hh), title, 'Traitement · soin de ' + fh(hh), 'ic_stat_traitement'); }); } });
+    ((D.rap && D.rap.shared) || []).forEach(function (x) { var sp = spec(x); if (sp.type !== 'Date/Heure' || sp.legacy) return; var hs = D.horses.filter(function (h) { return x.on && x.on[h]; }); if (!hs.length) return;
+      var slots = []; if (sp.per === 'Une seule fois') { var d1 = fromFr(sp.date); if (d1) slots.push([d1, sp.hour || '18:00']); }
+      else { var a = fromFr(sp.start), b = fromFr(sp.end); if (a) { for (var d = (a > today ? a : today); d <= last && (!b || d <= b); d = addDays(d, 1)) { if (dayDiff(a, d) % (parseInt(sp.every, 10) || 1) !== 0) continue; (sp.hours && sp.hours.length ? sp.hours : ['18:00']).forEach(function (hh) { slots.push([d, hh]); }); } } }
+      slots.forEach(function (s) { hs.forEach(function (h) { push('r|' + x.id + '|' + h + '|' + isoOf(s[0]) + '|' + s[1], at(s[0], s[1]), (x.title || 'Rappel') + ' - ' + h, 'Rappel · ' + fh(s[1]), 'ic_stat_cloche'); }); }); });
+    out.sort(function (p, q) { return p.at - q.at; }); return out.slice(0, MAX); }
+
+  /* Règles météo/température transmises à la tâche de fond. */
+  function wxRules(D) { D = D || data(); var R = []; var geo = (D.me || {}).geo; if (!geo || geo.lat == null || !String((D.me || {}).address || '').trim()) return { geo: null, rules: [] };
+    ((D.rap && D.rap.shared) || []).forEach(function (x) { var sp = spec(x); if (sp.type !== 'Température' && sp.type !== 'Météo') return; D.horses.forEach(function (h) { if (!x.on || !x.on[h]) return; R.push({ id: x.id, title: x.title || 'Rappel', horse: h, type: sp.type, seuil: sp.seuil, temp: +sp.temp, pluie: !!(sp.meteo && sp.meteo.Pluie), vent: !!(sp.meteo && sp.meteo.Vent) }); }); });
+    return { geo: { lat: geo.lat, lon: geo.lon }, rules: R }; }
+  function wxHits(w, cfg) { var out = []; (cfg.rules || []).forEach(function (r) { var body = null;
+      if (r.type === 'Température') { if (r.seuil === 'Plus de') { if (w.max != null && w.max > r.temp) body = 'Température · ' + w.max + ' °C prévus aujourd’hui'; } else if (w.min != null && w.min < r.temp) body = 'Température · ' + w.min + ' °C prévus cette nuit'; }
+      else { var p = []; if (r.pluie && w.rain) p.push('pluie'); if (r.vent && w.wind) p.push('vent fort'); if (p.length) body = 'Météo · ' + p.join(' et ') + (p.length > 1 ? ' prévus' : (p[0] === 'pluie' ? ' prévue' : ' prévu')); }
+      if (body) out.push({ key: 'w|' + r.id + '|' + r.horse + '|' + w.day, night: r.type === 'Température' && r.seuil !== 'Plus de', title: r.title + ' - ' + r.horse, body: body, icon: 'ic_stat_cloche' }); }); return out; }
+  function wxFetch(geo, now) { var day = isoOf(now), day2 = isoOf(addDays(now, 1));
+    return fetch('https://api.open-meteo.com/v1/forecast?latitude=' + geo.lat + '&longitude=' + geo.lon + '&hourly=temperature_2m,precipitation,precipitation_probability,wind_gusts_10m&timezone=Europe%2FParis&forecast_days=2').then(function (r) { return r.json(); }).then(function (j) { var H = j.hourly || {}, T = H.time || [];
+      var pick = function (k, f) { return T.map(function (t, i) { return [t, (H[k] || [])[i]]; }).filter(function (p) { return p[1] != null && f(p[0]); }).map(function (p) { return p[1]; }); };
+      var mn = pick('temperature_2m', function (t) { return t >= day + 'T20:00' && t <= day2 + 'T08:00'; }), mx = pick('temperature_2m', function (t) { return t >= day + 'T08:00' && t <= day + 'T20:00'; });
+      var n24 = function (t) { return t >= day + 'T08:00' && t <= day2 + 'T08:00'; }; var pr = pick('precipitation', n24), pp = pick('precipitation_probability', n24), gu = pick('wind_gusts_10m', n24);
+      return { day: day, min: mn.length ? Math.round(Math.min.apply(null, mn)) : null, max: mx.length ? Math.round(Math.max.apply(null, mx)) : null, rain: pr.reduce(function (a, b) { return a + b; }, 0) >= 1 || (pp.length > 0 && Math.max.apply(null, pp) >= 50), wind: gu.length ? Math.max.apply(null, gu) >= 50 : false }; }); }
+
+  var C = function () { var c = W.Capacitor; return c && c.isNativePlatform && c.isNativePlatform() ? c : null; };
+  var LN = function () { var c = C(); return c && c.Plugins && c.Plugins.LocalNotifications; };
+  var BR = function () { var c = C(); return c && c.Plugins && c.Plugins.BackgroundRunner; };
+  var S = function (k, v) { try { if (v === undefined) return LS.getItem('horcyN:' + k); LS.setItem('horcyN:' + k, v); } catch (e) { return null; } };
+  var toLN = function (p, when) { return { id: hash(p.key), title: p.title, body: p.body, largeBody: p.body, smallIcon: p.icon, iconColor: '#5c6b35', channelId: CH, schedule: { at: new Date(when), allowWhileIdle: true }, extra: { horcy: p.key } }; };
+
+  function ready(ln) { if (S('ready') === '1') return Promise.resolve(true);
+    return Promise.resolve(ln.checkPermissions ? ln.checkPermissions() : { display: 'granted' }).then(function (p) { return p && p.display === 'granted' ? p : (S('askedN') ? p : (S('askedN', '1'), ln.requestPermissions())); }).then(function (p) { if (!p || p.display !== 'granted') return false;
+      return Promise.resolve(ln.createChannel ? ln.createChannel({ id: CH, name: 'Rappels Horcy', description: 'Échéances, traitements et rappels personnalisés', importance: 4, visibility: 1, vibration: true }) : null).catch(function () {}).then(function () {
+        if (!ln.checkExactNotificationSetting || S('askedX')) return null; return ln.checkExactNotificationSetting().then(function (x) { if (x && x.exact_notification !== 'granted' && ln.changeExactNotificationSetting) { S('askedX', '1'); return ln.changeExactNotificationSetting(); } }).catch(function () {}); }).then(function () { S('ready', '1'); return true; }); }).catch(function () { return false; }); }
+
+  var busy = false, again = false;
+  function sync() { var ln = LN(); if (!ln) return Promise.resolve(null); if (busy) { again = true; return Promise.resolve(null); } busy = true; var now = new Date();
+    return ready(ln).then(function (ok) { if (!ok) return null; var P = plan(now); var sig = String(hash(JSON.stringify(P.map(function (p) { return [p.key, p.at, p.title, p.body]; })))) + ':' + P.length;
+      return Promise.resolve(sig === S('sig') ? null : ln.getPending().then(function (r) { var old = ((r && r.notifications) || []).filter(function (n) { return !n.extra || n.extra.horcy == null || String(n.extra.horcy).charAt(0) !== 'w'; }).map(function (n) { return { id: n.id }; }); return old.length ? ln.cancel({ notifications: old }) : null; }).then(function () { return P.length ? ln.schedule({ notifications: P.map(function (p) { return toLN(p, p.at); }) }) : null; }).then(function () { S('sig', sig); }))
+        .then(function () { return weather(ln, now); }); }).catch(function () {}).then(function () { busy = false; if (again) { again = false; sync(); } }); }
+
+  function weather(ln, now) { var cfg = wxRules(); var br = BR();
+    var push = br && br.dispatchEvent ? br.dispatchEvent({ label: RUNNER, event: 'config', details: cfg }).catch(function () {}) : Promise.resolve();
+    return push.then(function () { if (now.getHours() < 8 || !cfg.geo || !cfg.rules.length) return null; var day = isoOf(now);
+      if (br && br.dispatchEvent) return br.dispatchEvent({ label: RUNNER, event: 'check', details: {} }).then(function (r) { if (r && r.wx) try { LS.setItem('horcy:wx', JSON.stringify(r.wx)); } catch (e) {} }).catch(function () {});
+      var hr = now.getHours(), morn = S('wxDay') === day, eve = S('wxEve') === day; if (morn && (hr < 18 || eve)) return null; var c0 = J('horcy:wx', null);
+      return Promise.resolve(!morn && c0 && c0.day === day ? c0 : wxFetch(cfg.geo, now)).then(function (w) { try { LS.setItem('horcy:wx', JSON.stringify(w)); } catch (e) {} var sent = []; try { var q = JSON.parse(S('wxSent') || 'null'); if (q && q.day === day) sent = q.keys || []; } catch (e) {}
+        var H = wxHits(w, cfg).filter(function (p) { return sent.indexOf(p.key) < 0 && (!morn || p.night); }); S('wxDay', day); if (morn || hr >= 18) S('wxEve', day); S('wxSent', JSON.stringify({ day: day, keys: sent.concat(H.map(function (p) { return p.key; })) }));
+        return H.length ? ln.schedule({ notifications: H.map(function (p) { return toLN(p, Date.now() + 3000); }) }) : null; }).catch(function () {}); }); }
+
+  var tmr = null; function kick() { if (!LN()) return; clearTimeout(tmr); tmr = setTimeout(sync, 400); }
+  var WATCH = /^horcy:(horses|ech|db|histo|rappels|me)$/;
+  try { var sp0 = Storage.prototype, si = sp0.setItem, ri = sp0.removeItem; sp0.setItem = function (k, v) { var r = si.apply(this, arguments); if (this === LS && WATCH.test(k)) kick(); return r; }; sp0.removeItem = function (k) { var r = ri.apply(this, arguments); if (this === LS && WATCH.test(k)) kick(); return r; }; } catch (e) {}
+  try { document.addEventListener('visibilitychange', function () { if (document.visibilityState === 'visible') kick(); }); } catch (e) {}
+  W.horcyNotif = { plan: plan, wxRules: wxRules, wxHits: wxHits, kick: kick, sync: sync };
+  kick();
+} catch (e) {} })();
+class Component extends DCLogic {
+  constructor(...args) { super(...args); const h = HSP.ctx(); const L = HSP.poids(h); const u0 = L.length ? L[L.length - 1].u : (HSP.of(h) === 'Tortue' ? 'g' : 'kg');
+    let sv = null; try { sv = JSON.parse(window.localStorage.getItem('horcy:poidsPer') || 'null'); } catch (e) {} const per = sv && ['Toutes', 'Mois en cours', 'Année en cours', 'Personnalisée'].indexOf(sv.per) >= 0 && (sv.per !== 'Personnalisée' || sv.cust) ? sv.per : 'Année en cours';
+    this.state = { date: HZ.fr, val: '', unit: u0, uOpen: false, pOpen: false, per: per, cust: per === 'Personnalisée' ? sv.cust : null, du: HZ.fr1, au: HZ.fr, pErr: null, del: null, selPt: null }; }
+  savePer(per, cust) { try { window.localStorage.setItem('horcy:poidsPer', JSON.stringify({ per: per, cust: cust || null })); } catch (e) {} }
+  isoOf(fr) { const m = /^(\d{1,2})\/(\d{1,2})\/(\d{2}|\d{4})$/.exec(String(fr || '').trim()); if (!m) return null; let y = +m[3]; if (m[3].length === 2) y += 2000; const d = new Date(y, +m[2] - 1, +m[1]); if (d.getMonth() !== +m[2] - 1 || d.getDate() !== +m[1]) return null; return y + '-' + ('0' + (+m[2])).slice(-2) + '-' + ('0' + (+m[1])).slice(-2); }
+  range() { const p = this.state.per; if (p === 'Mois en cours') return [HZ.mA, HZ.mB]; if (p === 'Année en cours') return [HZ.yA, HZ.yB]; if (p === 'Personnalisée' && this.state.cust) return this.state.cust; return null; }
+  setList(h, L) { let m = {}; try { m = JSON.parse(window.localStorage.getItem('horcy:poids') || '{}') || {}; } catch (e) {} m[h] = L; try { window.localStorage.setItem('horcy:poids', JSON.stringify(m)); } catch (e) {} }
+  add() { const h = HSP.ctx(); if (!h) return; const iso = this.isoOf(this.state.date); const v = String(this.state.val || '').trim(); if (!iso || !v) return; const L = HSP.poids(h); L.push({ id: 'w' + Date.now(), iso: iso, v: v.replace('.', ','), u: this.state.unit, t: Date.now() }); this.setList(h, L); this.setState({ val: '', date: HZ.fr }); }
+  chart(P, U) { const W = 360, H = 210, l = 42, r = 20, t = 22, b = 30; const T = (iso) => { const q = iso.split('-'); return Date.UTC(+q[0], +q[1] - 1, +q[2]); };
+    const ys = P.map((m) => HSP.pConv(HSP.pNum(m.v), m.u, U)); let mn = Math.min.apply(null, ys), mx = Math.max.apply(null, ys); if (mx - mn < 1e-9) { const e = Math.max(Math.abs(mx) * 0.05, U === 'g' ? 10 : 0.1); mn -= e; mx += e; }
+    const raw = (mx - mn) / 3; const p10 = Math.pow(10, Math.floor(Math.log10(raw))); const st = [1, 2, 2.5, 5, 10].map((k) => k * p10).find((k) => k >= raw) || raw; const lo = Math.floor(mn / st) * st, hi = Math.ceil(mx / st) * st;
+    const t0 = T(P[0].iso), t1 = T(P[P.length - 1].iso); const X = (iso) => (t1 === t0 ? (l + W - r) / 2 : l + (T(iso) - t0) / (t1 - t0) * (W - l - r)); const Y = (v) => t + (hi - v) / (hi - lo || 1) * (H - t - b);
+    const pts = P.map((m, i) => [X(m.iso), Y(ys[i])]); const o = {};
+    o.lineD = pts.length > 1 ? 'M' + pts.map((q) => q[0].toFixed(1) + ' ' + q[1].toFixed(1)).join(' L') : 'M0 0';
+    o.areaD = pts.length > 1 ? o.lineD + ' L' + pts[pts.length - 1][0].toFixed(1) + ' ' + (H - b) + ' L' + pts[0][0].toFixed(1) + ' ' + (H - b) + ' Z' : 'M0 0';
+    const yl = []; let g = ''; for (let v = lo; v <= hi + st / 2; v += st) { const y = Y(v); g += 'M' + l + ' ' + y.toFixed(1) + ' H' + (W - r) + ' '; yl.push({ top: (y - 5).toFixed(1), t: v.toFixed(st >= 1 ? 0 : (st >= 0.1 ? 1 : 2)).replace('.', ',') }); } o.gridD = g || 'M0 0'; o.yl = yl; o.baseD = 'M' + (l - 6) + ' ' + (H - b) + ' H' + (W - r + 6);
+    const pc = (x) => (x / W * 100).toFixed(2); const n = P.length; const ix = n <= 3 ? P.map((m, i) => i) : [0, Math.round((n - 1) / 2), n - 1];
+    o.xl = ix.filter((i, k, a) => a.indexOf(i) === k).map((i, k, a) => ({ left: pc(pts[i][0]), tx: a.length === 1 ? '-50%' : (k === 0 ? '-10%' : (k === a.length - 1 ? '-90%' : '-50%')), t: HSP.dLab(P[i].iso) }));
+    const sel = this.state.selPt; o.dots = pts.map((q, i) => { const last = i === pts.length - 1; const id = P[i].id; return { left: pc(q[0]), top: q[1].toFixed(1), sz: last ? 14 : 11, sel: sel === id, tip: HSP.dLab(P[i].iso) + ' : ' + HSP.pFmt(ys[i], U) + ' ' + U, pick: (e) => { if (e && e.stopPropagation) e.stopPropagation(); this.setState({ selPt: sel === id ? null : id }); } }; });
+    const k = P.findIndex((m) => m.id === sel); o.hasPt = k >= 0; if (k >= 0) { o.ptLeft = pc(pts[k][0]); o.ptTop = pts[k][1].toFixed(1); o.ptTx = pts[k][0] < 50 ? '-15%' : (pts[k][0] > W - 50 ? '-85%' : '-50%'); o.ptTxt = HSP.pFmt(ys[k], U) + ' ' + U; } else { o.ptLeft = 0; o.ptTop = 0; o.ptTx = '0'; o.ptTxt = ''; }
+    return o; }
+  renderVals() { const s = this.state; const h = HSP.ctx(); const all = HSP.poids(h); const R = this.range(); const P = R ? all.filter((m) => m.iso >= R[0] && m.iso <= R[1]) : all;
+    const U = all.length ? all[all.length - 1].u : s.unit; const v = { horse: h };
+    const close = { pOpen: false, uOpen: false };
+    const PER = ['Toutes', 'Mois en cours', 'Année en cours', 'Personnalisée'];
+    v.pValue = s.per === 'Personnalisée' && s.cust ? HSP.dLab(s.cust[0]) + ' – ' + HSP.dLab(s.cust[1]) : (s.per === 'Personnalisée' ? 'Personnalisée' : s.per); v.pAria = 'Période : ' + v.pValue; v.pOpen = s.pOpen; v.pDisp = s.pOpen ? 'block' : 'none'; v.pRadius = s.pOpen ? '12px 12px 0 0' : '12px'; v.pRot = s.pOpen ? 'rotate(180deg)' : 'none';
+    v.pToggle = () => this.setState(Object.assign({}, close, { pOpen: !s.pOpen }));
+    v.pOptions = PER.filter((p) => p !== s.per || p === 'Personnalisée').map((p) => ({ label: p, pick: () => { if (p !== 'Personnalisée') this.savePer(p, null); this.setState(p === 'Personnalisée' ? Object.assign({}, close, { pCustOpen: true, pErr: null }) : Object.assign({}, close, { per: p, cust: null, pCustOpen: false, pErr: null, selPt: null })); } }));
+    v.pCust = !!s.pCustOpen; v.du = s.du; v.au = s.au; v.setDu = (e) => this.setState({ du: e.target.value, pErr: null }); v.setAu = (e) => this.setState({ au: e.target.value, pErr: null });
+    const pe = s.pErr || {}; v.duBd = pe.e0 ? '#a85a14' : '#cfcab9'; v.auBd = pe.e1 ? '#a85a14' : '#cfcab9'; v.pMsgShow = !!(pe.e0 || pe.e1); v.pMsg = pe.order ? 'La date de fin ne peut pas être antérieure à la date de début.' : 'Date invalide : format JJ/MM/AA, date existante.';
+    v.apply = () => { const a = this.isoOf(String(s.du || '').trim().replace(/[\s.\-]/g, '/')), b = this.isoOf(String(s.au || '').trim().replace(/[\s.\-]/g, '/')); if (!a || !b) { this.setState({ pErr: { e0: !a, e1: !b } }); return; } if (b < a) { this.setState({ pErr: { e1: true, order: true } }); return; } this.savePer('Personnalisée', [a, b]); this.setState({ per: 'Personnalisée', cust: [a, b], pCustOpen: false, pErr: null, selPt: null }); };
+    v.hasData = P.length > 0; v.noData = !v.hasData; v.noDataTxt = all.length ? 'Aucune mesure pour cette période.' : 'Aucune mesure pour l’instant.';
+    Object.assign(v, v.hasData ? this.chart(P, U) : { lineD: 'M0 0', areaD: 'M0 0', gridD: 'M0 0', baseD: 'M0 0', yl: [], xl: [], dots: [], hasPt: false, ptLeft: 0, ptTop: 0, ptTx: '0', ptTxt: '' }); v.clearPt = () => { if (s.selPt) this.setState({ selPt: null }); };
+    v.hasAny = all.length > 0; { const Q = P.length ? P : all; const a = Q[Q.length - 1]; if (a) { const av = HSP.pConv(HSP.pNum(a.v), a.u, U); v.sumVal = HSP.pFmt(av, U) + ' ' + U; let sub = HSP.dLab(a.iso); if (P.length > 1) { const d = av - HSP.pConv(HSP.pNum(P[0].v), P[0].u, U); sub += ' · ' + (d >= 0 ? '+' : '−') + HSP.pFmt(Math.abs(d), U) + ' ' + U + ' sur la période'; } v.sumSub = sub; } else { v.sumVal = ''; v.sumSub = ''; } }
+    v.dateV = s.date; v.setDate = (e) => this.setState({ date: e.target.value }); v.valV = s.val; v.setVal = (e) => this.setState({ val: e.target.value }); v.valPh = s.unit === 'g' ? 'Ex. : 850' : 'Ex. : 4,5';
+    v.unit = s.unit; v.uOpen = s.uOpen; v.uAria = 'Unité : ' + s.unit; v.uDisp = s.uOpen ? 'block' : 'none'; v.uRadius = s.uOpen ? '12px 12px 0 0' : '12px'; v.uRot = s.uOpen ? 'rotate(180deg)' : 'none';
+    v.uToggle = () => this.setState(Object.assign({}, close, { uOpen: !s.uOpen })); v.uOptions = ['kg', 'g'].filter((u) => u !== s.unit).map((u) => ({ label: u, pick: () => this.setState(Object.assign({}, close, { unit: u })) }));
+    v.add = (e) => { if (!this.vcheck(e)) return; this.add(); };
+    const rv = P.slice().reverse(); v.rows = rv.map((m, i) => { const val = HSP.pNum(m.v); const pr = all[all.indexOf(m) - 1]; let dv = ''; if (pr) { const d = val - HSP.pConv(HSP.pNum(pr.v), pr.u, m.u); dv = (d >= 0 ? '+' : '−') + HSP.pFmt(Math.abs(d), m.u) + ' ' + m.u; }
+      return { date: HSP.dLab(m.iso), val: HSP.pFmt(val, m.u) + ' ' + m.u, dv: dv, aria: 'Supprimer la mesure du ' + HSP.dLab(m.iso), ask: () => this.setState({ del: m.id }) }; });
+    v.hasList = v.rows.length > 0; v.noList = !v.hasList; v.noListTxt = all.length ? 'Aucune mesure pour cette période.' : 'Aucune mesure';
+    const dm = all.find((m) => m.id === s.del); v.delDisp = dm ? 'flex' : 'none'; v.delTxt = dm ? 'La mesure du ' + HSP.dLab(dm.iso) + ' (' + HSP.pFmt(HSP.pNum(dm.v), dm.u) + ' ' + dm.u + ') sera supprimée de la fiche de ' + h + '.' : '';
+    v.delCancel = () => this.setState({ del: null }); v.delConfirm = () => { this.setList(h, all.filter((m) => m.id !== s.del)); this.setState({ del: null }); };
+    return v; }
+  vcheck(e) { try { const t = (e && (e.currentTarget || e.target)) || null; const root = (t && t.closest && t.closest('.frm')) || document; const R = '#a85a14'; let first = null;
+      Array.from(root.querySelectorAll('.vErr')).forEach((m) => m.remove());
+      const flag = (x, msg) => { x.style.borderColor = R; const m = document.createElement('div'); m.className = 'vErr'; m.setAttribute('role', 'alert'); m.style.cssText = 'color:' + R + ';font-size:12px;margin-top:4px;font-weight:400;text-transform:none;letter-spacing:0'; m.textContent = msg; const lb = x.closest('label'); const pa = x.parentElement; const host = lb ? (getComputedStyle(lb).display === 'flex' ? lb : x) : ((pa && getComputedStyle(pa).display === 'flex') ? pa : x); host.insertAdjacentElement('afterend', m); x._vErr = m; x.addEventListener('input', () => { x.style.borderColor = ''; if (x._vErr) { x._vErr.remove(); x._vErr = null; } }, { once: true }); if (!first) first = x; };
+      let changed = false; const setVal = (x, v) => { if (x.value === v) return; changed = true; try { const ds = Object.getOwnPropertyDescriptor(Object.getPrototypeOf(x), 'value'); if (ds && ds.set) ds.set.call(x, v); else x.value = v; x.dispatchEvent(new Event('input', { bubbles: true })); } catch (er) { x.value = v; } };
+      const ins = Array.from(root.querySelectorAll('input, textarea')).filter((x) => { const ty = (x.getAttribute('type') || 'text').toLowerCase(); return ['checkbox', 'radio', 'file', 'hidden', 'button'].indexOf(ty) < 0 && !x.readOnly && !x.disabled && !!x.offsetParent; });
+      const lbl = (x) => { const lb = x.closest('label'); return (lb && lb.textContent) || ''; };
+      const pn = (v, bth) => { const s = String(v || '').trim().replace(/[\s\/:.\-_]+/g, '/'); let d, mo, y, m; if ((m = /^(\d{1,2})\/(\d{1,2})\/(\d{2}|\d{4})$/.exec(s))) { d = +m[1]; mo = +m[2]; y = m[3]; } else if ((m = /^(\d{1,2})\/(\d{2}|\d{4})$/.exec(s))) { d = 1; mo = +m[1]; y = m[2]; } else if ((m = /^(\d{2})(\d{2})(\d{2}|\d{4})$/.exec(s))) { d = +m[1]; mo = +m[2]; y = m[3]; } else return null; let yy = +y; if (y.length === 2) { yy = 2000 + yy; if (bth && yy > HZ.y) yy -= 100; } const dt = new Date(yy, mo - 1, d); if (dt.getFullYear() !== yy || dt.getMonth() !== mo - 1 || dt.getDate() !== d) return null; return { t: dt.getTime(), s: ('0' + d).slice(-2) + '/' + ('0' + mo).slice(-2) + '/' + String(yy).slice(-2) }; };
+      const pd = (v) => { const r = pn(v); return r ? r.t : null; };
+      ins.forEach((x) => { x.style.borderColor = ''; const L = lbl(x); const opt = /facultatif/i.test(L); const val = String(x.value || '').trim();
+        if (!val) { if (!opt) flag(x, 'Champ obligatoire'); return; }
+        const isT = /^\s*Heure/i.test(L) || /^Heure/i.test(x.getAttribute('aria-label') || '') || (x.getAttribute('placeholder') || '') === 'hh:mm';
+        const isD = /^\s*(Date|Début|Fin)\b/.test(L);
+        if (isT) { const m = /^(\d{1,2}):(\d{2})$/.exec(val); if (!m || +m[1] > 23 || +m[2] > 59) { flag(x, 'Heure invalide : format HH:MM, de 00:00 à 23:59'); return; } setVal(x, ('0' + (+m[1])).slice(-2) + ':' + m[2]); }
+        const AR = x.getAttribute('aria-label') || ''; const num = (s) => +String(s).replace(',', '.');
+        if (/^Nombre/.test(AR)) { const mn = /avant/.test(AR) ? 2 : 1; if (!/^\d+$/.test(val) || +val < mn) { flag(x, mn === 2 ? 'Nombre entier, 2 minimum (la veille est déjà proposée)' : 'Nombre entier supérieur ou égal à 1'); return; } setVal(x, String(+val)); }
+        if (/^\s*Poids/.test(L)) { if (!/^\d+([.,]\d+)?$/.test(val) || num(val) <= 0) { flag(x, 'Poids : nombre supérieur à 0 (ex. 4,5)'); return; } setVal(x, val.replace('.', ',')); }
+        if (/^\s*Quantité/.test(L)) { if (!/^\d+([.,]\d+)?$/.test(val) || num(val) <= 0) { flag(x, 'Quantité : nombre supérieur à 0 (ex. 2,5)'); return; } setVal(x, val.replace('.', ',')); }
+        if (/^Température/.test(AR)) { if (!/^-?\d+$/.test(val) || +val < -30 || +val > 50) { flag(x, 'Température : nombre entier entre -30 et 50'); return; } setVal(x, String(+val)); }
+        if (/^\s*Coût/.test(L)) { const c = val.replace(/€/g, '').replace(/\s+/g, ''); if (!/^\d+([.,]\d{1,2})?$/.test(c)) { flag(x, 'Coût : montant positif (ex. 60 ou 45,50)'); return; } setVal(x, c.replace('.', ',')); }
+        if (/^\s*Âge/.test(L)) { const m = /^(\d{1,2})\s*(ans?)?$/i.exec(val); if (!m || +m[1] > 50) { flag(x, 'Âge : nombre entier entre 0 et 50'); return; } setVal(x, (+m[1]) + (+m[1] > 1 ? ' ans' : ' an')); }
+        if (/^\s*Numéro de téléphone/.test(L)) { const ph = val.replace(/[\s.\-]/g, ''); if (/^0\d{9}$/.test(ph)) setVal(x, ph.replace(/(\d{2})(?=\d)/g, '$1 ')); else if (/^\+33\d{9}$/.test(ph)) setVal(x, '+33 ' + ph.slice(3, 4) + ' ' + ph.slice(4).replace(/(\d{2})(?=\d)/g, '$1 ')); else { flag(x, 'Téléphone : 10 chiffres commençant par 0, ou +33'); return; } }
+        if (x.getAttribute('data-uniq') && typeof this.uniqNames === 'function') { const nz = (s) => String(s || '').normalize('NFD').replace(/[\u0300-\u036f]/g, '').trim().toLowerCase(); if ((this.uniqNames() || []).map(nz).indexOf(nz(val)) >= 0) { flag(x, 'Ce nom existe déjà'); return; } }
+        if (isD) { const nv = pn(val, /Date de naissance/.test(L)); if (!nv) { flag(x, 'Date invalide : format JJ/MM/AA, date existante'); return; } setVal(x, nv.s); if ((/Date du diagnostic|Date de naissance/.test(L) || x.getAttribute('data-past')) && nv.t > HZ.date().getTime()) { flag(x, 'La date ne peut pas être dans le futur'); return; } } });
+      Array.from(root.querySelectorAll('label')).forEach((lb) => { if (!/^\s*Fin/.test(lb.textContent || '')) return; const f = lb.querySelector('input'); let p = lb.previousElementSibling; while (p && !/^\s*Début/.test(p.textContent || '')) p = p.previousElementSibling; const d = p && p.querySelector && p.querySelector('input'); if (!f || !d || !f.offsetParent || f._vErr || d._vErr) return;
+        const a = pd(d.value); const b = pd(f.value); if (a !== null && b !== null && b < a) flag(f, 'La date de fin doit suivre la date de début'); });
+      if (!first && changed && t && t.click) { if (e && e.preventDefault) e.preventDefault(); setTimeout(() => t.click(), 60); return false; }
+      if (first) { if (e && e.preventDefault) e.preventDefault(); first.focus(); if (first.scrollIntoView) first.scrollIntoView({ block: 'center' }); return false; } } catch (x) {} return true; }
+}
+</script></body></html>

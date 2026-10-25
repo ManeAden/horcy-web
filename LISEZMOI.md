@@ -24,5 +24,12 @@ Pour essayer avec Ondine et Étoile : télécharger https://maneaden.github.io/h
 - Météo et température : vérifiées à l'ouverture de l'appli (adresse de l'écurie requise).
 - Sauvegarde : « Exporter mes données » ouvre le menu de partage (choisir **Enregistrer dans Fichiers**).
 
+## Version multi-animaux
+**Adresse :** https://maneaden.github.io/horcy-web/animaux/ (chevaux, chats, chiens, moutons, tortues).
+- Installation identique (Safari › Partager › Sur l'écran d'accueil) : elle apparaît sous le nom « Horcy animaux ».
+- Ses données sont séparées de celles de la version chevaux, même sur le même appareil.
+- Les sauvegardes .horcy restent compatibles entre les versions (import : Ma maison › importer).
+- Écrans dans `app-animaux/`, construits dans `dist/animaux/` par `scripts/build-animaux.mjs`.
+
 ## Mise à jour du site
 Chaque modification poussée sur `main` reconstruit et republie le site (onglet **Actions**). Les écrans sont dans `app/`.

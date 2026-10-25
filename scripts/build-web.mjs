@@ -2,6 +2,7 @@
 import fs from 'node:fs';
 import path from 'node:path';
 import crypto from 'node:crypto';
+import { buildAnimaux } from './build-animaux.mjs';
 
 const OUT = 'dist';
 fs.rmSync(OUT, { recursive: true, force: true });
@@ -63,3 +64,6 @@ const h = crypto.createHash('sha1'); for (const f of files.sort()) h.update(f).u
 const ver = h.digest('hex').slice(0, 10);
 fs.writeFileSync(path.join(OUT, 'sw.js'), fs.readFileSync(path.join('web', 'sw.js'), 'utf8').replace('__VERSION__', ver).replace('__FILES__', JSON.stringify(['./'].concat(files.map((f) => './' + f)))));
 console.log(`Site prêt dans dist/ : ${n} écrans, ${files.length} fichiers, version ${ver}.`);
+
+// Version multi-animaux (après la version chevaux, qui ne la met pas dans son cache)
+buildAnimaux(HEAD, SAFE);
