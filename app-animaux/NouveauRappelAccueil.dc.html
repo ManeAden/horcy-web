@@ -124,6 +124,27 @@ label{display:flex;gap:12px;align-items:center;min-height:44px;font-size:15px}in
   Dc.addEventListener('keydown', function (e) { if (cur && e.key === 'Escape') close(); });
   setInterval(function () { if (cur && (!cur.x.isConnected || !cur.box.isConnected || !cur.x.offsetParent)) close(); }, 400);
 } catch (e) {} })();
+(function horcyHib() { try { if (window.HSPH) return;
+  /* Hibernation (tortue) : échéance sur une période. ech.hib = { start (iso), n, unit, did (sid de la ligne « Début ») } ; ech.next = date de fin. */
+  var MON = ['janv.', 'févr.', 'mars', 'avr.', 'mai', 'juin', 'juil.', 'août', 'sept.', 'oct.', 'nov.', 'déc.'];
+  var p2 = function (x) { return ('0' + x).slice(-2); };
+  var add = function (t, n, u) { var r = new Date(t.getTime()); n = parseInt(n, 10) || 0; if (u === 'jours') r.setDate(r.getDate() + n); else if (u === 'semaines') r.setDate(r.getDate() + 7 * n); else if (u === 'mois') r.setMonth(r.getMonth() + n); else r.setFullYear(r.getFullYear() + n); return r; };
+  var iso = function (t) { return t.getFullYear() + '-' + p2(t.getMonth() + 1) + '-' + p2(t.getDate()); };
+  var fromIso = function (s) { var q = String(s || '').split('-'); return q.length === 3 ? new Date(+q[0], +q[1] - 1, +q[2]) : null; };
+  var parseFr = function (s) { var m = /(\d{1,2})\/(\d{1,2})\/(\d{2,4})/.exec(String(s || '')); if (!m) return null; var y = +m[3]; if (y < 100) y += 2000; var d = new Date(y, +m[2] - 1, +m[1]); return d.getMonth() === +m[2] - 1 ? d : null; };
+  var lab = function (t) { return t.getDate() + ' ' + MON[t.getMonth()] + (t.getFullYear() !== HZ.y ? ' ' + String(t.getFullYear()).slice(2) : ''); };
+  var fr = function (t) { return p2(t.getDate()) + '/' + p2(t.getMonth() + 1) + '/' + String(t.getFullYear()).slice(2); };
+  var durTxt = function (n, u) { n = parseInt(n, 10) || 1; var U = { jours: ['jour', 'jours'], semaines: ['semaine', 'semaines'], mois: ['mois', 'mois'], ans: ['an', 'ans'] }; return n + ' ' + (U[u] || [u, u])[n > 1 ? 1 : 0]; };
+  var J = function (k, d) { try { var v = localStorage.getItem(k); return v ? JSON.parse(v) : d; } catch (e) { return d; } };
+  var H = window.HSPH = { T: 'Hibernation', ICON: 'M4 9h5l-5 6h5 M12 5h4l-4 5h4 M16 14h4l-4 5h4', add: add, iso: iso, fromIso: fromIso, parseFr: parseFr, lab: lab, fr: fr, durTxt: durTxt,
+    per: function (e) { var h = e && e.hib; var s = h && fromIso(h.start), f = e && fromIso(e.next); return s && f ? lab(s) + ' → ' + lab(f) : ''; },
+    debut: function (e, horse, sid) { sid = sid || ('soin' + Date.now() + Math.floor(Math.random() * 1000)); var s = fromIso(e.hib.start) || HZ.date(); return { id: 'hist' + sid, sid: sid, kind: 'Hibernation', type: 'Hibernation', date: lab(s), iso: e.hib.start, cheval: horse, title: 'Hibernation', sub: horse, clips: false, note: '', price: '', tag: 'Début', tagStyle: 'background:#e4e6d3;color:#4b5a28', href: 'VueSoinCree.dc.html', det: { files: [], pro: '', cost: '', type: 'Hibernation', horse: horse, ech: e.id, hib: { start: e.hib.start, end: e.next, phase: 'Début' } } }; },
+    syncDebut: function (e) { try { var L = J('horcy:histo', []); var horse = (e.horses || [])[0] || ''; var i = e.hib.did ? L.findIndex(function (x) { return x.sid === e.hib.did; }) : -1;
+      if (i >= 0) { var x = L[i]; var n = H.debut(e, horse, x.sid); n.note = x.note || ''; n.title = x.title || n.title; n.det.files = (x.det && x.det.files) || []; n.clips = n.det.files.length > 0; L[i] = Object.assign({}, x, n); }
+      else { var n2 = H.debut(e, horse); e.hib.did = n2.sid; L.push(n2); }
+      localStorage.setItem('horcy:histo', JSON.stringify(L)); } catch (er) {} return e; },
+    dropDebut: function (e) { try { if (!e || !e.hib || !e.hib.did || e.hib.start <= HZ.iso) return; localStorage.setItem('horcy:histo', JSON.stringify(J('horcy:histo', []).filter(function (x) { return x.sid !== e.hib.did; }))); } catch (er) {} } };
+} catch (e) {} })();
 (function horcySpecies() { try {
   /* Variante multi-animaux : listes propres à chaque espèce. Un animal sans espèce (sauvegarde Horcy chevaux) est un cheval. */
   var W = window; if (W.HSP) return; var LS = W.localStorage;
@@ -211,7 +232,7 @@ label{display:flex;gap:12px;align-items:center;min-height:44px;font-size:15px}in
   var LS = W.localStorage;
   var MON = ['janv.', 'févr.', 'mars', 'avr.', 'mai', 'juin', 'juil.', 'août', 'sept.', 'oct.', 'nov.', 'déc.'];
   var DAYS = 45, MAX = 400, CH = 'horcy-rappels', RUNNER = 'fr.horcy.meteo';
-  var ICON = { 'Maréchal': 'ic_stat_marechal', 'Vermifuge': 'ic_stat_vermifuge', 'Vaccin': 'ic_stat_vermifuge', 'Coproscopie': 'ic_stat_coproscopie', 'Dentiste': 'ic_stat_dentiste', 'Ostéopathe': 'ic_stat_osteopathe', 'Vétérinaire': 'ic_stat_veterinaire' };
+  var ICON = { 'Maréchal': 'ic_stat_marechal', 'Vermifuge': 'ic_stat_vermifuge', 'Vaccin': 'ic_stat_vermifuge', 'Coproscopie': 'ic_stat_coproscopie', 'Dentiste': 'ic_stat_dentiste', 'Ostéopathe': 'ic_stat_osteopathe', 'Vétérinaire': 'ic_stat_veterinaire', 'Hibernation': 'ic_stat_hibernation' };
   var MEALH = { matin: '07:00', midi: '12:00', soir: '18:00' };
   var MEALT = { matin: 'ration du matin', midi: 'ration de midi', soir: 'ration du soir' };
   var J = function (k, d) { try { var v = LS.getItem(k); return v ? JSON.parse(v) : d; } catch (e) { return d; } };
