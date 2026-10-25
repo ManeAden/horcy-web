@@ -237,6 +237,7 @@ label{display:flex;gap:12px;align-items:center;min-height:44px;font-size:15px}in
   W.horcyNotif = { plan: plan, wxRules: wxRules, wxHits: wxHits, kick: kick, sync: sync };
   kick();
 } catch (e) {} })();
+(function horcyCatMig() { try { var LS = window.localStorage; ['horcy:depenses', 'horcy:depSeries'].forEach(function (k) { var v = LS.getItem(k); if (v && v.indexOf('"Param\u00e9dical"') >= 0) LS.setItem(k, v.split('"Param\u00e9dical"').join('"Produit de soin"')); }); } catch (e) {} })();
 class Component extends DCLogic {
   constructor(...args) { super(...args); this.orig = this.curHorse(); this.state = { "groups": {}, "single": { "sexe": this.orig.sexe || "Jument" }, "dd": { "robe": { "open": false, "val": this.orig.robe || "Alezan" } } }; this.f = { nom: this.orig.nom || '', race: this.orig.race || '', age: this.orig.naiss || '' }; }
   curHorse() { let n = '', a = []; try { n = window.localStorage.getItem('horcy:ctx') || ''; a = JSON.parse(window.localStorage.getItem('horcy:horses') || '[]'); } catch (e) {} return a.find((x) => x.nom === n) || a[0] || { nom: '' }; }

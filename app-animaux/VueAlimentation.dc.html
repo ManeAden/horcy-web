@@ -320,6 +320,7 @@ label{display:flex;gap:12px;align-items:center;min-height:44px;font-size:15px}in
   W.horcyNotif = { plan: plan, wxRules: wxRules, wxHits: wxHits, kick: kick, sync: sync };
   kick();
 } catch (e) {} })();
+(function horcyCatMig() { try { var LS = window.localStorage; ['horcy:depenses', 'horcy:depSeries'].forEach(function (k) { var v = LS.getItem(k); if (v && v.indexOf('"Param\u00e9dical"') >= 0) LS.setItem(k, v.split('"Param\u00e9dical"').join('"Produit de soin"')); }); } catch (e) {} })();
 class Component extends DCLogic {
   entry() { let L = []; try { L = JSON.parse(window.localStorage.getItem('horcy:histo') || '[]'); } catch (e) {} const id = (() => { try { return window.localStorage.getItem('horcy:caseId'); } catch (e) { return null; } })(); return L.find((x) => x.id === id && x.kind === 'Alimentation') || L.find((x) => x.kind === 'Alimentation') || { id: '', cheval: '', date: '', title: 'Changement de l’alimentation', note: '', changes: [] }; }
   chgRows(e) { const K = { 'Modification': 'background:#f1e1d0;color:#8a4a12', 'Ajout': 'background:#e4e6d3;color:#4b5a28', 'Suppression': 'background:#f3dcdc;color:#9b2c2c' }; return (e.changes || []).map((c) => ({ name: c.name, sub: c.sub, kind: c.kind, style: K[c.kind] || '' })); }

@@ -330,6 +330,7 @@ a.ch{display:inline-flex;align-items:center;text-decoration:none}a.o,a.k{display
   W.horcyNotif = { plan: plan, wxRules: wxRules, wxHits: wxHits, kick: kick, sync: sync };
   kick();
 } catch (e) {} })();
+(function horcyCatMig() { try { var LS = window.localStorage; ['horcy:depenses', 'horcy:depSeries'].forEach(function (k) { var v = LS.getItem(k); if (v && v.indexOf('"Param\u00e9dical"') >= 0) LS.setItem(k, v.split('"Param\u00e9dical"').join('"Produit de soin"')); }); } catch (e) {} })();
 class Component extends DCLogic {
   lastCost(h, ty) { let L = []; try { L = JSON.parse(window.localStorage.getItem('horcy:histo') || '[]'); } catch (e) {} const r = L.filter((x) => x.sid && x.cheval === h && (x.type === ty || (x.det && x.det.type === ty)) && x.det && String(x.det.cost || '').trim() !== '').sort((a, b) => (a.iso < b.iso ? 1 : -1))[0]; return r ? String(r.det.cost).replace(/\s*€/, '').trim() : ''; }
   costDef(h) { const s = this.state; if (s.single.per === 'Une seule fois') return '0'; return this.lastCost(h, s.dd.type.val) || '0'; }

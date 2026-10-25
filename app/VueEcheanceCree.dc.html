@@ -236,6 +236,7 @@ label{display:flex;gap:12px;align-items:center;min-height:44px;font-size:15px}in
   W.horcyNotif = { plan: plan, wxRules: wxRules, wxHits: wxHits, kick: kick, sync: sync };
   kick();
 } catch (e) {} })();
+(function horcyCatMig() { try { var LS = window.localStorage; ['horcy:depenses', 'horcy:depSeries'].forEach(function (k) { var v = LS.getItem(k); if (v && v.indexOf('"Param\u00e9dical"') >= 0) LS.setItem(k, v.split('"Param\u00e9dical"').join('"Produit de soin"')); }); } catch (e) {} })();
 class Component extends DCLogic {
   fh(s) { return String(s == null ? '' : s).replace(/\b(\d{1,2}):(\d{2})\b/g, (m, h, mm) => (+h) + 'h' + (mm === '00' ? '' : mm)); }
   rls(k, d) { try { const v = window.localStorage.getItem(k); return v ? JSON.parse(v) : d; } catch (e) { return d; } }

@@ -320,6 +320,7 @@ label{display:flex;gap:12px;align-items:center;min-height:44px;font-size:15px}in
   W.horcyNotif = { plan: plan, wxRules: wxRules, wxHits: wxHits, kick: kick, sync: sync };
   kick();
 } catch (e) {} })();
+(function horcyCatMig() { try { var LS = window.localStorage; ['horcy:depenses', 'horcy:depSeries'].forEach(function (k) { var v = LS.getItem(k); if (v && v.indexOf('"Param\u00e9dical"') >= 0) LS.setItem(k, v.split('"Param\u00e9dical"').join('"Produit de soin"')); }); } catch (e) {} })();
 class Component extends DCLogic {
   uniqNames() { const d = this.prosDb(); return ((d && d.pros) || (Array.isArray(d) ? d : [])).map((p) => p.name); }
   addrPick(f) { this.setState({ address: f.label, addrGeo: { lat: f.lat, lon: f.lon, citycode: f.citycode, label: f.label }, addrSugg: [], addrErr: false }); }

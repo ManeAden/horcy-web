@@ -316,6 +316,7 @@ label{display:flex;gap:12px;align-items:center;min-height:44px;font-size:15px}in
   W.horcyNotif = { plan: plan, wxRules: wxRules, wxHits: wxHits, kick: kick, sync: sync };
   kick();
 } catch (e) {} })();
+(function horcyCatMig() { try { var LS = window.localStorage; ['horcy:depenses', 'horcy:depSeries'].forEach(function (k) { var v = LS.getItem(k); if (v && v.indexOf('"Param\u00e9dical"') >= 0) LS.setItem(k, v.split('"Param\u00e9dical"').join('"Produit de soin"')); }); } catch (e) {} })();
 class Component extends DCLogic {
   ageTxt(h) { h = h || {}; const s = String(h.naiss || '').trim(); const m = /^(\d{1,2})\/(\d{1,2})\/(\d{2,4})$/.exec(s); if (!m) return h.age || ''; let y = +m[3]; if (m[3].length === 2) { y += 2000; if (y > HZ.y) y -= 100; } const b = new Date(y, +m[2] - 1, +m[1]); const t = HZ.date(); let mo = (t.getFullYear() - b.getFullYear()) * 12 + (t.getMonth() - b.getMonth()); if (t.getDate() < b.getDate()) mo -= 1; if (mo < 0) return ''; if (mo < 12) return mo < 1 ? 'Moins d’un mois' : mo + ' mois'; const a = Math.floor(mo / 12); return a + (a > 1 ? ' ans' : ' an'); }
   readHorses() { try { const v = window.localStorage.getItem('horcy:horses'); const a = v ? JSON.parse(v) : []; return Array.isArray(a) ? a : []; } catch (e) { return []; } }

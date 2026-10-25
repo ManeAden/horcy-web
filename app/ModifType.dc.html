@@ -233,6 +233,7 @@ label{display:flex;gap:12px;align-items:center;min-height:44px;font-size:15px}in
   W.horcyNotif = { plan: plan, wxRules: wxRules, wxHits: wxHits, kick: kick, sync: sync };
   kick();
 } catch (e) {} })();
+(function horcyCatMig() { try { var LS = window.localStorage; ['horcy:depenses', 'horcy:depSeries'].forEach(function (k) { var v = LS.getItem(k); if (v && v.indexOf('"Param\u00e9dical"') >= 0) LS.setItem(k, v.split('"Param\u00e9dical"').join('"Produit de soin"')); }); } catch (e) {} })();
 class Component extends DCLogic {
   uniqNames() { let c = []; try { c = JSON.parse(window.localStorage.getItem('horcy:types') || '[]').map((t) => t.name); } catch (e) {} const me = String(this.orig || '').toLowerCase(); return ['Maréchal', 'Vermifuge', 'Vaccin', 'Coproscopie', 'Vétérinaire', 'Dentiste', 'Ostéopathe', 'Transporteur', 'Formateur', 'Alimentation', 'Traitement', 'Autre'].concat(c).filter((n) => String(n).toLowerCase() !== me); }
   constructor(...args) { super(...args); let n = '', T = []; try { n = window.localStorage.getItem('horcy:typeEdit') || ''; T = JSON.parse(window.localStorage.getItem('horcy:types') || '[]'); } catch (e) {} const t = T.find((x) => x.name === n) || T[0] || { name: '', notes: '' }; this.orig = t.name; this.state = { name: t.name, notes: t.notes || '' }; }

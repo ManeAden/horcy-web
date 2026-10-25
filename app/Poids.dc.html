@@ -235,6 +235,7 @@ label{display:flex;gap:12px;align-items:center;min-height:44px;font-size:15px}in
   W.horcyNotif = { plan: plan, wxRules: wxRules, wxHits: wxHits, kick: kick, sync: sync };
   kick();
 } catch (e) {} })();
+(function horcyCatMig() { try { var LS = window.localStorage; ['horcy:depenses', 'horcy:depSeries'].forEach(function (k) { var v = LS.getItem(k); if (v && v.indexOf('"Param\u00e9dical"') >= 0) LS.setItem(k, v.split('"Param\u00e9dical"').join('"Produit de soin"')); }); } catch (e) {} })();
 class Component extends DCLogic {
   constructor(...args) { super(...args); const h = HSP.ctx(); const L = HSP.poids(h); const u0 = L.length ? L[L.length - 1].u : (HSP.of(h) === 'Tortue' ? 'g' : 'kg');
     let sv = null; try { sv = JSON.parse(window.localStorage.getItem('horcy:poidsPer') || 'null'); } catch (e) {} const per = sv && ['Toutes', 'Mois en cours', 'Année en cours', 'Personnalisée'].indexOf(sv.per) >= 0 && (sv.per !== 'Personnalisée' || sv.cust) ? sv.per : 'Année en cours';
