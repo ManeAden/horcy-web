@@ -148,6 +148,34 @@ a.ch{display:inline-flex;align-items:center;text-decoration:none}a.k{display:fle
   Dc.addEventListener('keydown', function (e) { if (cur && e.key === 'Escape') close(); });
   setInterval(function () { if (cur && (!cur.x.isConnected || !cur.box.isConnected || !cur.x.offsetParent)) close(); }, 400);
 } catch (e) {} })();
+(function horcyHib() { try { if (window.HSPH) return;
+  /* Échéances sur une période (ex. hibernation, convalescence) : ech.hib = { start (iso), n, unit, did (sid de la ligne « Début ») } ; ech.next = date de fin. Résumé en clair de Nouvelle / Modifier l'échéance. */
+  var MON = ['janv.', 'févr.', 'mars', 'avr.', 'mai', 'juin', 'juil.', 'août', 'sept.', 'oct.', 'nov.', 'déc.'];
+  var p2 = function (x) { return ('0' + x).slice(-2); };
+  var add = function (t, n, u) { var r = new Date(t.getTime()); n = parseInt(n, 10) || 0; if (u === 'jours') r.setDate(r.getDate() + n); else if (u === 'semaines') r.setDate(r.getDate() + 7 * n); else if (u === 'mois') r.setMonth(r.getMonth() + n); else r.setFullYear(r.getFullYear() + n); return r; };
+  var iso = function (t) { return t.getFullYear() + '-' + p2(t.getMonth() + 1) + '-' + p2(t.getDate()); };
+  var fromIso = function (s) { var q = String(s || '').split('-'); return q.length === 3 ? new Date(+q[0], +q[1] - 1, +q[2]) : null; };
+  var parseFr = function (s) { var m = /(\d{1,2})\/(\d{1,2})\/(\d{2,4})/.exec(String(s || '')); if (!m) return null; var y = +m[3]; if (y < 100) y += 2000; var d = new Date(y, +m[2] - 1, +m[1]); return d.getMonth() === +m[2] - 1 ? d : null; };
+  var lab = function (t) { return t.getDate() + ' ' + MON[t.getMonth()] + (t.getFullYear() !== HZ.y ? ' ' + String(t.getFullYear()).slice(2) : ''); };
+  var fr = function (t) { return p2(t.getDate()) + '/' + p2(t.getMonth() + 1) + '/' + String(t.getFullYear()).slice(2); };
+  var durTxt = function (n, u) { n = parseInt(n, 10) || 1; var U = { jours: ['jour', 'jours'], semaines: ['semaine', 'semaines'], mois: ['mois', 'mois'], ans: ['an', 'ans'] }; return n + ' ' + (U[u] || [u, u])[n > 1 ? 1 : 0]; };
+  var J = function (k, d) { try { var v = localStorage.getItem(k); return v ? JSON.parse(v) : d; } catch (e) { return d; } };
+  var rel = function (t) { var a = HZ.date(); var d = Math.round((Date.UTC(t.getFullYear(), t.getMonth(), t.getDate()) - Date.UTC(a.getFullYear(), a.getMonth(), a.getDate())) / 86400000); return d === 0 ? 'aujourd’hui' : (d === 1 ? 'demain' : (d === -1 ? 'hier' : '')); };
+  var dl = function (t) { return t.getDate() + ' ' + MON[t.getMonth()] + (t.getFullYear() !== HZ.y ? ' ' + t.getFullYear() : ''); };
+  var every = function (n, u) { n = parseInt(n, 10) || 1; if (n === 1) return ({ jours: 'chaque jour', semaines: 'chaque semaine', mois: 'chaque mois', ans: 'chaque année' })[u] || ('tous les ' + u); return (u === 'semaines' ? 'toutes les ' : 'tous les ') + n + ' ' + u; };
+  var H = window.HSPH = { T: 'Hibernation', ICON: 'M4 9h5l-5 6h5 M12 5h4l-4 5h4 M16 14h4l-4 5h4', add: add, iso: iso, fromIso: fromIso, parseFr: parseFr, lab: lab, fr: fr, durTxt: durTxt, every: every,
+    per: function (e) { var h = e && e.hib; var s = h && fromIso(h.start), f = e && fromIso(e.next); return s && f ? lab(s) + ' → ' + lab(f) : ''; },
+    resume: function (o) { var s = o.start; if (!s) return ''; var r = rel(s), out;
+      if (o.per) { var n = parseInt(o.n, 10); if (!(n > 0)) return ''; var f = add(s, n, o.hu), rf = rel(f); out = (r === 'aujourd’hui' ? 'D’aujourd’hui' : (r === 'hier' ? 'D’hier' : (r === 'demain' ? 'De demain' : 'Du ' + dl(s)))) + (rf ? ' à ' + rf : ' au ' + dl(f)); }
+      else { out = r ? r.charAt(0).toUpperCase() + r.slice(1) : 'Le ' + dl(s); var tm = String(o.tm || '').trim(); if (/^\d{1,2}:\d{2}$/.test(tm)) out += ' à ' + tm; }
+      if (o.rep) { var k = parseInt(o.f, 10); if (k > 0) out += ', puis ' + every(k, o.u); } return out; },
+    debut: function (e, horse, sid) { sid = sid || ('soin' + Date.now() + Math.floor(Math.random() * 1000)); var s = fromIso(e.hib.start) || HZ.date(); var ty = e.type || 'Hibernation'; return { id: 'hist' + sid, sid: sid, kind: ty, type: ty, date: lab(s), iso: e.hib.start, cheval: horse, title: ty, sub: horse, clips: false, note: '', price: '', tag: 'Début', tagStyle: 'background:#e4e6d3;color:#4b5a28', href: 'VueSoinCree.dc.html', det: { files: [], pro: '', cost: '', type: ty, horse: horse, ech: e.id, hib: { start: e.hib.start, end: e.next, phase: 'Début' } } }; },
+    syncDebut: function (e) { try { var L = J('horcy:histo', []); var horse = (e.horses || [])[0] || ''; var i = e.hib.did ? L.findIndex(function (x) { return x.sid === e.hib.did; }) : -1;
+      if (i >= 0) { var x = L[i]; var n = H.debut(e, horse, x.sid); n.note = x.note || ''; n.title = (x.title && x.title !== x.type) ? x.title : n.title; n.det.files = (x.det && x.det.files) || []; n.clips = n.det.files.length > 0; L[i] = Object.assign({}, x, n); }
+      else { var n2 = H.debut(e, horse); e.hib.did = n2.sid; L.push(n2); }
+      localStorage.setItem('horcy:histo', JSON.stringify(L)); } catch (er) {} return e; },
+    dropDebut: function (e) { try { if (!e || !e.hib || !e.hib.did || e.hib.start <= HZ.iso) return; localStorage.setItem('horcy:histo', JSON.stringify(J('horcy:histo', []).filter(function (x) { return x.sid !== e.hib.did; }))); } catch (er) {} } };
+} catch (e) {} })();
 (function horcyNotif() { try {
   /* Notifications Horcy : actif seulement dans l'application Android (Capacitor). Dans le navigateur, rien n'est programmé ; window.horcyNotif.plan() permet de voir le calendrier calculé. Date et heure : celles du téléphone. */
   var W = window;
@@ -179,11 +207,12 @@ a.ch{display:inline-flex;align-items:center;text-decoration:none}a.k{display:fle
     now = now || new Date(); D = D || data(); var out = []; var today = new Date(now.getFullYear(), now.getMonth(), now.getDate()); var last = addDays(today, DAYS);
     var push = function (key, t, title, body, icon) { if (t.getTime() <= now.getTime() || t > addDays(last, 1)) return; out.push({ key: key, at: t.getTime(), title: title, body: body, icon: icon }); };
     var hasH = function (h) { return D.horses.indexOf(h) >= 0; };
-    (D.ech || []).forEach(function (e) { var rm = e.rem || {}; if (rm.on === false) return; var nx = fromIso(e.next); if (!nx) return; var hr = rm.h || e.time || '18:00'; var body = 'Échéance le ' + lab(nx, now) + ' à ' + fh(e.time || '18:00');
+    (D.ech || []).forEach(function (e) { var rm = e.rem || {}; if (rm.on === false) return; var nx = fromIso(e.next); if (!nx) return; var hr = rm.h || e.time || '18:00'; var body = 'Échéance le ' + lab(nx, now) + ' à ' + fh(e.time || '18:00'); var sx = e.hib ? fromIso(e.hib.start) : null; if (sx) body = 'Du ' + lab(sx, now) + ' au ' + lab(nx, now);
       (e.horses || []).forEach(function (h) { if (!hasH(h)) return; var ic = ICON[e.type] || 'ic_stat_autre';
-        if (rm.dOn !== false) { var n = parseInt(rm.dN || 7, 10) || 7; push('e|' + e.id + '|' + h + '|d' + n + '|' + e.next, at(addDays(nx, -n), hr), e.type + ' - ' + h + ' • Dans ' + n + ' jours', body, ic); }
-        if (rm.vOn !== false) push('e|' + e.id + '|' + h + '|v|' + e.next, at(addDays(nx, -1), hr), e.type + ' - ' + h + ' • Demain', body, ic);
-        if (rm.hOn !== false) { var hn = parseInt(rm.hN || 1, 10) || 1; push('e|' + e.id + '|' + h + '|h' + hn + '|' + e.next, new Date(at(nx, e.time || '18:00').getTime() - hn * 3600000), e.type + ' - ' + h + ' • Dans ' + hn + (hn > 1 ? ' heures' : ' heure'), body, ic); } }); });
+        if (rm.dOn !== false) { var n = parseInt(rm.dN || 7, 10) || 7; push('e|' + e.id + '|' + h + '|d' + n + '|' + (sx ? e.hib.start : e.next), at(addDays(sx || nx, -n), hr), e.type + ' - ' + h + (sx ? ' • Début dans ' : ' • Dans ') + n + ' jours', body, ic); }
+        if (rm.vOn !== false) push('e|' + e.id + '|' + h + '|v|' + (sx ? e.hib.start : e.next), at(addDays(sx || nx, -1), hr), e.type + ' - ' + h + (sx ? ' • Début demain' : ' • Demain'), body, ic);
+        if (sx && rm.fOn === true) push('e|' + e.id + '|' + h + '|f|' + e.next, at(addDays(nx, -1), hr), e.type + ' - ' + h + ' • Fin demain', body, ic);
+        if (rm.hOn !== false && !sx) { var hn = parseInt(rm.hN || 1, 10) || 1; push('e|' + e.id + '|' + h + '|h' + hn + '|' + e.next, new Date(at(nx, e.time || '18:00').getTime() - hn * 3600000), e.type + ' - ' + h + ' • Dans ' + hn + (hn > 1 ? ' heures' : ' heure'), body, ic); } }); });
     var T = D.db.treatments || {};
     ((D.rap && D.rap.trt) || []).forEach(function (x) { if (!x.on || !hasH(x.horse)) return; var tr = (T[x.horse] || []).filter(function (t) { return t.id === x.tid; })[0]; if (!tr) return; var st = (D.histo || []).filter(function (y) { return y.tid === x.tid && y.tag !== 'Fin'; })[0]; if (!st) return; var det = st.det || {}; var s0 = fromIso(st.iso); if (!s0) return; var once = !!det.once; var e0 = once ? s0 : (fromIso(tr.endIso) || s0);
       var mm = /^Traitement · ((?:matin|midi|soir)(?: et (?:matin|midi|soir))*)$/.exec(String(x.cond || '')); var meals = mm ? mm[1].split(' et ') : null; var alim = !!meals;
@@ -230,7 +259,11 @@ a.ch{display:inline-flex;align-items:center;text-decoration:none}a.k{display:fle
       return Promise.resolve(sig === S('sig') ? null : ln.getPending().then(function (r) { var old = ((r && r.notifications) || []).filter(function (n) { return !n.extra || n.extra.horcy == null || String(n.extra.horcy).charAt(0) !== 'w'; }).map(function (n) { return { id: n.id }; }); return old.length ? ln.cancel({ notifications: old }) : null; }).then(function () { return P.length ? ln.schedule({ notifications: P.map(function (p) { return toLN(p, p.at); }) }) : null; }).then(function () { S('sig', sig); }))
         .then(function () { return weather(ln, now); }); }).catch(function () {}).then(function () { busy = false; if (again) { again = false; sync(); } }); }
 
-  function weather(ln, now) { var cfg = wxRules(); var br = BR();
+  var HM = function () { var c = C(); return c && c.Plugins && c.Plugins.HorcyMeteo; };
+  function wxStatus(hm) { return hm.status().then(function (st) { if (st && st.log != null) { try { LS.setItem('horcy:wxlog', String(st.log)); LS.setItem('horcy:wxnext', String(st.next || '')); LS.setItem('horcy:wxexact', st.exact ? '1' : '0'); } catch (e) {} try { W.dispatchEvent(new Event('horcy-wxlog')); } catch (e) {} } }).catch(function () {}); }
+  function weather(ln, now) { var cfg = wxRules(); var hm = HM();
+    if (hm && hm.setConfig) return hm.setConfig({ cfg: JSON.stringify(cfg) }).catch(function () {}).then(function () { if (now.getHours() < 8 || !cfg.geo || !cfg.rules.length) return null; return hm.check({ src: 'ouverture' }).then(function (r) { if (r && r.wx) try { LS.setItem('horcy:wx', r.wx); } catch (e) {} }).catch(function () {}); }).then(function () { return wxStatus(hm); });
+    var br = BR();
     var push = br && br.dispatchEvent ? br.dispatchEvent({ label: RUNNER, event: 'config', details: cfg }).catch(function () {}) : Promise.resolve();
     return push.then(function () { if (now.getHours() < 8 || !cfg.geo || !cfg.rules.length) return null; var day = isoOf(now);
       if (br && br.dispatchEvent) return br.dispatchEvent({ label: RUNNER, event: 'check', details: {} }).then(function (r) { if (r && r.wx) try { LS.setItem('horcy:wx', JSON.stringify(r.wx)); } catch (e) {} }).catch(function () {});
