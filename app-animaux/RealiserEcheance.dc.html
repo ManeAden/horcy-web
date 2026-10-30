@@ -418,6 +418,6 @@ class Component extends DCLogic {
         const a = pd(d.value); const b = pd(f.value); if (a !== null && b !== null && b < a) flag(f, 'La date de fin doit suivre la date de début'); });
       if (!first && changed && t && t.click) { if (e && e.preventDefault) e.preventDefault(); setTimeout(() => t.click(), 60); return false; }
       if (first) { if (e && e.preventDefault) e.preventDefault(); first.focus(); if (first.scrollIntoView) first.scrollIntoView({ block: 'center' }); return false; } } catch (x) {} return true; }
-  renderVals() { const v = this.renderValsHb0(); const o = this.hist(); const h = o.L[o.i] || {}; v.notHibS = !(h.det && h.det.hib); v.pastAttr = v.notHibS ? '1' : ''; return v; }
+  renderVals() { const v = this.renderValsHb0(); const o = this.hist(); const h = o.L[o.i] || {}; v.notHibS = !(h.det && h.det.hib && ((h.det.type || h.type) === 'Hibernation')); v.pastAttr = !(h.det && h.det.hib) ? '1' : ''; return v; }
 }
 </script></body></html>

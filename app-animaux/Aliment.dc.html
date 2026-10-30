@@ -401,9 +401,11 @@ class Component extends DCLogic {
   isWeek() { try { return ['Chat', 'Chien'].indexOf(HSP.of(this.ctxH())) >= 0; } catch (e) { return false; } }
   renderVals() { const s = this.state; if (!s.groups.jours) s.groups.jours = { Lu: true, Ma: true, Me: true, Je: true, Ve: true, Sa: true, Di: true }; const v = this.renderValsW0(); v.isWeek = this.isWeek(); const F = { Lu: 'lundi', Ma: 'mardi', Me: 'mercredi', Je: 'jeudi', Ve: 'vendredi', Sa: 'samedi', Di: 'dimanche' };
     v.jours = this.chips('jours', ['Lu', 'Ma', 'Me', 'Je', 'Ve', 'Sa', 'Di']).map((x) => Object.assign(x, { full: F[x.label] })); return v; }
-  saveAliment() { const h = this.ctxH(); const before = ((this.db().rations || {})[h] || []).map((x) => x.id); this.saveAliment0(); if (!this.isWeek()) return;
-    const D = ['Lu', 'Ma', 'Me', 'Je', 'Ve', 'Sa', 'Di']; const g = this.state.groups.jours || {}; const days = D.map((l, i) => (g[l] ? i : -1)).filter((i) => i >= 0); if (days.length === 7) return;
+  saveAliment() { const h = this.ctxH(); const before = ((this.db().rations || {})[h] || []).map((x) => x.id); const D = ['Lu', 'Ma', 'Me', 'Je', 'Ve', 'Sa', 'Di']; const g = this.state.groups.jours || {}; const days = D.map((l, i) => (g[l] ? i : -1)).filter((i) => i >= 0); this._days = this.isWeek() && days.length < 7 ? days : null; this.saveAliment0(); this._days = null; if (!this.isWeek()) return;
+    if (days.length === 7) return;
     const d = this.db(); (d.rations[h] || []).forEach((r) => { if (before.indexOf(r.id) < 0) r.days = days; }); this.dbSet(d); }
+  chgSub(r) { const D = ['Lu', 'Ma', 'Me', 'Je', 'Ve', 'Sa', 'Di']; const m = String(r.meal || ''); const ds = Array.isArray(r.days) ? r.days : this._days; const dd = Array.isArray(ds) && ds.length < 7 ? ds.slice().sort().map((i) => D[i]).join(', ') : ''; return [r.sub, m.charAt(0).toUpperCase() + m.slice(1), dd, r.qty].filter(Boolean).join(' · '); }
 }
+
 
 </script></body></html>

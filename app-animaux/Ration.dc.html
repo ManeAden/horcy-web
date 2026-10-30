@@ -385,6 +385,8 @@ class Component extends DCLogic {
     const t = HZ.date(); const d = new Date(t.getFullYear(), t.getMonth(), t.getDate() + (day - t0)); const k = day - t0;
     v.jourLbl = k === 0 ? 'Aujourd’hui' : (k === 1 ? 'Demain' : (k === -1 ? 'Hier' : d.getDate() + ' ' + MON[d.getMonth()] + (d.getFullYear() !== HZ.y ? ' ' + String(d.getFullYear()).slice(2) : '')));
     return v; }
+  chgSub(r) { const D = ['Lu', 'Ma', 'Me', 'Je', 'Ve', 'Sa', 'Di']; const m = String(r.meal || ''); const ds = Array.isArray(r.days) ? r.days : this._days; const dd = Array.isArray(ds) && ds.length < 7 ? ds.slice().sort().map((i) => D[i]).join(', ') : ''; return [r.sub, m.charAt(0).toUpperCase() + m.slice(1), dd, r.qty].filter(Boolean).join(' · '); }
 }
+
 
 </script></body></html>
