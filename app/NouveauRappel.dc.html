@@ -214,7 +214,7 @@ label{display:flex;gap:12px;align-items:center;min-height:44px;font-size:15px}in
         if (sx && rm.fOn === true) push('e|' + e.id + '|' + h + '|f|' + e.next, at(addDays(nx, -1), hr), e.type + ' - ' + h + ' • Fin demain', body, ic);
         if (rm.hOn !== false && !sx) { var hn = parseInt(rm.hN || 1, 10) || 1; push('e|' + e.id + '|' + h + '|h' + hn + '|' + e.next, new Date(at(nx, e.time || '18:00').getTime() - hn * 3600000), e.type + ' - ' + h + ' • Dans ' + hn + (hn > 1 ? ' heures' : ' heure'), body, ic); } }); });
     var T = D.db.treatments || {};
-    ((D.rap && D.rap.trt) || []).forEach(function (x) { if (!x.on || !hasH(x.horse)) return; var tr = (T[x.horse] || []).filter(function (t) { return t.id === x.tid; })[0]; if (!tr) return; var st = (D.histo || []).filter(function (y) { return y.tid === x.tid && y.tag !== 'Fin'; })[0]; if (!st) return; var det = st.det || {}; var s0 = fromIso(st.iso); if (!s0) return; var once = !!det.once; var e0 = once ? s0 : (fromIso(tr.endIso) || s0);
+    ((D.rap && D.rap.trt) || []).forEach(function (x) { if (!x.on || !hasH(x.horse)) return; var tr = (T[x.horse] || []).filter(function (t) { return t.id === x.tid; })[0]; if (!tr) return; var st = (D.histo || []).filter(function (y) { return y.tid === x.tid && y.tag !== 'Fin'; })[0]; if (!st) return; var det = st.det || {}; var s0 = fromIso(st.iso); if (!s0) return; var once = !!det.once; var e0 = once ? s0 : (fromIso(tr.endIso) || (tr.endIso === '' ? last : s0));
       var mm = /^Traitement · ((?:matin|midi|soir)(?: et (?:matin|midi|soir))*)$/.exec(String(x.cond || '')); var meals = mm ? mm[1].split(' et ') : null; var alim = !!meals;
       var hours = alim ? [] : (x.hrs && x.hrs.length ? x.hrs : String(x.cond || '').replace('Traitement · ', '').split(' et ').filter(function (v) { return /\d/.test(v); })); if (!alim && !hours.length) hours = ['18:00'];
       var title = alim ? String(x.title || '').replace(' - ', ' ') + ' - ' + x.horse : (x.title || tr.title) + ' - ' + x.horse;
@@ -346,12 +346,12 @@ class Component extends DCLogic {
   rEvTxt(n, u) { n = parseInt(n, 10) || 1; const f = u === 'semaines' ? 'Toutes les ' : 'Tous les '; return n === 1 ? f + (u || 'jours') : f + n + ' ' + (u || 'jours'); }
   rFh(h) { return String(h || '').replace(/^0?(\d{1,2}):(\d{2})$/, (m, a, b) => (+a) + 'h' + (b === '00' ? '' : b)); }
   rInit() { const s = this.state; if (s.rInit) return; this.rInitCore(s, null); }
-  rInitCore(s, sp) { s.rInit = true; let durN = '1', durU = 'semaines', noEnd = false;
+  rInitCore(s, sp) { s.rInit = true; let durN = '1', durU = 'semaines', noEnd = !(sp && sp.type === 'Date/Heure' && sp.per !== 'Une seule fois');
     if (sp && sp.type === 'Date/Heure' && sp.per !== 'Une seule fois') { if (sp.durN) { durN = String(sp.durN); durU = sp.durU || 'jours'; noEnd = !!sp.noEnd; } else if (!sp.end) noEnd = true; else { const a = HSPH.parseFr(sp.start), b = HSPH.parseFr(sp.end); if (a && b) { durN = String(Math.max(1, Math.round((b - a) / 86400000))); durU = 'jours'; } } }
-    s.single = Object.assign({}, s.single, { fin: noEnd ? 'Sans fin' : 'Jusqu’à' }); s.rDurN = durN; s.dd.rdunit = { open: false, val: durU }; s.dd.runit = { open: false, val: (sp && sp.unit) || 'jours' }; }
+    s.single = Object.assign({}, s.single, { fin: noEnd ? 'Sans fin' : 'Pendant' }); s.rDurN = durN; s.dd.rdunit = { open: false, val: durU }; s.dd.runit = { open: false, val: (sp && sp.unit) || 'jours' }; }
   rVals(v) { this.rInit(); const s = this.state; const G = s.gf || {}; const noEnd = s.single.fin === 'Sans fin';
     Object.assign(v, this.dd('runit', ['jours', 'semaines', 'mois']), this.dd('rdunit', ['jours', 'semaines', 'mois']));
-    v.rEveryLbl = s.dd.runit.val === 'semaines' ? 'Toutes les' : 'Tous les'; v.finR = this.radios('fin', ['Jusqu’à', 'Sans fin']); v.rH0 = (v.hours || [])[0] || { val: '', change: () => {} }; v.rXH = (v.hours || []).slice(1); v.rHasEnd = !noEnd; v.rDurN = s.rDurN; v.setRDurN = (e) => this.setState({ rDurN: e.target.value });
+    v.rEveryLbl = s.dd.runit.val === 'semaines' ? 'Toutes les' : 'Tous les'; v.finR = this.radios('fin', ['Pendant', 'Sans fin']); v.rH0 = (v.hours || [])[0] || { val: '', change: () => {} }; v.rXH = (v.hours || []).slice(1); v.rHasEnd = !noEnd; v.rDurN = s.rDurN; v.setRDurN = (e) => this.setState({ rDurN: e.target.value });
     const st = HSPH.parseFr(G.f5 !== undefined ? G.f5 : HZ.fr); const ev = parseInt(G.f4 !== undefined ? G.f4 : '2', 10); const n = parseInt(s.rDurN, 10); let r = '';
     if (st && ev > 0 && (noEnd || n > 0)) { const hs = (s.hours || []).map((h) => this.rFh(h)).filter(Boolean); const tail = ', ' + this.rEvTxt(ev, s.dd.runit.val).toLowerCase() + (hs.length ? ' à ' + hs.join(' et ') : '');
       if (noEnd) { const one = HSPH.resume({ start: st }); r = (one === 'Aujourd’hui' ? 'À partir d’aujourd’hui' : (one === 'Demain' ? 'À partir de demain' : (one === 'Hier' ? 'À partir d’hier' : one.replace(/^Le /, 'À partir du ')))) + tail; }
