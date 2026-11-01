@@ -8,7 +8,7 @@ import crypto from 'node:crypto';
 export function buildAnimaux(HEAD, SAFE) {
   const ROOT = 'dist', OUT = path.join(ROOT, 'animaux');
   fs.rmSync(OUT, { recursive: true, force: true });
-  for (const d of ['fonts', 'vendor', 'assets']) { fs.mkdirSync(path.join(OUT, d), { recursive: true }); for (const f of fs.readdirSync(path.join(ROOT, d))) fs.copyFileSync(path.join(ROOT, d, f), path.join(OUT, d, f)); }
+  for (const d of ['fonts', 'vendor', 'assets', 'pdf']) { fs.mkdirSync(path.join(OUT, d), { recursive: true }); for (const f of fs.readdirSync(path.join(ROOT, d))) fs.copyFileSync(path.join(ROOT, d, f), path.join(OUT, d, f)); }
   const ns = (s) => s.split('horcy:').join('horcyM:').split('horcyN:').join('horcyMN:').split('horcy-files').join('horcyM-files');
   let n = 0;
   for (const f of fs.readdirSync('app-animaux').filter((x) => x.endsWith('.dc.html'))) {

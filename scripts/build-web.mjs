@@ -6,7 +6,7 @@ import { buildAnimaux } from './build-animaux.mjs';
 
 const OUT = 'dist';
 fs.rmSync(OUT, { recursive: true, force: true });
-for (const d of ['fonts', 'vendor', 'assets', 'exemple']) fs.mkdirSync(path.join(OUT, d), { recursive: true });
+for (const d of ['fonts', 'vendor', 'assets', 'exemple', 'pdf']) fs.mkdirSync(path.join(OUT, d), { recursive: true });
 
 // Polices et React en local : le site fonctionne hors connexion une fois ouvert.
 const FONTS = [['playfair-display', 'Playfair Display', [600, 700]], ['dm-sans', 'DM Sans', [400, 500, 700]]];
@@ -22,7 +22,17 @@ fs.writeFileSync(path.join(OUT, 'fonts', 'fonts.css'), css);
 fs.copyFileSync(path.join('node_modules', 'react', 'umd', 'react.production.min.js'), path.join(OUT, 'vendor', 'react.production.min.js'));
 fs.copyFileSync(path.join('node_modules', 'react-dom', 'umd', 'react-dom.production.min.js'), path.join(OUT, 'vendor', 'react-dom.production.min.js'));
 
+
+// Export PDF du suivi : pdf-lib, fontkit et polices .woff embarqués (fonctionne hors connexion)
+fs.mkdirSync(path.join(OUT, 'pdf'), { recursive: true });
+for (const [from, to] of [['node_modules/pdf-lib/dist/pdf-lib.min.js', 'pdf-lib.min.js'], ['node_modules/@pdf-lib/fontkit/dist/fontkit.umd.min.js', 'fontkit.umd.min.js'],
+  ['node_modules/@fontsource/dm-sans/files/dm-sans-latin-400-normal.woff', 'dm-sans-latin-400-normal.woff'], ['node_modules/@fontsource/dm-sans/files/dm-sans-latin-500-normal.woff', 'dm-sans-latin-500-normal.woff'],
+  ['node_modules/@fontsource/dm-sans/files/dm-sans-latin-700-normal.woff', 'dm-sans-latin-700-normal.woff'], ['node_modules/@fontsource/playfair-display/files/playfair-display-latin-700-normal.woff', 'playfair-display-latin-700-normal.woff']]) {
+  if (fs.existsSync(from)) fs.copyFileSync(from, path.join(OUT, 'pdf', to)); else console.warn('Fichier PDF introuvable :', from);
+}
+
 const HEAD = [
+  '<script>window.HORCY_PDF_BASE="pdf/"</script>',
   '<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">',
   '<meta name="theme-color" content="#faf9f4">',
   '<meta name="apple-mobile-web-app-capable" content="yes">',
