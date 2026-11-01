@@ -388,7 +388,7 @@ class Component extends DCLogic {
       const n = parseInt(e.freq, 10) || 0; if (n < 1) return; let g = 0; while (iso(d) < A && g++ < 500) d = add(d, n, e.unit); g = 0; while (iso(d) <= B && g++ < 60) { out.push({ iso: iso(d), title: e.type + ' — ' + h, date: lab(d), late: false, amount: c }); d = add(d, n, e.unit); } }); });
     const D = this.ls('horcy:depenses', []); this.ls('horcy:depSeries', []).forEach((sr) => { if (sr.stopped) return; const n = parseInt(sr.n, 10) || 0; if (n < 1) return; const q = String(sr.start || '').split('-'); if (q.length < 3) return; const last = D.filter((x) => x.serie === sr.id).sort((a, b) => (a.iso < b.iso ? 1 : -1))[0]; const c = this.num(last ? last.cost : sr.cost); let d = new Date(+q[0], +q[1] - 1, +q[2]); let g = 0; while (iso(d) < A && g++ < 600) d = add(d, n, sr.unit); g = 0; while (iso(d) <= B && g++ < 60) { out.push({ iso: iso(d), title: sr.title + ((sr.chevaux && sr.chevaux.length > 1) ? ' — ' + sr.chevaux.join(', ') : (sr.cheval ? ' — ' + sr.cheval : '')), date: lab(d), late: false, amount: c }); d = add(d, n, sr.unit); } });
     return out.sort((a, b) => (a.late !== b.late ? (a.late ? -1 : 1) : (a.iso < b.iso ? -1 : 1))); }
-  renderVals() { const st = this.state; const dd = st.dd; const per = dd.periode.val; const v = {};
+  renderValsF0() { const st = this.state; const dd = st.dd; const per = dd.periode.val; const v = {};
     const closed = { periode: { ...dd.periode, open: false } };
     v.periodeOpen = dd.periode.open; v.periodeDisp = dd.periode.open ? 'block' : 'none'; v.periodeRadius = dd.periode.open ? '12px 12px 0 0' : '12px'; v.periodeRot = dd.periode.open ? 'rotate(180deg)' : 'none';
     v.periodeToggle = () => this.setState({ dd: { periode: { ...dd.periode, open: !dd.periode.open } }, pErr: {}, catOpen: false });
@@ -458,5 +458,14 @@ class Component extends DCLogic {
     v.estRows = est.map((x) => ({ title: x.title, date: x.date, late: x.late, cost: this.money(x.amount) }));
     return v; }
   achShare(x, n) { if (x.chevaux) return x.chevaux.indexOf(n) >= 0 ? x.amount / x.chevaux.length : 0; return (x.cheval || '') === n ? x.amount : 0; }
+
+  /* Filtres conservés pendant la session (retour depuis une consultation, une modification ou un autre onglet) : sessionStorage, sinon localStorage. */
+  fStore() { try { if (window.sessionStorage) return window.sessionStorage; } catch (e) {} try { return window.localStorage; } catch (e) { return null; } }
+  fRestore() { if (this._fR) return; this._fR = 1; try { const st = this.fStore(); const raw = st && st.getItem('horcy:filtres:depenses'); if (!raw) return; const s = JSON.parse(raw) || {}; const S = this.state;
+      if (s.dd) Object.keys(s.dd).forEach((k) => { if (S.dd && S.dd[k] && s.dd[k] && s.dd[k].val !== undefined) S.dd[k] = Object.assign({}, S.dd[k], { val: s.dd[k].val, open: false }); });
+      ['cats', 'cust', 'gf', 'detOpen', 'pie'].forEach((k) => { if (s[k] !== undefined) S[k] = s[k]; }); } catch (e) {} }
+  fSave() { try { const st = this.fStore(); if (!st) return; const S = this.state; const o = { dd: {} }; Object.keys(S.dd || {}).forEach((k) => { o.dd[k] = { val: S.dd[k].val }; }); ['cats', 'cust', 'gf', 'detOpen', 'pie'].forEach((k) => { if (S[k] !== undefined) o[k] = S[k]; }); st.setItem('horcy:filtres:depenses', JSON.stringify(o)); } catch (e) {} }
+  renderVals() { this.fRestore(); const v = this.renderValsF0(); this.fSave(); return v; }
 }
+
 </script></body></html>

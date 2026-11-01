@@ -448,7 +448,7 @@ class Component extends DCLogic {
   xpDeliver(bytes, name, mode) { const C = window.Capacitor; const nat = C && C.isNativePlatform && C.isNativePlatform(); const P = (C && C.Plugins) || {};
     if (nat && P.Filesystem) { let b = ''; for (let i = 0; i < bytes.length; i += 32768) b += String.fromCharCode.apply(null, bytes.subarray(i, i + 32768)); const data = btoa(b);
       if (mode === 'share' && P.Share) return P.Filesystem.writeFile({ path: name, data, directory: 'CACHE' }).then((r) => P.Share.share({ title: name, files: [r.uri], dialogTitle: 'Partager le PDF' })).then(() => '').catch((e) => (e && /cancel/i.test(String(e.message || e)) ? '' : 'Le partage n’a pas abouti.'));
-      return P.Filesystem.writeFile({ path: name, data, directory: 'DOCUMENTS', recursive: true }).then(() => 'PDF enregistré dans Documents : ' + name).catch(() => P.Filesystem.writeFile({ path: name, data, directory: 'CACHE' }).then((r) => (P.FileOpener ? P.FileOpener.open({ filePath: r.uri, contentType: 'application/pdf' }).then(() => '') : 'PDF créé.'))); }
+      return P.Filesystem.writeFile({ path: 'Download/' + name, data, directory: 'EXTERNAL_STORAGE', recursive: true }).then(() => 'PDF enregistré dans Téléchargements : ' + name).catch(() => P.Filesystem.writeFile({ path: name, data, directory: 'DOCUMENTS', recursive: true }).then(() => 'PDF enregistré dans Documents : ' + name)).catch(() => P.Filesystem.writeFile({ path: name, data, directory: 'CACHE' }).then((r) => (P.FileOpener ? P.FileOpener.open({ filePath: r.uri, contentType: 'application/pdf' }).then(() => '') : 'PDF créé.'))); }
     const blob = new Blob([bytes], { type: 'application/pdf' });
     if (mode === 'share') { const file = new File([blob], name, { type: 'application/pdf' }); return navigator.share({ files: [file], title: name }).then(() => '').catch((e) => (e && e.name === 'AbortError' ? '' : 'Le partage n’a pas abouti.')); }
     const a = document.createElement('a'); a.href = URL.createObjectURL(blob); a.download = name; document.body.appendChild(a); a.click(); setTimeout(() => { URL.revokeObjectURL(a.href); a.remove(); }, 4000); return Promise.resolve(''); }
@@ -561,7 +561,16 @@ class Component extends DCLogic {
       pages.forEach((p, i) => { pg = p; T(p._foot || 'Horcy', ML, 18, 'r', 8, FOOT); T((i + 1) + ' / ' + pages.length, W - ML, 18, 'r', 8, FOOT, { right: true }); });
       pdf.setTitle('Suivi des soins'); pdf.setCreator('Horcy'); pdf.setProducer('Horcy');
       return pdf.save().then((bytes) => { const hs = HS.map((x) => x.h); const nm = 'Suivi des soins - ' + (hs.length === 1 ? hs[0] + ' - ' : '') + HZ.iso + '.pdf'; return { bytes, name: nm.replace(/[\\/:*?"<>|]/g, '-') }; }); }); }
-  renderVals() { return this.xpVals(this.renderValsX0()); }
+  renderValsF0() { return this.xpVals(this.renderValsX0()); }
+
+  /* Filtres conservés pendant la session (retour depuis une consultation, une modification ou un autre onglet) : sessionStorage, sinon localStorage. */
+  fStore() { try { if (window.sessionStorage) return window.sessionStorage; } catch (e) {} try { return window.localStorage; } catch (e) { return null; } }
+  fRestore() { if (this._fR) return; this._fR = 1; try { const st = this.fStore(); const raw = st && st.getItem('horcy:filtres:suivi'); if (!raw) return; const s = JSON.parse(raw) || {}; const S = this.state;
+      if (s.dd) Object.keys(s.dd).forEach((k) => { if (S.dd && S.dd[k] && s.dd[k] && s.dd[k].val !== undefined) S.dd[k] = Object.assign({}, S.dd[k], { val: s.dd[k].val, open: false }); });
+      ['selC', 'selT', 'cust', 'gf', 'sq', 'qa'].forEach((k) => { if (s[k] !== undefined) S[k] = s[k]; }); } catch (e) {} }
+  fSave() { try { const st = this.fStore(); if (!st) return; const S = this.state; const o = { dd: {} }; Object.keys(S.dd || {}).forEach((k) => { o.dd[k] = { val: S.dd[k].val }; }); ['selC', 'selT', 'cust', 'gf', 'sq', 'qa'].forEach((k) => { if (S[k] !== undefined) o[k] = S[k]; }); st.setItem('horcy:filtres:suivi', JSON.stringify(o)); } catch (e) {} }
+  renderVals() { this.fRestore(); const v = this.renderValsF0(); this.fSave(); return v; }
 }
+
 
 </script></body></html>
