@@ -390,7 +390,7 @@ class Component extends DCLogic {
   isWeek() { try { return ['Chat', 'Chien'].indexOf(HSP.of(this.horse)) >= 0; } catch (e) { return false; } }
   dayIdx() { return (HZ.date().getDay() + 6) % 7; }
   list(meal) { const wk = this.isWeek(); const day = this.state.day !== undefined ? this.state.day : this.dayIdx(); const D = ['Lu', 'Ma', 'Me', 'Je', 'Ve', 'Sa', 'Di'];
-    return this.state.items.filter((r) => r.meal === meal && (!wk || !Array.isArray(r.days) || r.days.indexOf(day) >= 0)).map((r) => { const dd = wk && Array.isArray(r.days) && r.days.length < 7 ? r.days.slice().sort().map((i) => D[i]).join(', ') : ''; const sub = [r.sub, dd].filter(Boolean).join(' · ');
+    return this.state.items.filter((r) => r.meal === meal && (!wk || !Array.isArray(r.days) || r.days.indexOf(day) >= 0)).map((r) => { const sub = r.sub || '';
       return { title: r.title, sub: sub, hasSub: !!sub, hasPer: !r.auto && !!r.endIso, perLbl: this.perLbl(r), qty: r.qty, auto: r.auto, until: r.until, untilLbl: r.until ? 'jusqu’au ' + r.until : 'sans fin', note: r.note, canDelete: !r.auto, remove: () => this.setState({ items: this.state.items.filter((x) => x.id !== r.id) }) }; }); }
   renderVals() { const v = this.renderValsW0(); const wk = this.isWeek(); v.isWeek = wk; if (!wk) return v;
     const t0 = this.dayIdx(); const day = this.state.day !== undefined ? this.state.day : t0; const D = ['Lu', 'Ma', 'Me', 'Je', 'Ve', 'Sa', 'Di']; const F = ['lundi', 'mardi', 'mercredi', 'jeudi', 'vendredi', 'samedi', 'dimanche']; const MON = ['janv.', 'févr.', 'mars', 'avr.', 'mai', 'juin', 'juil.', 'août', 'sept.', 'oct.', 'nov.', 'déc.'];
